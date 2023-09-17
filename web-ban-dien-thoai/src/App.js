@@ -21,7 +21,7 @@ function App() {
           <NavItem icon={<AppleIcon/>}/>
         </div>
           <SearchBar></SearchBar>
-        <NavItem icon={<PlusIcon/>}/>
+        <NavItem link={'duong-den-vinh-quang'} icon={<PlusIcon/>}/>
         <NavItem icon={<BellIcon/>}/>
         <NavItem icon={<MessengerIcon/>}/>
         <NavItem icon={<CaretIcon/>}>
