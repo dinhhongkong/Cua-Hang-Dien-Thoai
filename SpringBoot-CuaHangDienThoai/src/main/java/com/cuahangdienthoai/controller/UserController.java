@@ -19,10 +19,11 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/gio_hang")
+    @GetMapping("/gio-hang")
     public List<GioHang> gioHang(Authentication authentication) {
         return userService.findByUsername(authentication.getName()).getGioHang();
     }
+
 
     @GetMapping("/")
     public String gio() {

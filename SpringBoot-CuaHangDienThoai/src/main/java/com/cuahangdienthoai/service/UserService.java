@@ -4,4 +4,5 @@ import com.cuahangdienthoai.entity.User;
 
 public interface UserService {
     User findByUsername(String username);
+
 }

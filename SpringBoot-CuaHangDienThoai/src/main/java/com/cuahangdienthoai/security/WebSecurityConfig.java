@@ -24,7 +24,7 @@ public class WebSecurityConfig {
         http
                 .authorizeHttpRequests((requests) -> requests
                                 .requestMatchers("/", "/device").permitAll()
-                                .requestMatchers("/brand").hasAuthority("admin")
+                                .requestMatchers("/gio-hang").hasAuthority("user")
                                 .anyRequest().authenticated()
                 )
                 .httpBasic(withDefaults())

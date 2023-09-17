@@ -21,6 +21,7 @@ public class User {
 
     @Column(name = "username")
     private String userName;
+    @JsonIgnore
     private String password;
     private String role;
     private Boolean enable;
