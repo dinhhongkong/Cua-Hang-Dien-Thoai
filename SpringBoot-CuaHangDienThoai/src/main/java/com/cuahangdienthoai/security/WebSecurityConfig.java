@@ -8,6 +8,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,16 +20,40 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 public class WebSecurityConfig {
     private UserDetailsService userDetailsService;
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        http
+//                .authorizeHttpRequests((requests) -> requests
+//                                .requestMatchers("/", "/device").permitAll()
+//                                .requestMatchers("/gio-hang").hasAuthority("user")
+//                                .anyRequest().authenticated()
+//                )
+//                .httpBasic(withDefaults())
+//                .csrf(AbstractHttpConfigurer::disable);
+//        return http.build();
+//    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                                .requestMatchers("/", "/device").permitAll()
-                                .requestMatchers("/gio-hang").hasAuthority("user")
+                                .requestMatchers("/","/courses","/bootstrap/css/**", "/css/**","/fontawesome/**","/img/**").permitAll()
+//                        .requestMatchers("/").hasAnyRole("", "")
+//                        .requestMatchers("/").hasRole("")
                                 .anyRequest().authenticated()
                 )
-                .httpBasic(withDefaults())
-                .csrf(AbstractHttpConfigurer::disable);
+                .formLogin((form) -> form
+                        .loginProcessingUrl("/j_spring_security_check")
+                        .loginPage("/login")
+                        .permitAll()
+                        .defaultSuccessUrl("/",true)
+                        .failureUrl("/login?error=true")
+                        .usernameParameter("email")
+                        .passwordParameter("password")
+
+                )
+                .logout(LogoutConfigurer::permitAll);
+
         return http.build();
     }
     @Bean

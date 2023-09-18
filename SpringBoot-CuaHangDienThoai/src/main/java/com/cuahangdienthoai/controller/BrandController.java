@@ -10,31 +10,31 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+//@RestController
 public class BrandController {
     private BrandService brandService;
 
-    @Autowired
-    public void setBrandService(BrandService brandService) {
-        this.brandService = brandService;
-    }
-
-    @GetMapping("/brand")
-    public List<Brand> all() {
-        return brandService.findAll();
-    }
-
-    @GetMapping("/{brandName}/devices")
-    public List<Device> getDevice(@PathVariable String brandName) {
-        return brandService.findDevicesByBrandName(brandName);
-    }
-
-
-    @PostMapping("/brand")
-    public ResponseEntity<Brand> createBrand(@RequestBody Brand newBrand) {
-        brandService.save(newBrand);
-        return new ResponseEntity<>(newBrand,HttpStatus.CREATED);
-    }
+//    @Autowired
+//    public void setBrandService(BrandService brandService) {
+//        this.brandService = brandService;
+//    }
+//
+//    @GetMapping("/brand")
+//    public List<Brand> all() {
+//        return brandService.findAll();
+//    }
+//
+//    @GetMapping("/{brandName}/devices")
+//    public List<Device> getDevice(@PathVariable String brandName) {
+//        return brandService.findDevicesByBrandName(brandName);
+//    }
+//
+//
+//    @PostMapping("/brand")
+//    public ResponseEntity<Brand> createBrand(@RequestBody Brand newBrand) {
+//        brandService.save(newBrand);
+//        return new ResponseEntity<>(newBrand,HttpStatus.CREATED);
+//    }
 
 
 }

@@ -10,24 +10,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
+//@RestController
 public class UserController {
-    private UserService userService;
-
-    @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
-
-    @GetMapping("/gio-hang")
-    public List<GioHang> gioHang(Authentication authentication) {
-        return userService.findByUsername(authentication.getName()).getGioHang();
-    }
-
-
-    @GetMapping("/")
-    public String gio() {
-        return "hello react";
-    }
+//    private UserService userService;
+//
+//    @Autowired
+//    public void setUserService(UserService userService) {
+//        this.userService = userService;
+//    }
+//
+//    @GetMapping("/gio-hang")
+//    public List<GioHang> gioHang(Authentication authentication) {
+//        return userService.findByUsername(authentication.getName()).getGioHang();
+//    }
+//
+//
+//    @GetMapping("/")
+//    public String gio() {
+//        return "hello react";
+//    }
 
 }

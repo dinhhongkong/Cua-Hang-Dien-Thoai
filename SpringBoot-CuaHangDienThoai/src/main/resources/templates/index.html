@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/fontawesome/css/all.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+</head>
+<body>
+<div th:include="header :: header"></div>
+
+
+<!--Chỗ này là slide -->
+<div>
+
+</div>
+
+<!--Chỗ này là điện thoại mới về-->
+<div class="container">
+    <section style="background-color: #eee;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-lg-6 col-xl-4">
+                    <div class="card text-black">
+                        <img src="https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-a02.jpg"
+                             class="card-img-top" alt="Apple Computer" />
+                        <div class="card-body">
+                            <div class="text-center">
+                                <h5 class="card-title">Samsung galaxy s12</h5>
+                            </div>
+                            <div>
+                                <div class="d-flex justify-content-between">
+                                    <span>Giá</span><span>$5,999</span>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between total font-weight-bold mt-4">
+                                <span>Total</span><span>$7,197.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+
+
+
+<div class="container">
+    <div th:include="footer :: footer"></div>
+</div>
+
+
+
+</body>
+</html>
