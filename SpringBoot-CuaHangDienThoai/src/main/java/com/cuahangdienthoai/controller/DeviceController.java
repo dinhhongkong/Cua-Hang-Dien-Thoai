@@ -18,15 +18,7 @@ public class DeviceController {
     }
 
     @GetMapping("/")
-    public String home(Authentication authentication) {
-        CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
-        if (user != null) {
-            System.out.println( "đây là user id " + user.getUser().getId());
-        }
-        else {
-            System.out.println("chua dang nhap");
-        }
-
+    public String home() {
         return "index";
     }
 
