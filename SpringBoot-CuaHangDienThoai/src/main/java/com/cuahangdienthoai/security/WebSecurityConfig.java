@@ -38,8 +38,8 @@ public class WebSecurityConfig {
         http
                 .authorizeHttpRequests((requests) -> requests
                                 .requestMatchers("/","/courses","/bootstrap/css/**", "/css/**","/fontawesome/**","/img/**","/cart").permitAll()
-//                        .requestMatchers("/").hasAnyRole("", "")
-//                        .requestMatchers("/").hasRole("")
+                                .requestMatchers("/DonHang").hasAuthority("user")
+                                .requestMatchers("/brand").hasAuthority("admin")
                                 .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
