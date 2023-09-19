@@ -6,26 +6,29 @@
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}">
     <link rel="stylesheet" th:href="@{/fontawesome/css/all.css}">
     <link rel="stylesheet" th:href="@{/css/cart.css}">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 <body>
 <div th:include="header :: header"></div>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
+<link crossorigin="anonymous"
+      href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
+      integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" rel="stylesheet" />
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 <div class="container">
     <div class="row">
         <div class="col-xl-8">
             <div class="card border shadow-none">
                 <div class="card-body">
-
                     <div class="d-flex align-items-start border-bottom pb-3">
                         <div class="me-4">
-                            <img src="https://www.bootdey.com/image/380x380/008B8B/000000" alt="" class="avatar-lg rounded">
+                            <img alt="" class="avatar-lg rounded"
+                                 src="https://www.bootdey.com/image/380x380/008B8B/000000">
                         </div>
                         <div class="flex-grow-1 align-self-center overflow-hidden">
                             <div>
-                                <h5 class="text-truncate font-size-18"><a href="#" class="text-dark">Waterproof Mobile Phone </a></h5>
+                                <h5 class="text-truncate font-size-18"><a class="text-dark" href="#">Waterproof Mobile
+                                                                                                     Phone </a>
+                                </h5>
                                 <p class="text-muted mb-0">
                                     <i class="bx bxs-star text-warning"></i>
                                     <i class="bx bxs-star text-warning"></i>
@@ -39,63 +42,69 @@
                         <div class="flex-shrink-0 ms-2">
                             <ul class="list-inline mb-0 font-size-16">
                                 <li class="list-inline-item">
-                                    <a href="#" class="text-muted px-1">
+                                    <a class="text-muted px-1" href="#">
                                         <i class="mdi mdi-trash-can-outline"></i>
                                     </a>
                                 </li>
-
                             </ul>
                         </div>
                     </div>
-
                     <div>
                         <div class="row">
                             <div class="col-md-4">
-                                <div class="mt-3">
+                                <div class="mt-1">
                                     <p class="text-muted mb-2">Price</p>
-                                    <h5 class="mb-0 mt-2"><span class="text-muted me-2"><del class="font-size-16 fw-normal">$500</del></span>$450</h5>
+                                    <h5 class="mb-0 mt-2"><span class="text-muted me-2"><del
+                                            class="font-size-16 fw-normal">$500</del></span>$450
+                                    </h5>
                                 </div>
                             </div>
-                            <div class="col-md-5">
-                                <div class="mt-3">
-                                    <p class="text-muted mb-2">Quantity</p>
-                                    <div class="d-inline-flex">
-                                        <select class="form-select form-select-sm w-xl">
-                                            <option value="1">1</option>
-                                            <option value="2" selected="">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                        </select>
-                                    </div>
+                            <div class="col-md-5 flex">
+                                <div class="input-group mt-4">
+                                 <span class="input-group-prepend">
+                                     <button id="cart1-minus"
+                                             class="btn btn-outline-secondary btn-number"
+                                             data-field="quant[1]"
+                                             data-type="minus"
+                                             type="button">
+                                         <span class="fa fa-minus"></span>
+                                     </button>
+                                 </span>
+                                    <input class="form-control input-number" max="10" min="1"
+                                           name="quant[1]" type="text" value="1" readonly="readonly">
+                                    <span class="input-group-append">
+                                 <button id="cart1-inc"
+                                         class="btn btn-outline-secondary btn-number" data-field="quant[1]"
+                                         data-type="plus"
+                                         type="button">
+                                 <span class="fa fa-plus"></span>
+                                 </button>
+                                 </span>
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="mt-3">
+                                <div class="mt-1">
                                     <p class="text-muted mb-2">Total</p>
                                     <h5>$900</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             <!-- end card -->
-
             <div class="card border shadow-none">
                 <div class="card-body">
-
                     <div class="d-flex align-items-start border-bottom pb-3">
                         <div class="me-4">
-                            <img src="https://www.bootdey.com/image/380x380/FF00FF/000000" alt="" class="avatar-lg rounded">
+                            <img alt="" class="avatar-lg rounded"
+                                 src="https://www.bootdey.com/image/380x380/FF00FF/000000">
                         </div>
                         <div class="flex-grow-1 align-self-center overflow-hidden">
                             <div>
-                                <h5 class="text-truncate font-size-18"><a href="#" class="text-dark">Smartphone Dual Camera </a></h5>
+                                <h5 class="text-truncate font-size-18"><a class="text-dark" href="#">Smartphone Dual
+                                                                                                     Camera </a>
+                                </h5>
                                 <p class="text-muted mb-0">
                                     <i class="bx bxs-star text-warning"></i>
                                     <i class="bx bxs-star text-warning"></i>
@@ -108,63 +117,67 @@
                         <div class="flex-shrink-0 ms-2">
                             <ul class="list-inline mb-0 font-size-16">
                                 <li class="list-inline-item">
-                                    <a href="#" class="text-muted px-1">
+                                    <a class="text-muted px-1" href="#">
                                         <i class="mdi mdi-trash-can-outline"></i>
                                     </a>
                                 </li>
-
                             </ul>
                         </div>
                     </div>
-
                     <div>
                         <div class="row">
                             <div class="col-md-4">
-                                <div class="mt-3">
+                                <div class="mt-1">
                                     <p class="text-muted mb-2">Price</p>
-                                    <h5 class="mb-0 mt-2"><span class="text-muted me-2"><del class="font-size-16 fw-normal">$280</del></span>$240</h5>
+                                    <h5 class="mb-0 mt-2"><span class="text-muted me-2"><del
+                                            class="font-size-16 fw-normal">$280</del></span>$240
+                                    </h5>
                                 </div>
                             </div>
-                            <div class="col-md-5">
-                                <div class="mt-3">
-                                    <p class="text-muted mb-2">Quantity</p>
-                                    <div class="d-inline-flex">
-                                        <select class="form-select form-select-sm w-xl">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3" selected="">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                        </select>
-                                    </div>
+                            <div class="col-md-5 flex">
+                                <div class="input-group mt-4">
+                                 <span class="input-group-prepend">
+                                     <button class="btn btn-outline-secondary btn-number"
+                                             data-field="quant[2]"
+                                             data-type="minus"
+                                             type="button">
+                                         <span class="fa fa-minus"></span>
+                                     </button>
+                                 </span>
+                                    <input class="form-control input-number" max="10" min="1"
+                                           name="quant[2]" type="text" value="1" readonly="readonly">
+                                    <span class="input-group-append">
+                                 <button class="btn btn-outline-secondary btn-number" data-field="quant[2]"
+                                         data-type="plus"
+                                         type="button">
+                                 <span class="fa fa-plus"></span>
+                                 </button>
+                                 </span>
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="mt-3">
+                                <div class="mt-1">
                                     <p class="text-muted mb-2">Total</p>
                                     <h5>$720</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             <!-- end card -->
-
             <div class="card border shadow-none">
                 <div class="card-body">
-
                     <div class="d-flex align-items-start border-bottom pb-3">
                         <div class="me-4">
-                            <img src="https://www.bootdey.com/image/380x380/FF8C00/000000" alt="" class="avatar-lg rounded">
+                            <img alt="" class="avatar-lg rounded"
+                                 src="https://www.bootdey.com/image/380x380/FF8C00/000000">
                         </div>
                         <div class="flex-grow-1 align-self-center overflow-hidden">
                             <div>
-                                <h5 class="text-truncate font-size-18"><a href="#" class="text-dark">Black Colour Smartphone </a></h5>
+                                <h5 class="text-truncate font-size-18"><a class="text-dark" href="#">Black Colour
+                                                                                                     Smartphone </a>
+                                </h5>
                                 <p class="text-muted mb-0">
                                     <i class="bx bxs-star text-warning"></i>
                                     <i class="bx bxs-star text-warning"></i>
@@ -176,67 +189,71 @@
                         <div class="flex-shrink-0 ms-2">
                             <ul class="list-inline mb-0 font-size-16">
                                 <li class="list-inline-item">
-                                    <a href="#" class="text-muted px-1">
+                                    <a class="text-muted px-1" href="#">
                                         <i class="mdi mdi-trash-can-outline"></i>
                                     </a>
                                 </li>
-
                             </ul>
                         </div>
                     </div>
-
                     <div>
                         <div class="row">
                             <div class="col-md-4">
-                                <div class="mt-3">
+                                <div class="mt-1">
                                     <p class="text-muted mb-2">Price</p>
-                                    <h5 class="mb-0 mt-2"><span class="text-muted me-2"><del class="font-size-16 fw-normal">$750</del></span>$950</h5>
+                                    <h5 class="mb-0 mt-2"><span class="text-muted me-2"><del
+                                            class="font-size-16 fw-normal">$750</del></span>$950
+                                    </h5>
                                 </div>
                             </div>
-                            <div class="col-md-5">
-                                <div class="mt-3">
-                                    <p class="text-muted mb-2">Quantity</p>
-                                    <div class="d-inline-flex">
-                                        <select class="form-select form-select-sm w-xl">
-                                            <option value="1" selected="">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                        </select>
-                                    </div>
+                            <div class="col-md-5 flex">
+                                <div class="input-group mt-4">
+                                 <span class="input-group-prepend">
+                                     <button class="btn btn-outline-secondary btn-number"
+                                             data-field="quant[3]"
+                                             data-type="minus"
+                                             type="button">
+                                         <span class="fa fa-minus"></span>
+                                     </button>
+                                 </span>
+                                    <input class="form-control input-number" max="10" min="1"
+                                           name="quant[3]" type="text" value="1" readonly="readonly">
+                                    <span class="input-group-append">
+                                 <button class="btn btn-outline-secondary btn-number" data-field="quant[3]"
+                                         data-type="plus"
+                                         type="button">
+                                 <span class="fa fa-plus"></span>
+                                 </button>
+                                 </span>
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="mt-3">
+                                <div class="mt-1">
                                     <p class="text-muted mb-2">Total</p>
                                     <h5>$950</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             <!-- end card -->
-
             <div class="row my-4">
                 <div class="col-sm-6">
-                    <a href="ecommerce-products.html" class="btn btn-link text-muted">
+                    <a class="btn btn-link text-muted" href="ecommerce-products.html">
                         <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping </a>
-                </div> <!-- end col -->
+                </div>
+                <!-- end col -->
                 <div class="col-sm-6">
                     <div class="text-sm-end mt-2 mt-sm-0">
-                        <a href="ecommerce-checkout.html" class="btn btn-success">
+                        <a class="btn btn-success" href="ecommerce-checkout.html">
                             <i class="mdi mdi-cart-outline me-1"></i> Checkout </a>
                     </div>
-                </div> <!-- end col -->
-            </div> <!-- end row-->
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row-->
         </div>
-
         <div class="col-xl-4">
             <div class="mt-5 mt-lg-0">
                 <div class="card border shadow-none">
@@ -244,7 +261,6 @@
                         <h5 class="font-size-16 mb-0">Order Summary <span class="float-end">#MN0124</span></h5>
                     </div>
                     <div class="card-body p-4 pt-2">
-
                         <div class="table-responsive">
                             <table class="table mb-0">
                                 <tbody>
@@ -253,7 +269,7 @@
                                     <td class="text-end">$ 780</td>
                                 </tr>
                                 <tr>
-                                    <td>Discount : </td>
+                                    <td>Discount :</td>
                                     <td class="text-end">- $ 78</td>
                                 </tr>
                                 <tr>
@@ -261,15 +277,15 @@
                                     <td class="text-end">$ 25</td>
                                 </tr>
                                 <tr>
-                                    <td>Estimated Tax : </td>
+                                    <td>Estimated Tax :</td>
                                     <td class="text-end">$ 18.20</td>
                                 </tr>
                                 <tr class="bg-light">
                                     <th>Total :</th>
                                     <td class="text-end">
-                                            <span class="fw-bold">
-                                                $ 745.2
-                                            </span>
+                                       <span class="fw-bold">
+                                       $ 745.2
+                                       </span>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -282,7 +298,81 @@
         </div>
     </div>
     <!-- end row -->
-
 </div>
+<script>
+    $('.btn-number').click(function (e) {
+        e.preventDefault();
+        let id = $(this).attr("id");
+        console.log(id);
+        let fieldName = $(this).attr('data-field');
+        let type = $(this).attr('data-type');
+        let input = $("input[name='" + fieldName + "']");
+        let currentVal = parseInt(input.val());
+        if (!isNaN(currentVal)) {
+            if (type == 'minus') {
+
+                if (currentVal > input.attr('min')) {
+                    input.val(currentVal - 1).change();
+                }
+                if (parseInt(input.val()) == input.attr('min')) {
+                    $(this).attr('disabled', true);
+                }
+
+            } else if (type == 'plus') {
+
+                if (currentVal < input.attr('max')) {
+                    input.val(currentVal + 1).change();
+                }
+                if (parseInt(input.val()) == input.attr('max')) {
+                    $(this).attr('disabled', true);
+                }
+
+            }
+        } else {
+            input.val(0);
+        }
+    });
+    $('.input-number').focusin(function () {
+        $(this).data('oldValue', $(this).val());
+    });
+    $('.input-number').change(function () {
+
+        minValue = parseInt($(this).attr('min'));
+        maxValue = parseInt($(this).attr('max'));
+        valueCurrent = parseInt($(this).val());
+
+        name = $(this).attr('name');
+        if (valueCurrent >= minValue) {
+            $(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled')
+        } else {
+            alert('Sorry, the minimum value was reached');
+            $(this).val($(this).data('oldValue'));
+        }
+        if (valueCurrent <= maxValue) {
+            $(".btn-number[data-type='plus'][data-field='" + name + "']").removeAttr('disabled')
+        } else {
+            alert('Sorry, the maximum value was reached');
+            $(this).val($(this).data('oldValue'));
+        }
+    });
+
+    $(".input-number").keydown(function (e) {
+        // Allow: backspace, delete, tab, escape, enter and .
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
+            // Allow: Ctrl+A
+            (e.keyCode == 65 && e.ctrlKey === true) ||
+            // Allow: home, end, left, right
+            (e.keyCode >= 35 && e.keyCode <= 39)) {
+            // let it happen, don't do anything
+            return;
+        }
+        // Ensure that it is a number and stop the keypress
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }
+    });
+
+
+</script>
 </body>
 </html>
