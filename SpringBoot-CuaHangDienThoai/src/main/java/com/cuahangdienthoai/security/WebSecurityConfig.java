@@ -24,6 +24,7 @@ public class WebSecurityConfig {
         http
                 .authorizeHttpRequests((requests) -> requests
                                 .requestMatchers("/", "/device").permitAll()
+                                .requestMatchers("/DonHang").hasAuthority("user")
                                 .requestMatchers("/brand").hasAuthority("admin")
                                 .anyRequest().authenticated()
                 )
