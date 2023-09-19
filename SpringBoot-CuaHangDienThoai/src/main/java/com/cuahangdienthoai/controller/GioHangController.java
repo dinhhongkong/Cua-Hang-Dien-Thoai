@@ -7,14 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-//@RestController
+@RestController
 public class GioHangController {
 
-//    @GetMapping("/gio-hang")
-//    public String gioHang(Authentication authentication) {
-//
-//
-//
-//    }
+
 
 }
