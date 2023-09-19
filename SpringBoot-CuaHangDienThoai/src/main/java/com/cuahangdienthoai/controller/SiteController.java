@@ -10,5 +10,9 @@ public class SiteController {
         return "login";
     }
 
+    @GetMapping("/signin")
+    public String signin() {
+        return "signin";
+    }
 
 }
