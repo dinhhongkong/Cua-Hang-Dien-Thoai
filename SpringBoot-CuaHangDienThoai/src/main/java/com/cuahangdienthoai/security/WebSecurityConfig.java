@@ -37,10 +37,10 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                                .requestMatchers("/","/courses","/bootstrap/css/**", "/css/**","/fontawesome/**","/img/**","/cart").permitAll()
-                                .requestMatchers("/DonHang").hasAuthority("user")
+//                                .requestMatchers("/","/courses","/bootstrap/**", "/css/**","/fontawesome/**","/img/**","/cart").permitAll()
+                                .requestMatchers("/cart").hasAuthority("user")
                                 .requestMatchers("/brand").hasAuthority("admin")
-                                .anyRequest().authenticated()
+                                .anyRequest().permitAll()
                 )
                 .formLogin((form) -> form
                         .loginProcessingUrl("/j_spring_security_check")

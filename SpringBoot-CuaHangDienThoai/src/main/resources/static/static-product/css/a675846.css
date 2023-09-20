@@ -1,0 +1,87 @@
+#fixed-banner {
+  bottom: 0;
+  box-shadow: 0 -7px 9px 1px rgba(255, 250, 232, 0.53);
+  position: fixed;
+  right: 50%;
+  transform: translateX(50%);
+  transition: 0.3s;
+  z-index: 100;
+}
+#fixed-banner.left {
+  left: calc(50% - 600px);
+  transform: none;
+}
+#fixed-banner img {
+  max-width: 1200px;
+  width: calc(100vw - 50px);
+}
+#fixed-banner .btn-close {
+  align-items: center;
+  background: #fecfd1;
+  border-radius: 10px;
+  color: #d02c35;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  font-weight: 800;
+  justify-content: center;
+  left: -10px;
+  padding: 5px;
+  position: absolute;
+  top: -10px;
+  width: 50px;
+}
+#fixed-banner .btn-close svg {
+  fill: #d02c35;
+}
+#fixed-banner .btn-open {
+  background: #fecfd1;
+  border-radius: 10px 10px 0 0;
+  bottom: 0;
+  color: #d02c35;
+  cursor: pointer;
+  display: flex;
+  font-size: 18px;
+  font-weight: 700;
+  left: 0;
+  padding: 0 10px;
+  position: absolute;
+  text-align: center;
+  white-space: nowrap;
+}
+#fixed-banner .btn-open svg {
+  fill: #d02c35;
+  margin-left: 5px;
+}
+#fixed-banner .mobile {
+  display: none;
+}
+#fixed-banner .desktop {
+  display: block;
+}
+.fixed-banner-clear {
+  padding-bottom: 75px;
+}
+@media screen and (max-width: 1024px) {
+  #fixed-banner.left {
+    left: 10px;
+    transform: none;
+  }
+}
+@media screen and (max-width: 768px) {
+  #fixed-banner {
+    bottom: 70px;
+  }
+  #fixed-banner .mobile {
+    display: block;
+  }
+  #fixed-banner .desktop {
+    display: none;
+  }
+}
+@media screen and (max-width: 540px) {
+  #fixed-banner .btn-open {
+    font-size: 16px;
+    width: 330px;
+  }
+}

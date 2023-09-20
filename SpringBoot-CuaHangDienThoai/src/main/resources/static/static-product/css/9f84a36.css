@@ -1,0 +1,31 @@
+.product-info-container.more-trade-product .product-info {
+  width: 100%;
+}
+.product-info-container.more-trade-product
+  .product-info
+  a.product__link
+  .product__image
+  img {
+  width: 69px;
+}
+.trade--price {
+  color: #d70018;
+  text-align: center;
+}
+.exchange {
+  background: #c52927;
+  border: 1px solid #c52927;
+  border-radius: 10px;
+  color: #fff !important;
+  display: flex;
+  font-size: 12px;
+  font-weight: 600;
+  height: 25px;
+  margin: 5px auto;
+  width: 95%;
+}
+@media only screen and (max-width: 540px) {
+  .trade--price {
+    font-size: 12px;
+  }
+}

@@ -10,5 +10,10 @@ public class SiteController {
         return "login";
     }
 
+//    @GetMapping("/site")
+//    public String sd() {
+//        return "index-2";
+//    }
+
 
 }
