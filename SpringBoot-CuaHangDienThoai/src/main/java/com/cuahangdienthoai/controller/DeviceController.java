@@ -30,9 +30,10 @@ public class DeviceController {
     }
 
     @GetMapping("/{deviceName}/info")
-    public String info(@PathVariable String deviceName) {
+    public String info(@PathVariable String deviceName, Model model) {
         String name = deviceName.replace("-"," ");
         Device device = deviceService.findByDeviceName(name);
+        model.addAttribute("device", device);
         return "device-info";
     }
 

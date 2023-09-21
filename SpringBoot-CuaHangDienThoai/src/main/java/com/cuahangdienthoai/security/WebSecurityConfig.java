@@ -20,18 +20,6 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 public class WebSecurityConfig {
     private UserDetailsService userDetailsService;
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeHttpRequests((requests) -> requests
-//                                .requestMatchers("/", "/device").permitAll()
-//                                .requestMatchers("/gio-hang").hasAuthority("user")
-//                                .anyRequest().authenticated()
-//                )
-//                .httpBasic(withDefaults())
-//                .csrf(AbstractHttpConfigurer::disable);
-//        return http.build();
-//    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
