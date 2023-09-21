@@ -1,4 +1,12 @@
 .img-product {
-    width: 100px;
-    height: 140px;
+    width: 140px;
+    height: 200px;
+}
+
+.zoom:hover {
+    transform: scale(1.2);
+}
+
+.cheap-color {
+    background-color: rgb(146,1,1);
 }

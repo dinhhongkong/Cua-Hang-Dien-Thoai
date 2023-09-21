@@ -1,0 +1,59 @@
+#modalLogin.modal {
+  display: none;
+  z-index: 99999;
+}
+#modalLogin.modal.is-active {
+  display: flex;
+}
+#modalLogin.modal.is-active .modal-login {
+  background-color: #fff;
+  border-radius: 15px;
+  max-width: 350px;
+  padding: 15px;
+  text-align: center;
+}
+#modalLogin.modal.is-active .modal-login .title {
+  color: #d70018;
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+#modalLogin.modal.is-active .modal-login .text {
+  padding-top: 5px;
+  text-align: justify;
+}
+#modalLogin.modal.is-active .modal-login .text p {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 20px;
+}
+#modalLogin.modal.is-active .modal-login .login-btn {
+  background: #d70018;
+  border: 0.5px solid hsla(0, 0%, 47%, 0.5);
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(255, 0, 0, 0.2);
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  padding: 6px 0;
+  text-align: center;
+  width: 48%;
+}
+#modalLogin.modal.is-active .modal-login .register-btn {
+  background: #fff;
+  border: 0.5px solid #d70018;
+  border-radius: 5px;
+  color: #d70018;
+  cursor: pointer;
+  display: block;
+  padding: 6px 0;
+  text-align: center;
+  width: 48%;
+}
+#modalLogin.modal.is-active .modal-login .modal-close {
+  background-color: hsla(0, 0%, 4%, 0.2);
+  right: 10px;
+  top: 10px;
+}
+#modalLogin.modal.is-active .modal-login .modal-close:hover {
+  background-color: hsla(0, 0%, 4%, 0.5);
+}

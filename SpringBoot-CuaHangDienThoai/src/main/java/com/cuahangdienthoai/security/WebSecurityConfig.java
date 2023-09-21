@@ -20,33 +20,19 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 public class WebSecurityConfig {
     private UserDetailsService userDetailsService;
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeHttpRequests((requests) -> requests
-//                                .requestMatchers("/", "/device").permitAll()
-//                                .requestMatchers("/gio-hang").hasAuthority("user")
-//                                .anyRequest().authenticated()
-//                )
-//                .httpBasic(withDefaults())
-//                .csrf(AbstractHttpConfigurer::disable);
-//        return http.build();
-//    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                                .requestMatchers("/","/courses","/bootstrap/css/**", "/css/**","/fontawesome/**","/img/**","/cart","signin").permitAll()
-//                        .requestMatchers("/").hasAnyRole("", "")
-//                        .requestMatchers("/").hasRole("")
-                                .anyRequest().authenticated()
-                )
+                        .requestMatchers("/cart").hasAuthority("user")
+                        .requestMatchers("/brand").hasAuthority("admin")
+                        .anyRequest().permitAll())
                 .formLogin((form) -> form
                         .loginProcessingUrl("/j_spring_security_check")
                         .loginPage("/login")
                         .permitAll()
-                        .defaultSuccessUrl("/",true)
+                        .defaultSuccessUrl("/", true)
                         .failureUrl("/login?error=true")
                         .usernameParameter("email")
                         .passwordParameter("password")
@@ -56,14 +42,17 @@ public class WebSecurityConfig {
 
         return http.build();
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Autowired
     public void setUserDetailsService(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
+
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -72,7 +61,4 @@ public class WebSecurityConfig {
         return provider;
     }
 
-
 }
-
-
