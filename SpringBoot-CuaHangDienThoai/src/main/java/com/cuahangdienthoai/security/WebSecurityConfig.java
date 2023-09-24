@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -25,9 +26,8 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-//                                .requestMatchers("/","/courses","/bootstrap/**", "/css/**","/fontawesome/**","/img/**","/cart").permitAll()
-                                .requestMatchers("/cart").hasAuthority("user")
-                                .requestMatchers("/brand").hasAuthority("admin")
+                                .requestMatchers("/cart","add-to-cart").hasAuthority("user")
+                                .requestMatchers("/admin").hasAuthority("admin")
                                 .anyRequest().permitAll()
                 )
                 .formLogin((form) -> form

@@ -9,4 +9,5 @@ import java.util.List;
 public interface DeviceRepository extends JpaRepository<Device, Long> {
     List<Device> findByGiaBetween(double giaBatDau, double giaKetThuc, Pageable pageable);
     Device findDeviceByDeviceName(String name);
+    Device findByDeviceName(String name);
 }
