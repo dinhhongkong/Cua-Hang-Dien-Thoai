@@ -1,9 +1,11 @@
 package com.cuahangdienthoai.entity;
 
+import com.cuahangdienthoai.repository.UserRepository;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 
@@ -13,12 +15,14 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DonHang {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id")
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column(name = "sdt")
     private String sdt;
@@ -36,5 +40,6 @@ public class DonHang {
     private Date ngayNhan;
 
     @Column(name = "trang_thai")
-    private String trangThai;
+    private int trangThai;
+
 }

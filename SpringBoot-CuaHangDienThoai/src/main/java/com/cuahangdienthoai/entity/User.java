@@ -33,6 +33,9 @@ public class User {
     @ToString.Exclude
     @JsonIgnore
     private List<GioHang> gioHang;
-
-
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @ToString.Exclude
+    @JsonIgnore
+    private List<DonHang> listDonHang;
 }

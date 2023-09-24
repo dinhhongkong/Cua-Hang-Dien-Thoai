@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <title>Admin</title>
+    <link rel="stylesheet" th:href = "@{/css/AdminPage.css}">
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}">
+</head>
+<body>
+    <header>
+        <h1 th:if = "${title == null}">ADMIN</h1>
+        <h1 th:if = "${title} == 'order'">QUẢN LÝ ĐƠN HÀNG</h1>
+    </header>
+    <nav>
+        <div id = "admin-avata">
+            <img th:src = "@{/img/AdminPage/Admin-removebg-preview.png}" alt="">
+        </div>
+        <ul>
+            <li class = "clickable-li"><a href="/Admin">Admin</a></li>
+            <li class = "clickable-li"><a th:herf = "@{/Admin/order}">Quản lý sản phẩm</a></li>
+            <li class = "clickable-li"><a href="/Admin/order">Quản lý đơn hàng</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div id = "admin-acc">
+
+        </div>
+        <div id = "order" style="display: none">
+            <div id = "search-bar">
+                <input type="text" id = "search-input" placeholder="Tìm kiếm theo id">
+                <button id = "search-button">Tìm</button>
+            </div>
+            <div id = "order-filter">
+                <label for="order-status">Tiêu chí:</label>
+                <select id="order-status">
+                    <option value="moi-nhat">Mới nhất</option>
+                    <option value="chua-duyet">Chưa duyệt</option>
+                    <option value="dang-giao">Đang giao</option>
+                    <option value="da-giao">Đã giao</option>
+                    <option value="huy">Hủy</option>
+                </select>
+            </div>
+            <div id = "order-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID đơn hàng</th>
+                            <th>Tên người mua</th>
+                            <th>Ngày lập</th>
+                            <th>Trạng thái</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr th:each = "donHang : ${listDonHang}">
+                            <td th:text = "${donHang.id}"></td>
+                            <td th:text = "${donHang.user.userName}"></td>
+                            <td th:text = "${#dates.format(donHang.ngayLap, 'dd-MM-yyyy')}"></td>
+                            <td th:switch = "${donHang.trangThai}">
+                                <p th:case = "0">Chờ duyệt</p>
+                                <p th:case = "1">Đang giao</p>
+                                <p th:case = "2">Hoàn thành</p>
+                                <p th:case = "3">Hủy</p>
+                            </td>
+                            <td>
+                                <div th:switch = "${donHang.trangThai}">
+                                    <div th:case = "0">
+                                        <button class="btn btn-primary approve-order" th:attr = "data-id = ${donHang.id}">Duyệt</button>
+                                        <button class="btn btn-danger">Hủy</button>
+                                    </div>
+                                    <div th:case = "1">
+                                        <button class="btn btn-danger">Hủy</button>
+                                        <button class="btn btn-info">Infor</button>
+                                    </div>
+                                    <div th:case = "2">
+                                        <button class="btn btn-danger">Hủy</button>
+                                        <button class="btn btn-info">Infor</button>
+                                    </div>
+                                    <div th:case = "3">
+                                        <button class="btn btn-info">Infor</button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    <!-- Các hàng dữ liệu khác -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+</body>
+<script th:src = "@{/JavaScript/AdminPage.js}"></script>
+</html>
