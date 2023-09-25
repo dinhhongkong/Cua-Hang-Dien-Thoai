@@ -9,6 +9,7 @@ import com.cuahangdienthoai.service.GioHangService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,11 +36,15 @@ public class GioHangServiceImpl implements GioHangService {
     }
 
     @Override
+    public List<GioHang> findByUserId(long userId) {
+        return gioHangRepository.findByUserId(userId);
+    }
+
+    @Override
     public GioHang findByGioHangIdAndUserId(long deviceId, long userId) {
         GioHang gioHang = gioHangRepository.findByDeviceIdAndUserId(deviceId, userId);
         if (gioHang == null) {
-//            throw new RuntimeException("Không tìm thấy gio hang chứa "+ deviceId+ " của " + userId);
-            System.out.println("Lỗi Không tìm thấy gio hang chứa "+ deviceId+ " của " + userId);
+            throw new RuntimeException("Không tìm thấy gio hang chứa "+ deviceId+ " của " + userId);
         }
 
         return gioHang;
@@ -67,6 +72,17 @@ public class GioHangServiceImpl implements GioHangService {
             gioHang.setDevice(device);
             gioHang.setSoLuong(1L);
             save(gioHang);
+        }
+    }
+
+    @Override
+    public void increaseQuantity(long deviceId, long userId) {
+        GioHang gioHang = findByGioHangIdAndUserId(deviceId, userId);
+        if (gioHang != null) {
+            gioHang.setSoLuong(gioHang.getSoLuong() +1);
+            save(gioHang);
+        } else {
+            throw new RuntimeException("Không tìm thấy gio hang chứa "+ deviceId+ " của " + userId);
         }
     }
 

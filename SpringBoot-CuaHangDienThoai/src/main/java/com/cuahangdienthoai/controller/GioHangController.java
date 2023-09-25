@@ -13,10 +13,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,7 +27,10 @@ public class GioHangController {
     }
 
     @GetMapping("/cart")
-    public String cart() {
+    public String cart(Model model, Authentication authentication) {
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+        List<GioHang> gioHang = gioHangService.findByUserId(userDetails.getUser().getId());
+        model.addAttribute("giohang",gioHang);
         return "cart";
     }
 
@@ -39,6 +40,14 @@ public class GioHangController {
         gioHangService.save(productId,userDetails.getUser().getId());
         return ResponseEntity.ok("Sản phẩm đã được thêm vào giỏ hàng");
     }
+
+    @PutMapping("/cart")
+    public ResponseEntity<String> suaGioHang(@RequestParam Long productId, Authentication authentication) {
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+        gioHangService.increaseQuantity(productId,userDetails.getUser().getId());
+        return ResponseEntity.ok("Sản phẩm đã được thêm vào giỏ hàng");
+    }
+
 
 
 }    
