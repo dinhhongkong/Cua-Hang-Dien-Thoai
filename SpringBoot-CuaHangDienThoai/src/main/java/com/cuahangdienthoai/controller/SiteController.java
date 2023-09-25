@@ -10,10 +10,9 @@ public class SiteController {
         return "login";
     }
 
-//    @GetMapping("/site")
-//    public String sd() {
-//        return "index-2";
-//    }
-
+    @GetMapping("/signin")
+    public String signin() {
+        return "signin";
+    }
 
 }
