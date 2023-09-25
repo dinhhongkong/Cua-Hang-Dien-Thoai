@@ -5,6 +5,10 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
     <title>Document</title>
     <link rel="stylesheet" th:href="@{/static-product/css/05dbdb1.css}">
     <link rel="stylesheet" th:href="@{/static-product/css/77d4f17.css}">
@@ -650,27 +654,28 @@
 
 
 <div id="SjH84iKj0" role="status" aria-live="polite" aria-atomic="false"></div>
+
 <script>
-    document.querySelectorAll(".add-to-cart-button").forEach(function(button) {
-        button.addEventListener("click", function() {
-            var productId = this.getAttribute("data-product-id");
+    document.addEventListener("DOMContentLoaded", function () {
+        var addToCartButton = document.querySelector(".add-to-cart-button");
+
+        addToCartButton.addEventListener("click", function () {
+            var productId = addToCartButton.getAttribute("data-product-id");
+
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "/api/add-to-cart", true);
+            xhr.open("POST", "/add-to-cart", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.onreadystatechange = function() {
+            var csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+            var csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+            xhr.setRequestHeader(csrfHeader, csrfToken);
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    var newQuantity = JSON.parse(xhr.responseText);
-                    console.log("Thêm vào giỏ hàng thành công")
-                    // Cập nhật số lượng sản phẩm trên giao diện người dùng
-                    // Ví dụ: document.getElementById("quantity-" + productId).textContent = newQuantity;
-                } else if (xhr.readyState === 4 && xhr.status !== 200) {
-                    console.error("Lỗi khi cập nhật số lượng: " + xhr.status);
+                    console.log('thêm vào giỏ hàng thành công')
                 }
             };
             xhr.send("productId=" + productId);
         });
     });
-
 </script>
 </body>
 </html>
