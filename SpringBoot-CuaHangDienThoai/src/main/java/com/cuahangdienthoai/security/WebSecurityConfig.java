@@ -24,10 +24,11 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/cart", "add-to-cart").hasAuthority("user")
-                .requestMatchers("/admin").hasAuthority("admin")
-                .anyRequest().permitAll())
+        http
+                .authorizeHttpRequests((requests) -> requests
+                        .requestMatchers("/cart", "add-to-cart").hasAuthority("user")
+                        .requestMatchers("/admin").hasAuthority("admin")
+                        .anyRequest().permitAll())
                 .formLogin((form) -> form
                         .loginProcessingUrl("/j_spring_security_check")
                         .loginPage("/login")
