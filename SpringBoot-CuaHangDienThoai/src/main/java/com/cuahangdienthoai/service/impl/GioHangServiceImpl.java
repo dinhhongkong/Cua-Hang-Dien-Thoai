@@ -1,6 +1,7 @@
 package com.cuahangdienthoai.service.impl;
 
 import com.cuahangdienthoai.entity.Device;
+import com.cuahangdienthoai.entity.User;
 import com.cuahangdienthoai.entity.giohang.GioHang;
 import com.cuahangdienthoai.entity.giohang.GioHangId;
 import com.cuahangdienthoai.repository.GioHangRepository;
@@ -47,6 +48,26 @@ public class GioHangServiceImpl implements GioHangService {
     @Override
     public void save(GioHang gioHang) {
         gioHangRepository.save(gioHang);
+    }
+
+    @Override
+    public void save(long deviceId, long userId) {
+        GioHang gioHang = findByGioHangIdAndUserId(deviceId, userId);
+        if (gioHang != null) {
+            gioHang.setSoLuong(gioHang.getSoLuong() + 1);
+            save(gioHang);
+        } else {
+            gioHang = new GioHang();
+            User user = new User();
+            user.setId(userId);
+            Device device = new Device();
+            device.setId(deviceId);
+
+            gioHang.setUser(user);
+            gioHang.setDevice(device);
+            gioHang.setSoLuong(1L);
+            save(gioHang);
+        }
     }
 
     @Override

@@ -36,22 +36,7 @@ public class GioHangController {
     @PostMapping("/add-to-cart")
     public ResponseEntity<String> themVaoGioHang(@RequestParam Long productId, Authentication authentication) {
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-        GioHang gioHang = gioHangService.findByGioHangIdAndUserId(productId, userDetails.getUser().getId());
-        if (gioHang != null) {
-            gioHang.setSoLuong(gioHang.getSoLuong() + 1);
-            gioHangService.save(gioHang);
-        } else {
-            gioHang = new GioHang();
-            User user = new User();
-            user.setId(userDetails.getUser().getId());
-            Device device = new Device();
-            device.setId(productId);
-
-            gioHang.setUser(user);
-            gioHang.setDevice(device);
-            gioHang.setSoLuong(1L);
-            gioHangService.save(gioHang);
-        }
+        gioHangService.save(productId,userDetails.getUser().getId());
         return ResponseEntity.ok("Sản phẩm đã được thêm vào giỏ hàng");
     }
 

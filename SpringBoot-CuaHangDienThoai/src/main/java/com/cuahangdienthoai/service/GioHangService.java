@@ -9,5 +9,7 @@ public interface GioHangService {
     GioHang findByGioHangIdAndUserId(long deviceId, long userId);
     void save(GioHang gioHang);
 
+    void save(long deviceId, long userId);
+
     void deleteById(GioHangId gioHangId);
 }
