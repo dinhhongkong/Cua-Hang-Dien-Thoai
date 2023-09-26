@@ -15,4 +15,9 @@ public class SiteController {
         return "signin";
     }
 
+    @GetMapping("/payment")
+    public String pay() {
+        return "payment-info";
+    }
+
 }
