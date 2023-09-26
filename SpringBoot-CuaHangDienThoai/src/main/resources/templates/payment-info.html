@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="NOINDEX,FOLLOW" name="robots">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <style>
         .dot-stretching {
             position: relative;
@@ -9823,23 +9823,6 @@
 </div>
 
 
-<script>
-    var callfromsub = true;
-    (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({
-            'gtm.start': new Date().getTime(),
-            event: 'gtm.js'
-        });
-        var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s),
-            dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src =
-            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-WKQZL8');
-</script>
 
 <noscript>
     <strong>
@@ -10086,112 +10069,74 @@
                             <!---->
                             <div class="cntry-district">
                                 <div class="btn-click country">
-                                    <button type="button" class="">Hồ Chí Minh</button>
-                                    <!--fragment#f3251dce7d#head--><input fragment="f3251dce7d" type="hidden"
-                                                                          class="ddlist" value="3">
-                                    <div class="select" fragment="f3251dce7d" style="display: none;">
-                                        <div class="boxsearch"><input placeholder="Nhập tỉnh, thành để tìm nhanh"><a
-                                                href="javascript:;"><i class="cartnew-search"></i></a></div>
-                                        <div class="listName" style="position: relative; overflow-y: scroll;">
-                                            <aside><span class="active">Hồ Chí Minh</span><span
-                                                    class="">Hà Nội</span><span class="">Đà Nẵng</span><span class="">An Giang</span><span
-                                                    class="">Bà Rịa - Vũng Tàu</span><span
-                                                    class="">Bắc Giang</span><span class="">Bắc Kạn</span>
-                                                <span class="">Bạc Liêu</span><span class="">Bắc Ninh</span><span
-                                                        class="">Bến Tre</span><span class="">Bình Định</span><span
-                                                        class="">Bình Dương</span><span class="">Bình Phước</span><span
-                                                        class="">Bình Thuận</span>
-                                                <span class="">Cà Mau</span><span class="">Cần Thơ</span><span class="">Cao Bằng</span><span
-                                                        class="">Đắk Lắk</span><span class="">Đắk Nông</span><span
-                                                        class="">Điện Biên</span><span class="">Đồng Nai</span>
-                                                <span class="">Đồng Tháp</span><span class="">Gia Lai</span><span
-                                                        class="">Hà Giang</span><span class="">Hà Nam</span><span
-                                                        class="">Hà Tĩnh</span><span class="">Hải Dương</span><span
-                                                        class="">Hải Phòng</span>
-                                                <span class="">Hậu Giang</span><span class="">Hòa Bình</span><span
-                                                        class="">Hưng Yên</span><span class="">Khánh Hòa</span></aside>
-                                            <aside><span class="">Kiên Giang</span><span class="">Kon Tum</span><span
-                                                    class="">Lai Châu</span><span class="">Lâm Đồng</span><span
-                                                    class="">Lạng Sơn</span><span class="">Lào Cai</span><span class="">Long An</span>
-                                                <span class="">Nam Định</span><span class="">Nghệ An</span><span
-                                                        class="">Ninh Bình</span><span class="">Ninh Thuận</span><span
-                                                        class="">Phú Thọ</span><span class="">Phú Yên</span><span
-                                                        class="">Quảng Bình</span>
-                                                <span class="">Quảng Nam</span><span class="">Quảng Ngãi</span><span
-                                                        class="">Quảng Ninh</span><span class="">Quảng Trị</span><span
-                                                        class="">Sóc Trăng</span><span class="">Sơn La</span><span
-                                                        class="">Tây Ninh</span>
-                                                <span class="">Thái Bình</span><span class="">Thái Nguyên</span><span
-                                                        class="">Thanh Hóa</span><span
-                                                        class="">Thừa Thiên Huế</span><span
-                                                        class="">Tiền Giang</span><span class="">Trà Vinh</span>
-                                                <span class="">Tuyên Quang</span>
-                                                <span class="">Vĩnh Long</span><span class="">Vĩnh Phúc</span><span
-                                                        class="">Yên Bái</span></aside>
-                                            <div class="resize-triggers">
-                                                <div class="expand-trigger">
-                                                    <div style="width: 266px; height: 191px;"></div>
-                                                </div>
-                                                <div class="contract-trigger"></div>
-                                            </div>
-                                        </div>
-                                    </div>
+<!--                                    <button type="button" class="">Hồ Chí Minh</button>-->
+                                    <select class="btn-click country form-select" id="city" aria-label=".form-select-sm">
+                                        <option value="" selected>Chọn tỉnh thành</option>
+                                    </select>
+                                    <!--fragment#f3251dce7d#head-->
+<!--                                    <input fragment="f3251dce7d" type="hidden"-->
+<!--                                                                          class="ddlist" value="3">-->
+<!--                                    <div class="select" fragment="f3251dce7d" style="display: none;">-->
+<!--                                        <div class="boxsearch"><input placeholder="Nhập tỉnh, thành để tìm nhanh"><a-->
+<!--                                                href="javascript:;"><i class="cartnew-search"></i></a></div>-->
+<!--                                        <div class="listName" style="position: relative; overflow-y: scroll;">-->
+<!--                                            <aside><span class="active">Hồ Chí Minh</span><span-->
+<!--                                                    class="">Hà Nội</span><span class="">Đà Nẵng</span><span class="">An Giang</span><span-->
+<!--                                                    class="">Bà Rịa - Vũng Tàu</span><span-->
+<!--                                                    class="">Bắc Giang</span><span class="">Bắc Kạn</span>-->
+<!--                                                <span class="">Bạc Liêu</span><span class="">Bắc Ninh</span><span-->
+<!--                                                        class="">Bến Tre</span><span class="">Bình Định</span><span-->
+<!--                                                        class="">Bình Dương</span><span class="">Bình Phước</span><span-->
+<!--                                                        class="">Bình Thuận</span>-->
+<!--                                                <span class="">Cà Mau</span><span class="">Cần Thơ</span><span class="">Cao Bằng</span><span-->
+<!--                                                        class="">Đắk Lắk</span><span class="">Đắk Nông</span><span-->
+<!--                                                        class="">Điện Biên</span><span class="">Đồng Nai</span>-->
+<!--                                                <span class="">Đồng Tháp</span><span class="">Gia Lai</span><span-->
+<!--                                                        class="">Hà Giang</span><span class="">Hà Nam</span><span-->
+<!--                                                        class="">Hà Tĩnh</span><span class="">Hải Dương</span><span-->
+<!--                                                        class="">Hải Phòng</span>-->
+<!--                                                <span class="">Hậu Giang</span><span class="">Hòa Bình</span><span-->
+<!--                                                        class="">Hưng Yên</span><span class="">Khánh Hòa</span></aside>-->
+<!--                                            <aside><span class="">Kiên Giang</span><span class="">Kon Tum</span><span-->
+<!--                                                    class="">Lai Châu</span><span class="">Lâm Đồng</span><span-->
+<!--                                                    class="">Lạng Sơn</span><span class="">Lào Cai</span><span class="">Long An</span>-->
+<!--                                                <span class="">Nam Định</span><span class="">Nghệ An</span><span-->
+<!--                                                        class="">Ninh Bình</span><span class="">Ninh Thuận</span><span-->
+<!--                                                        class="">Phú Thọ</span><span class="">Phú Yên</span><span-->
+<!--                                                        class="">Quảng Bình</span>-->
+<!--                                                <span class="">Quảng Nam</span><span class="">Quảng Ngãi</span><span-->
+<!--                                                        class="">Quảng Ninh</span><span class="">Quảng Trị</span><span-->
+<!--                                                        class="">Sóc Trăng</span><span class="">Sơn La</span><span-->
+<!--                                                        class="">Tây Ninh</span>-->
+<!--                                                <span class="">Thái Bình</span><span class="">Thái Nguyên</span><span-->
+<!--                                                        class="">Thanh Hóa</span><span-->
+<!--                                                        class="">Thừa Thiên Huế</span><span-->
+<!--                                                        class="">Tiền Giang</span><span class="">Trà Vinh</span>-->
+<!--                                                <span class="">Tuyên Quang</span>-->
+<!--                                                <span class="">Vĩnh Long</span><span class="">Vĩnh Phúc</span><span-->
+<!--                                                        class="">Yên Bái</span></aside>-->
+<!--                                            <div class="resize-triggers">-->
+<!--                                                <div class="expand-trigger">-->
+<!--                                                    <div style="width: 266px; height: 191px;"></div>-->
+<!--                                                </div>-->
+<!--                                                <div class="contract-trigger"></div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
                                     <!---->
                                     <!--fragment#f3251dce7d#tail-->
                                 </div>
                                 <div class="btn-click district">
-                                    <button type="button" class="">TP. Thủ Đức (Gồm Q2, Q9, Q.TĐ)</button>
-                                    <!--fragment#ecbb2d1e79#head--><input fragment="ecbb2d1e79" type="hidden"
-                                                                          class="ddlist" value="2087">
-                                    <div class="select" fragment="ecbb2d1e79" style="display: none;">
-                                        <div class="boxsearch"><input placeholder="Nhập quận, huyện để tìm nhanh"><a
-                                                href="javascript:;"><i class="cartnew-search"></i></a></div>
-                                        <div class="listName" style="position: relative; overflow-y: scroll;">
-                                            <aside><span class="active">TP. Thủ Đức (Gồm Q2, Q9, Q.TĐ)</span><span
-                                                    class="">Quận 1</span><span class="">Quận 3</span><span class="">Quận 4</span><span
-                                                    class="">Quận 5</span><span class="">Quận 6</span>
-                                                <span class="">Quận 7</span><span class="">Quận 8</span><span class="">Quận 10</span><span
-                                                        class="">Quận 11</span><span class="">Quận 12</span></aside>
-                                            <aside><span class="">Quận Bình Tân</span><span
-                                                    class="">Quận Bình Thạnh</span><span
-                                                    class="">Quận Gò Vấp</span><span class="">Quận Phú Nhuận</span><span
-                                                    class="">Quận Tân Bình</span><span class="">Quận Tân Phú</span>
-                                                <span class="">Huyện Bình Chánh</span><span
-                                                        class="">Huyện Cần Giờ</span><span
-                                                        class="">Huyện Củ Chi</span><span
-                                                        class="">Huyện Hóc Môn</span><span class="">Huyện Nhà Bè</span>
-                                            </aside>
-                                            <div class="resize-triggers">
-                                                <div class="expand-trigger">
-                                                    <div style="width: 296px; height: 191px;"></div>
-                                                </div>
-                                                <div class="contract-trigger"></div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <select class="btn-click district form-select" id="district" aria-label=".form-select-sm">
+                                        <option value="" selected>Chọn quận huyện</option>
+                                    </select>
                                     <!---->
                                     <!--fragment#ecbb2d1e79#tail-->
                                 </div>
                                 <div class="wards">
-                                    <button type="button" class="">Phường An Khánh</button>
-                                    <!--fragment#8e268ed8f#head--><input fragment="8e268ed8f" type="hidden"
-                                                                         class="ddlist" value="27125">
-                                    <div class="select" fragment="8e268ed8f" style="display: none;">
-                                        <div class="boxsearch"><input placeholder="Nhập phường, xã để tìm nhanh"><a
-                                                href="javascript:;"><i class="cartnew-search"></i></a></div>
-                                        <div class="listName" style="position: relative;">
-                                            <aside><span class="active">Phường An Khánh</span></aside>
-                                            <aside></aside>
-                                            <div class="resize-triggers">
-                                                <div class="expand-trigger">
-                                                    <div style="width: 1px; height: 1px;"></div>
-                                                </div>
-                                                <div class="contract-trigger"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!---->
-                                    <!--fragment#8e268ed8f#tail-->
+                                    <select class="form-select" id="ward" aria-label=".form-select-sm">
+                                        <option value="" selected>Chọn phường xã</option>
+                                    </select>
                                 </div>
                                 <div class="filladdress"><input placeholder="" delaytime="200" maxlength="255"
                                                                 id="cusAddr" name="cusAddr" required="required"
@@ -10512,7 +10457,7 @@
 </div>
 
 <div id="crm-survey-clone"></div>
-<main></main>
+<script  th:src="@{/js/danhMucHanhChinh.js}" type="text/javascript"></script>
 </body>
 
 </html>
