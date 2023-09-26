@@ -4,12 +4,12 @@ import com.cuahangdienthoai.entity.Device;
 import com.cuahangdienthoai.repository.DeviceRepository;
 import com.cuahangdienthoai.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 @Service
 public class DeviceServiceImpl implements DeviceService {
@@ -21,8 +21,8 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     @Override
-    public List<Device> findAll() {
-        return deviceRepository.findAll();
+    public Page<Device> findAll(Pageable pageable) {
+        return deviceRepository.findAll(pageable);
     }
 
     @Override

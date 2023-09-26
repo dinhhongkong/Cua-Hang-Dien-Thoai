@@ -3,6 +3,7 @@ package com.cuahangdienthoai.controller;
 import com.cuahangdienthoai.entity.Device;
 import com.cuahangdienthoai.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +36,15 @@ public class DeviceController {
         Device device = deviceService.findByDeviceName(name);
         model.addAttribute("device", device);
         return "device-info";
+    }
+
+
+    @GetMapping("/devices")
+    public String allDevices(Model model) {
+        Page<Device> device = deviceService.findAll( PageRequest.of(0, 8));
+
+        model.addAttribute("device", device);
+        return "devices";
     }
 
 
