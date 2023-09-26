@@ -10,4 +10,6 @@ import java.util.List;
 public interface GioHangRepository extends JpaRepository<GioHang, GioHangId> {
     GioHang findByDeviceIdAndUserId(long deviceId, long userId);
     List<GioHang> findByUserId(long userId);
+
+    void deleteByDeviceIdAndUserId(long deviceId, long userId);
 }

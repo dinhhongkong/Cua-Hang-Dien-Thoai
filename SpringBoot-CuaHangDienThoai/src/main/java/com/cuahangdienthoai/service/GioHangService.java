@@ -16,5 +16,6 @@ public interface GioHangService {
 
     void increaseQuantity(long deviceId, long userId);
 
+    void deleteCart(long deviceId, long userId);
     void deleteById(GioHangId gioHangId);
 }

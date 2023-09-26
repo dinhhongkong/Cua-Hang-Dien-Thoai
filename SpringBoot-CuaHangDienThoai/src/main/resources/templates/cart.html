@@ -1,8 +1,8 @@
 <html lang="en">
 <head>
-    <meta name="_csrf" th:content="${_csrf.token}"/>
-    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
-    <meta data-n-head="ssr" charset="utf-8"/>
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+    <meta data-n-head="ssr" charset="utf-8" />
     <meta
             data-n-head="ssr"
             name="viewport"
@@ -15,7 +15,7 @@
             content=""
     />
     <title>CellphoneS Cart</title>
-    <base href="/cart/"/>
+    <base href="/cart/" />
     <link
             data-n-head="ssr"
             rel="icon"
@@ -19680,11 +19680,11 @@
         }
     </style>
 
-    <link rel="stylesheet" th:href="@{/css/header/05dbdb1.css}"/>
-    <link rel="stylesheet" th:href="@{/css/header/77d4f17.css}"/>
-    <link rel="stylesheet" th:href="@{/css/header/08b028f.css}"/>
-    <link rel="stylesheet" th:href="@{/css/header/f6c4fdb.css}"/>
-    <link rel="stylesheet" th:href="@{/css/header/0135102.css}"/>
+    <link rel="stylesheet" th:href="@{/css/header/05dbdb1.css}" />
+    <link rel="stylesheet" th:href="@{/css/header/77d4f17.css}" />
+    <link rel="stylesheet" th:href="@{/css/header/08b028f.css}" />
+    <link rel="stylesheet" th:href="@{/css/header/f6c4fdb.css}" />
+    <link rel="stylesheet" th:href="@{/css/header/0135102.css}" />
 </head>
 <body>
 <div th:replace="/header::navbar"></div>
@@ -19897,7 +19897,9 @@
                             </div>
                             <div></div>
                         </div>
-                        <div class="block__product-item__outer" th:each="ct_giohang: ${giohang}">
+                        <div class="block__product-item__outer"
+                             th:each="ct_giohang: ${giohang}"
+                             th:id="'cart' +${ct_giohang.device.id}">
                             <!---->
                             <div class="block__product-item">
                                 <div class="checkbox-product">
@@ -19974,7 +19976,7 @@
                                                 >
                                                     16.350.000đ
                                                 </p>
-<!--                                                thẻ giá gốc chưa giảm-->
+                                                <!--                                                thẻ giá gốc chưa giảm-->
                                                 <p
                                                         class="product__price--through"
                                                 >
@@ -19984,8 +19986,8 @@
                                             </div>
                                         </div>
                                         <div class="action d-flex">
-                                                    <span
-                                                            class="minus d-flex justify-content-center align-items-center"
+                                                    <span th:data-product-id="${ct_giohang.device.id}"
+                                                          class="minus d-flex justify-content-center align-items-center"
                                                     >-</span
                                                     >
                                             <input
@@ -19995,8 +19997,7 @@
                                                     th:id="'value' +${ct_giohang.device.id}"
                                             />
                                             <span th:data-product-id="${ct_giohang.device.id}"
-                                                    class="plus d-flex justify-content-center align-items-center"
-
+                                                  class="plus d-flex justify-content-center align-items-center"
                                             >+</span>
                                         </div>
                                     </div>
