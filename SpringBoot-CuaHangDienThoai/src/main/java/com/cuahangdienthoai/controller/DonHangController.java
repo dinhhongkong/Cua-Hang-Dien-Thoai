@@ -23,10 +23,17 @@ public class DonHangController {
 
     @PostMapping("/Admin/duyet")
     public ResponseEntity<String> duyet(@RequestParam Long donHangId, Authentication authentication){
-        System.out.println(donHangId);
         DonHang donHang = donHangService.getDonHangByid(donHangId);
         donHang.setTrangThai(1);
+        donHangService.save(donHang);
         return ResponseEntity.ok("Duyệt thành công");
     }
 
+    @PostMapping("/Admin/huy")
+    public ResponseEntity<String> huy(@RequestParam Long donHangId, Authentication authentication){
+        DonHang donHang = donHangService.getDonHangByid(donHangId);
+        donHang.setTrangThai(3);
+        donHangService.save(donHang);
+        return ResponseEntity.ok("Hủy thành công");
+    }
 }
