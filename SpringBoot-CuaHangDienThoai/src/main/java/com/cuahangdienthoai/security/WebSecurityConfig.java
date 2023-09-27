@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -20,25 +21,14 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 public class WebSecurityConfig {
     private UserDetailsService userDetailsService;
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeHttpRequests((requests) -> requests
-//                                .requestMatchers("/", "/device").permitAll()
-//                                .requestMatchers("/gio-hang").hasAuthority("user")
-//                                .anyRequest().authenticated()
-//                )
-//                .httpBasic(withDefaults())
-//                .csrf(AbstractHttpConfigurer::disable);
-//        return http.build();
-//    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests((requests) -> requests.requestMatchers("/Admin/duyet").permitAll()
-                        .requestMatchers("/cart","add-to-cart").hasAuthority("user")
-                        .anyRequest().permitAll()
+                .authorizeHttpRequests((requests) -> requests
+                                .requestMatchers("/cart","add-to-cart").hasAuthority("user")
+                                .requestMatchers("/admin").hasAuthority("admin")
+                                .anyRequest().permitAll()
                 )
                 .formLogin((form) -> form
                         .loginProcessingUrl("/j_spring_security_check")

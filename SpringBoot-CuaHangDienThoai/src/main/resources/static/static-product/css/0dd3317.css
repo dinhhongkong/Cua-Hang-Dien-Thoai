@@ -1,0 +1,103 @@
+.modal {
+  display: table;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  transform: scale(0);
+  width: 100%;
+}
+.modal.out {
+  animation: quickScaleDown 1s forwards;
+}
+.modal.out .modal-background {
+  animation: fadeOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  background: transparent;
+}
+.modal.out .modal-content {
+  animation: scaleDown 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  opacity: 0;
+}
+.modal.is-active {
+  transform: scale(1);
+}
+.modal.is-active .modal-background {
+  animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  background: transparent;
+}
+.modal.is-active .modal-content {
+  animation: scaleUp 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  opacity: 0;
+}
+.dropdown {
+  z-index: 31;
+}
+.dropdown #dropdown-smem {
+  min-width: 10rem;
+}
+.dropdown #dropdown-smem .dropdown-content .dropdown-item {
+  cursor: pointer;
+}
+.dropdown #dropdown-smem .dropdown-content .dropdown-item a {
+  color: #444;
+  display: flex;
+}
+.dropdown #dropdown-smem .dropdown-content .dropdown-item a:hover {
+  color: #d70018;
+}
+.dropdown #dropdown-smem .dropdown-content .dropdown-item a svg {
+  margin-right: 10px;
+  width: 20px;
+}
+@keyframes fadeIn {
+  0% {
+    background: transparent;
+  }
+  to {
+    background: rgba(0, 0, 0, 0.7);
+  }
+}
+@keyframes fadeOut {
+  0% {
+    background: rgba(0, 0, 0, 0.7);
+  }
+  to {
+    background: transparent;
+  }
+}
+@keyframes scaleUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(1000px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+@keyframes scaleDown {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(500px);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.8) translateY(1000px);
+  }
+}
+@keyframes quickScaleDown {
+  0% {
+    transform: scale(1);
+  }
+  99.9% {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0);
+  }
+}
+#icon-smember .cls-1 {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 30px;
+}

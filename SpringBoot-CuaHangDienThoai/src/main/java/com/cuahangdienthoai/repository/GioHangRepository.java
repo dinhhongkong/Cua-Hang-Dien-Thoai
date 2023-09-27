@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface GioHangRepository extends JpaRepository<GioHang, GioHangId> {
 
+public interface GioHangRepository extends JpaRepository<GioHang, GioHangId> {
+    GioHang findByDeviceIdAndUserId(long deviceId, long userId);
+    List<GioHang> findByUserId(long userId);
 }

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/fontawesome/css/all.css}">
+    <link rel="stylesheet" th:href="@{/css/signin.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<body>
+<div th:include="header :: header"></div>
+<!--<link crossorigin="anonymous"-->
+<!--      href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"-->
+<!--      integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" rel="stylesheet" />-->
+<!--<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">-->
+
+<style>
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+    }
+
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
+</style>
+
+
+<!-- Custom styles for this template -->
+<link href="signin.css" rel="stylesheet">
+
+
+<main class="my-5 mx-3">
+    <div class="container py-5 mx-auto border shadow form-login rounded-5">
+        <form>
+            <h1 class="h1 mb-3 fw-normal">Đăng ký</h1>
+
+            <div class="my-3 form-floating">
+                <input type="email" class="form-control" id="floatingInput" placeholder="thinh@gmail.com">
+                <label for="floatingInput">Địa chỉ email</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Mật khẩu">
+                <label for="floatingPassword">Mặt khẩu</label>
+            </div>
+
+            <div class="checkbox mb-3 mt-3">
+                <label>
+                    <input type="checkbox" value="Ghi nhớ tôi"> Ghi nhớ tôi
+                </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Đăng ký</button>
+            <p class="mt-5 mb-3 text-muted">&copy; 2022–2023</p>
+        </form>
+    </div>
+</main>
+
+</body>
+</html>
