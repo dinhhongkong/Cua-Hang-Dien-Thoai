@@ -1,4 +1,4 @@
-package com.cuahangdienthoai.service;
+package com.cuahangdienthoai.service.impl;
 
 import com.cuahangdienthoai.config.VNPayConfig;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ public class VNPayService {
         String vnp_TxnRef = VNPayConfig.getRandomNumber(8);
         String vnp_IpAddr = "127.0.0.1";
         String vnp_TmnCode = VNPayConfig.vnp_TmnCode;
-        String orderType = "order-type";
+        String orderType = "110000";
 
         Map<String, String> vnp_Params = new HashMap<>();
         vnp_Params.put("vnp_Version", vnp_Version);
@@ -34,7 +34,7 @@ public class VNPayService {
         String locate = "vn";
         vnp_Params.put("vnp_Locale", locate);
 
-        urlReturn += VNPayConfig.vnp_Returnurl;
+        urlReturn += VNPayConfig.vnp_ReturnUrl;
         vnp_Params.put("vnp_ReturnUrl", urlReturn);
         vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
 
