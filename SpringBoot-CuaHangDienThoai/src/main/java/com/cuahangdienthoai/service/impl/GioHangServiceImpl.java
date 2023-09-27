@@ -56,7 +56,7 @@ public class GioHangServiceImpl implements GioHangService {
     }
 
     @Override
-    public void save(long deviceId, long userId) {
+    public void saveByDeviceIdAndUserId(long deviceId, long userId) {
         GioHang gioHang = findByGioHangIdAndUserId(deviceId, userId);
         if (gioHang != null) {
             gioHang.setSoLuong(gioHang.getSoLuong() + 1);
@@ -83,6 +83,28 @@ public class GioHangServiceImpl implements GioHangService {
             save(gioHang);
         } else {
             throw new RuntimeException("Không tìm thấy gio hang chứa "+ deviceId+ " của " + userId);
+        }
+    }
+
+    @Override
+    public void decreaseQuantity(long deviceId, long userId) {
+        GioHang gioHang = findByGioHangIdAndUserId(deviceId, userId);
+        if ( gioHang == null) {
+            throw new RuntimeException("Không tìm thấy gio hang chứa "+ deviceId+ " của " + userId);
+        }
+        else if ( gioHang.getSoLuong() > 1) {
+            gioHang.setSoLuong(gioHang.getSoLuong() - 1);
+            save(gioHang);
+        }
+    }
+
+    @Override
+    public void updateQuantity(long deviceId, long userId, String cal) {
+        if (cal.equals("plus")) {
+            increaseQuantity(deviceId,userId);
+        }
+        else {
+            decreaseQuantity(deviceId,userId);
         }
     }
 

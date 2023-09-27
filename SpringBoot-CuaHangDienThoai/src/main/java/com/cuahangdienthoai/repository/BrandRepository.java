@@ -9,6 +9,5 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface BrandRepository extends JpaRepository<Brand,Long> {
-    @Query("SELECT d FROM Device d WHERE d.brand.brandName = :brandName")
-    List<Device> findDevicesBrandName(@Param("brandName") String brandName);
+
 }

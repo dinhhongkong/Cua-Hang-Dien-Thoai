@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
           console.log("thêm vào giỏ hàng thành công");
         }
       };
-      xhr.send("productId=" + productId);
+      xhr.send("productId=" + productId+ "&cal=plus");
     });
   });
   minusToCartButtons.forEach((minusToCartButton) => {
@@ -53,12 +53,15 @@ document.addEventListener("DOMContentLoaded", function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
           // Xử lý thành công, có thể cập nhật giao diện người dùng
           let currentValue = parseInt(quantityInput.value);
-          let newValue = currentValue - 1;
-          quantityInput.value = newValue;
+          if (currentValue > 1) {
+            let newValue = currentValue - 1;
+            quantityInput.value = newValue;
+          }
+
           console.log("Trừ khỏi giỏ hàng thành công");
         }
       };
-      xhr.send("productId=" + productId);
+      xhr.send("productId=" + productId + "&cal=minus");
     });
   });
   deleteCartButtons.forEach((deleteCartButton) => {

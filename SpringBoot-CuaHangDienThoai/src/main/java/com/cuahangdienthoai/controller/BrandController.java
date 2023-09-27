@@ -24,10 +24,6 @@ public class BrandController {
         return brandService.findAll();
     }
 
-    @GetMapping("/{brandName}/devices")
-    public List<Device> getDevice(@PathVariable String brandName) {
-        return brandService.findDevicesByBrandName(brandName);
-    }
 
 
     @PostMapping("/brand")

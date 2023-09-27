@@ -9,5 +9,5 @@ public interface BrandService {
     Brand findById(Long brandId);
     void deleteById(Long brandId);
     void save(Brand brand);
-    List<Device> findDevicesByBrandName(String brandName);
+
 }

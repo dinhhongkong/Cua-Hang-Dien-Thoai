@@ -12,9 +12,13 @@ public interface GioHangService {
     GioHang findByGioHangIdAndUserId(long deviceId, long userId);
     void save(GioHang gioHang);
 
-    void save(long deviceId, long userId);
+    void saveByDeviceIdAndUserId(long deviceId, long userId);
 
     void increaseQuantity(long deviceId, long userId);
+
+    void decreaseQuantity(long deviceId, long userId);
+
+    void updateQuantity(long deviceId, long userId, String cal);
 
     void deleteCart(long deviceId, long userId);
     void deleteById(GioHangId gioHangId);

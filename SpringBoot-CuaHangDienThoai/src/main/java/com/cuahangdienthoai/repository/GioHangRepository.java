@@ -12,4 +12,5 @@ public interface GioHangRepository extends JpaRepository<GioHang, GioHangId> {
     List<GioHang> findByUserId(long userId);
 
     void deleteByDeviceIdAndUserId(long deviceId, long userId);
+
 }

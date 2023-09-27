@@ -48,8 +48,4 @@ public class BrandServiceImpl implements BrandService {
         brandsRepository.save(brand);
     }
 
-    @Override
-    public List<Device> findDevicesByBrandName(String brandName) {
-        return brandsRepository.findDevicesBrandName(brandName);
-    }
 }

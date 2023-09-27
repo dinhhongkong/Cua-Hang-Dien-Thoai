@@ -23,6 +23,9 @@ public class DonHang {
     @Column(name = "sdt")
     private String sdt;
 
+    @Column(name = "ten_nguoi_nhan")
+    private String tenNguoiNhan;
+
     @Column(name = "dia_chi")
     private String diaChi;
 
@@ -34,6 +37,9 @@ public class DonHang {
 
     @Column(name = "ngay_nhan")
     private Date ngayNhan;
+
+    @Column(name = "ma_thanh_toan")
+    private Integer maThanhToan;
 
     @Column(name = "trang_thai")
     private String trangThai;
