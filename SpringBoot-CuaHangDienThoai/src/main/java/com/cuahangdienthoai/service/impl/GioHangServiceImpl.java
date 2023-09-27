@@ -87,6 +87,16 @@ public class GioHangServiceImpl implements GioHangService {
     }
 
     @Override
+    public void deleteCart(long deviceId, long userId) {
+        GioHang gioHang = findByGioHangIdAndUserId(deviceId, userId);
+        if (gioHang != null) {
+            gioHangRepository.deleteByDeviceIdAndUserId(deviceId,userId);
+        } else {
+            throw new RuntimeException("Không tìm thấy gio hang chứa "+ deviceId+ " của " + userId);
+        }
+    }
+
+    @Override
     public void deleteById(GioHangId gioHangId) {
 
     }

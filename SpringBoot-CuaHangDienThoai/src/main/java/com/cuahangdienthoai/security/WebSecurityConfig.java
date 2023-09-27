@@ -26,15 +26,14 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                                .requestMatchers("/cart","add-to-cart").hasAuthority("user")
-                                .requestMatchers("/admin").hasAuthority("admin")
-                                .anyRequest().permitAll()
-                )
+                        .requestMatchers("/cart", "add-to-cart").hasAuthority("user")
+                        .requestMatchers("/admin").hasAuthority("admin")
+                        .anyRequest().permitAll())
                 .formLogin((form) -> form
                         .loginProcessingUrl("/j_spring_security_check")
                         .loginPage("/login")
                         .permitAll()
-                        .defaultSuccessUrl("/",true)
+                        .defaultSuccessUrl("/", true)
                         .failureUrl("/login?error=true")
                         .usernameParameter("email")
                         .passwordParameter("password")
@@ -44,14 +43,17 @@ public class WebSecurityConfig {
 
         return http.build();
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Autowired
     public void setUserDetailsService(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
+
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -60,7 +62,4 @@ public class WebSecurityConfig {
         return provider;
     }
 
-
 }
-
-
