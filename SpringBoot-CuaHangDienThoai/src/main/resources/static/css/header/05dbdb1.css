@@ -1900,7 +1900,7 @@ fieldset[disabled] .button {
 }
 @media screen and (min-width: 1024px) {
   .container {
-    max-width: 960px;
+    /*max-width: 960px;*/
   }
 }
 @media screen and (max-width: 1215px) {
@@ -1915,12 +1915,12 @@ fieldset[disabled] .button {
 }
 @media screen and (min-width: 1216px) {
   .container:not(.is-max-desktop) {
-    max-width: 1152px;
+    /*max-width: 1152px;*/
   }
 }
 @media screen and (min-width: 1408px) {
   .container:not(.is-max-desktop):not(.is-max-widescreen) {
-    max-width: 1344px;
+    /*max-width: 1344px;*/
   }
 }
 .content li + li {

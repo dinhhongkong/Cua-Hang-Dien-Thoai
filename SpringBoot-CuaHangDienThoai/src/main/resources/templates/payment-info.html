@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="NOINDEX,FOLLOW" name="robots">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <style>
         .dot-stretching {
@@ -9853,15 +9855,14 @@
             <!---->
             <!---->
             <ul class="listing-cart">
-                <li data-v-61b791c9="" class="product-item">
+                <li data-v-61b791c9="" class="product-item" th:each="phone : ${devices}" >
                     <!---->
                     <div data-v-61b791c9="" class="imgsp">
                         <a data-v-61b791c9="" href="/dtdd/xiaomi-redmi-note-12-8gb-256gb" target="_blank"><img
-                                data-v-61b791c9=""
-                                data-src="https://cdn.tgdd.vn/Products/Images/42/309846/xiaomi-redmi-note-12-vang-1-thumb-momo-200x200.jpg"
-                                src="https://cdn.tgdd.vn/Products/Images/42/309846/xiaomi-redmi-note-12-vang-1-thumb-momo-200x200.jpg"
-                                alt="Điện thoại Xiaomi Redmi Note 12 (8GB/256GB)" loading="lazy"
-                                class=" ls-is-cached lazyloaded"></a>
+                                alt="Điện thoại Xiaomi Redmi Note 12 (8GB/256GB)"
+                                class=" ls-is-cached lazyloaded"
+                                data-v-61b791c9="" loading="lazy"
+                                th:src="${phone.device.picture}"></a>
                         <div data-v-61b791c9="">
                             <button data-v-61b791c9=""><span data-v-61b791c9=""></span> Xóa</button>
                         </div>
@@ -9872,7 +9873,7 @@
                         <div data-v-61b791c9="" class="name-price">
                             <div data-v-61b791c9="" class="name-container"><a data-v-61b791c9=""
                                                                               href="/dtdd/xiaomi-redmi-note-12-8gb-256gb"
-                                                                              class="product-item__name"> Điện thoại
+                                                                              class="product-item__name" th:text="${phone.device.deviceName}"> Điện thoại
                                 Xiaomi Redmi Note 12 (8GB/256GB) </a></div>
                             <span data-v-61b791c9=""> 5.790.000₫ <!----><strike
                                     data-v-61b791c9="">6.490.000₫</strike></span></div>
@@ -9919,13 +9920,9 @@
                             </div>
                             <!--fragment#f963a0d248#head-->
                             <div class="choosenumber" fragment="f963a0d248">
-                                <div class="minus" style="pointer-events: none;"><i
-                                        style="background-color: rgb(204, 204, 204);"></i></div>
-                                <input type="text" maxlength="3" class="number"
+                                <input type="text" maxlength="3" class="number" th:value="${phone.quantity}" readonly
                                        style="border: none; pointer-events: all;">
-                                <div class="plus" style="pointer-events: all;"><i
-                                        style="background-color: rgb(40, 138, 214);"></i><i
-                                        style="background-color: rgb(40, 138, 214);"></i></div>
+
                                 <!----><input type="hidden"></div>
                             <!--fragment#f963a0d248#tail-->
                         </div>
@@ -9937,90 +9934,6 @@
                                                           value="true">
                     <!---->
                     <!--fragment#a349bdfac3#tail-->
-                    <!---->
-                </li>
-                <li data-v-61b791c9="" class="product-item">
-                    <!---->
-                    <div data-v-61b791c9="" class="imgsp">
-                        <a data-v-61b791c9="" href="/dtdd/oppo-reno10-5g-128gb" target="_blank"><img data-v-61b791c9=""
-                                                                                                     data-src="https://cdn.tgdd.vn/Products/Images/42/309722/oppo-reno10-blue-thumbnew-600x600.jpg"
-                                                                                                     src="https://cdn.tgdd.vn/Products/Images/42/309722/oppo-reno10-blue-thumbnew-600x600.jpg"
-                                                                                                     alt="Điện thoại OPPO Reno10 5G 128GB"
-                                                                                                     loading="lazy"
-                                                                                                     class=" ls-is-cached lazyloaded"></a>
-                        <div data-v-61b791c9="">
-                            <button data-v-61b791c9=""><span data-v-61b791c9=""></span> Xóa</button>
-                        </div>
-                    </div>
-                    <div data-v-61b791c9="" data-tmp-price-original="9990000" data-tmp-price-discount="0"
-                         data-tmp-product-name="Điện thoại OPPO Reno10 5G 128GB" data-tmp-product-type="1"
-                         data-tmp-quantity="1" data-tmp-max-quantity="5" class="infosp">
-                        <div data-v-61b791c9="" class="name-price">
-                            <div data-v-61b791c9="" class="name-container"><a data-v-61b791c9=""
-                                                                              href="/dtdd/oppo-reno10-5g-128gb"
-                                                                              class="product-item__name"> Điện thoại
-                                OPPO Reno10 5G 128GB </a></div>
-                            <span data-v-61b791c9=""> 9.990.000₫ <!----></span></div>
-                        <hr data-v-61b791c9="" style="width: 65%; visibility: hidden;">
-                        <!---->
-                        <!---->
-                        <div data-v-61b791c9="" class="promo">
-                            <aside>
-                                <!----><small data-id="1803449" class="promotionName">Cơ hội trúng 50 sổ tiết kiệm, tổng
-                                trị giá đến 500 triệu đồng <a
-                                        href="http://www.thegioididong.com/tin-tuc/sam-oppo-co-hoi-trung-50-so-tiet-kiem-tong-tri-gia-len-den-500-trieu-dong-1546797">
-                                    Xem chi tiết</a></small>
-                                <small data-id="1803444" class="promotionName">Cơ hội trúng suất học bổng trị giá 15
-                                    triệu <a
-                                            href="http://www.thegioididong.com/tin-tuc/mua-dien-thoai-thong-minh-co-co-hoi-nhan-hoc-bong-1544028">
-                                        Xem chi tiết</a></small>
-                                <small data-id="1790581" class="promotionName">Tặng gói bảo hiểm rơi vỡ 6 tháng (PVI) <a
-                                        href="https://www.thegioididong.com/tin-tuc/amp/thong-tin-goi-bao-hanh-roi-vo-vivo-v23-5g-1408996">
-                                    Xem chi tiết</a></small>
-                                <small data-id="1783873" class="promotionName">Thu cũ Đổi mới: Giảm đến 1.2 triệu (Tuỳ
-                                    model máy cũ, Không kèm thanh toán qua cổng online, mua kèm) <a
-                                            href="https://www.thegioididong.com/thu-cu-doi-moi"> Xem chi
-                                        tiết</a></small>
-                                <label class="">4 khuyến mãi</label>
-                            </aside>
-                            <!---->
-                        </div>
-                        <!---->
-                        <!---->
-                        <!---->
-                        <!--fragment#dc553cf7b#head-->
-                        <div fragment="dc553cf7b" class="choose-color">
-                            <div class="product-size-and-color-selection">
-                                <aside><span> Màu: <span class="color-text">Xanh Dương</span></span>
-                                    <div class="sg-color" style="display: none;">
-                                        <div class="select-color active"><img
-                                                data-src="https://cdn.tgdd.vn/Products/Images/42/309722/oppo-reno10-blue-thumbnew-600x600.jpg"
-                                                src="https://cdn.tgdd.vn/Products/Images/42/309722/oppo-reno10-blue-thumbnew-600x600.jpg"
-                                                loading="lazy" class="lazyload"><small>Xanh Dương</small></div>
-                                    </div>
-                                </aside>
-                                <!---->
-                            </div>
-                            <!--fragment#84ea9487d#head-->
-                            <div class="choosenumber" fragment="84ea9487d">
-                                <div class="minus" style="pointer-events: none;"><i
-                                        style="background-color: rgb(204, 204, 204);"></i></div>
-                                <input type="text" maxlength="3" class="number"
-                                       style="border: none; pointer-events: all;">
-                                <div class="plus" style="pointer-events: all;"><i
-                                        style="background-color: rgb(40, 138, 214);"></i><i
-                                        style="background-color: rgb(40, 138, 214);"></i></div>
-                                <!----><input type="hidden"></div>
-                            <!--fragment#84ea9487d#tail-->
-                        </div>
-                        <!--fragment#dc553cf7b#tail-->
-                        <!---->
-                    </div>
-                    <!---->
-                    <!--fragment#3b6aae853#head--><input data-v-61b791c9="" fragment="3b6aae853" type="hidden"
-                                                         value="true">
-                    <!---->
-                    <!--fragment#3b6aae853#tail-->
                     <!---->
                 </li>
                 <!---->
@@ -10395,7 +10308,7 @@
                             href="https://www.thegioididong.com/chinh-sach-xu-ly-du-lieu-ca-nhan" target="_blank"
                             class="link-policy">Chính sách xử lý dữ liệu cá nhân</a> của Thế Giới Di Động </p>
                 </div>
-                <button type="button" class="submitorder"><b style="text-transform:uppercase">Đặt hàng</b></button>
+                <button type="button" class="submitorder" id="submitButton"><b style="text-transform:uppercase">Đặt hàng</b></button>
                 <!---->
             </div>
             <!---->
@@ -10458,6 +10371,50 @@
 
 <div id="crm-survey-clone"></div>
 <script  th:src="@{/js/danhMucHanhChinh.js}" type="text/javascript"></script>
+<script>
+    document.getElementById("submitButton").addEventListener("click", function () {
+        // Lấy giá trị của csrf token và csrf header từ thẻ meta
+        var csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute("content");
+        var csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute("content");
+
+        // Tạo yêu cầu XMLHttpRequest
+        var xhr = new XMLHttpRequest();
+
+        // Thiết lập phương thức và URL của yêu cầu POST
+        xhr.open("POST", "/submitOrder", true);
+
+        // Thiết lập tiêu đề csrf header
+        xhr.setRequestHeader(csrfHeader, csrfToken);
+
+        // Thiết lập nội dung yêu cầu (nếu cần)
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        // Thiết lập hàm xử lý khi yêu cầu hoàn thành
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    // Xử lý phản hồi thành công
+                    console.log(xhr.responseText);
+                    window.location.href = xhr.responseText;
+
+                } else {
+                    // Xử lý phản hồi lỗi
+                    console.error("Lỗi khi gửi yêu cầu: " + xhr.status);
+                }
+            }
+        };
+
+        // Dữ liệu cần gửi (nếu cần)
+        // var data = { key: "value" };
+        //
+        // // Chuyển đổi dữ liệu thành chuỗi JSON (nếu cần)
+        // var jsonData = JSON.stringify(data);
+
+        // Gửi yêu cầu POST
+        xhr.send();
+    });
+</script>
+
 </body>
 
 </html>

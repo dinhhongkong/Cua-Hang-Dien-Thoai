@@ -1,6 +1,11 @@
 package com.cuahangdienthoai.service.impl;
 
 import com.cuahangdienthoai.config.VNPayConfig;
+import com.cuahangdienthoai.dto.PaymentInfoDTO;
+import com.cuahangdienthoai.entity.DonHang;
+import com.cuahangdienthoai.entity.User;
+import com.cuahangdienthoai.repository.DonHangRepository;
+import com.cuahangdienthoai.repository.GioHangRepository;
 import org.springframework.stereotype.Service;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,7 +17,22 @@ import java.util.*;
 
 @Service
 public class VNPayService {
-    public String createOrder(int total, String orderInfor, String urlReturn){
+
+    private DonHangRepository donHangRepository;
+
+    private void handleOrderInfo(User user, PaymentInfoDTO paymentInfo) {
+        DonHang donHang = new DonHang();
+        donHang.setUser(user);
+        donHang.setSdt(paymentInfo.getPhoneNumber());
+        donHang.setTenNguoiNhan(paymentInfo.getName());
+        donHang.setDiaChi(paymentInfo.getAddress());
+        donHang.setGhiChu("");
+        donHang.setNgayLap( new Date());
+        donHang.setMaThanhToan(1);
+        donHang.setTrangThai(0);
+        String orderInfo = user.getId().toString() + " thanh toan don hang " + donHangRepository.save(donHang).getId();
+    }
+    public String createOrder(int total, String orderInfo, String urlReturn){
         String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
         String vnp_TxnRef = VNPayConfig.getRandomNumber(8);
@@ -28,7 +48,7 @@ public class VNPayService {
         vnp_Params.put("vnp_CurrCode", "VND");
 
         vnp_Params.put("vnp_TxnRef", vnp_TxnRef);
-        vnp_Params.put("vnp_OrderInfo", orderInfor);
+        vnp_Params.put("vnp_OrderInfo", orderInfo);
         vnp_Params.put("vnp_OrderType", orderType);
 
         String locate = "vn";
@@ -81,7 +101,7 @@ public class VNPayService {
         return paymentUrl;
     }
 
-    public int orderReturn(HttpServletRequest request){
+    public int orderReturn(HttpServletRequest request, long userId){
         Map fields = new HashMap();
         for (Enumeration params = request.getParameterNames(); params.hasMoreElements();) {
             String fieldName = null;
@@ -109,6 +129,7 @@ public class VNPayService {
             if ("00".equals(request.getParameter("vnp_TransactionStatus"))) {
                 return 1;
             } else {
+
                 return 0;
             }
         } else {

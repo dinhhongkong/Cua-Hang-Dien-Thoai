@@ -20017,7 +20017,7 @@
                             <p>Tạm tính</p>
                             <span>0đ</span>
                         </div>
-                        <button class="btn-action">Mua ngay</button>
+                        <button class="btn-action" id="pay-now">Mua ngay</button>
                     </div>
                 </div>
             </div>
@@ -20080,6 +20080,79 @@
 </div>
 
 <script th:src="@{/js/cart.js}" type="text/javascript"></script>
+<!--<script>-->
+<!--    document.getElementById("pay-now").addEventListener("click", function() {-->
+<!--        // Tạo một yêu cầu POST bằng JavaScript-->
+<!--        var xhr = new XMLHttpRequest();-->
+<!--        xhr.open("POST", "/payment", true);-->
+<!--        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");-->
+<!--        let csrfToken = document-->
+<!--            .querySelector('meta[name="_csrf"]')-->
+<!--            .getAttribute("content");-->
+<!--        let csrfHeader = document-->
+<!--            .querySelector('meta[name="_csrf_header"]')-->
+<!--            .getAttribute("content");-->
+<!--        xhr.setRequestHeader(csrfHeader, csrfToken);-->
+<!--        console.log('hello')-->
 
+<!--        // Xử lý sự kiện khi yêu cầu hoàn thành-->
+<!--        xhr.onreadystatechange = function() {-->
+<!--            if (xhr.readyState === 4 && xhr.status === 200) {-->
+<!--                // Xử lý phản hồi từ máy chủ (nếu cần)-->
+<!--                // window.location.href = "/payment-info"; // Chuyển hướng sau khi thanh toán-->
+<!--            }-->
+<!--        };-->
+
+<!--        // Gửi yêu cầu POST-->
+<!--        xhr.send();-->
+
+<!--        // Ngăn chặn sự kiện mặc định của nút-->
+<!--        event.preventDefault();-->
+<!--    });-->
+<!--</script>-->
+
+<script>
+    document.getElementById("pay-now").addEventListener("click", function() {
+        // Dữ liệu cart_items
+        var cartItems = [
+            {
+                "deviceId": 8523,
+                "quantity": 1
+            },
+            {
+                "deviceId":8559,
+                "quantity": 1
+            }
+        ];
+
+        // Tạo một đối tượng XMLHttpRequest (XHR)
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/payment-info", true); // Đặt đường dẫn POST
+
+        // Đặt tiêu đề của yêu cầu, ví dụ: "Content-Type" là "application/json"
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        let csrfToken = document
+            .querySelector('meta[name="_csrf"]')
+            .getAttribute("content");
+        let csrfHeader = document
+            .querySelector('meta[name="_csrf_header"]')
+            .getAttribute("content");
+        xhr.setRequestHeader(csrfHeader, csrfToken);
+
+        // Xử lý phản hồi từ máy chủ
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Xử lý phản hồi từ máy chủ nếu cần
+                // Ví dụ: chuyển hướng đến trang khác sau khi mua hàng thành công
+                window.location.href = "/payment-info";
+            }
+        };
+
+        // Chuyển đổi dữ liệu cart_items thành JSON và gửi đi
+        var jsonData = JSON.stringify(cartItems);
+        console.log(jsonData)
+        xhr.send(jsonData);
+    });
+</script>
 </body>
 </html>

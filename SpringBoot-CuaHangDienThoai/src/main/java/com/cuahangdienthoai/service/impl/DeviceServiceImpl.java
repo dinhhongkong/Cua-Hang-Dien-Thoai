@@ -1,5 +1,7 @@
 package com.cuahangdienthoai.service.impl;
 
+import com.cuahangdienthoai.dto.DeviceJsonDTO;
+import com.cuahangdienthoai.dto.DevicePayDTO;
 import com.cuahangdienthoai.entity.Device;
 import com.cuahangdienthoai.repository.DeviceRepository;
 import com.cuahangdienthoai.service.DeviceService;
@@ -8,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,5 +64,17 @@ public class DeviceServiceImpl implements DeviceService {
     @Override
     public void save(Device device) {
         deviceRepository.save(device);
+    }
+
+    @Override
+    public ArrayList<DevicePayDTO> prepareDeviceForPayment(List<DeviceJsonDTO> data) {
+        ArrayList<DevicePayDTO> deviceList = new ArrayList<DevicePayDTO>();
+        for (DeviceJsonDTO deviceJsonDTO: data) {
+            DevicePayDTO devicePayDTO = new DevicePayDTO();
+            devicePayDTO.setDevice( findById(deviceJsonDTO.getDeviceId()));
+            devicePayDTO.setQuantity(deviceJsonDTO.getQuantity());
+            deviceList.add(devicePayDTO);
+        }
+        return deviceList;
     }
 }
