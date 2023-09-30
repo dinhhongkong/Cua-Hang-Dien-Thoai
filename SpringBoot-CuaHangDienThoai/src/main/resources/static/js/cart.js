@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let minusToCartButtons = document.querySelectorAll(".minus");
   let deleteCartButtons = document.querySelectorAll(".remove-item");
   const totalPrices = document.getElementById("total_prices");
+  let devices = [];
   console.log(totalPrices);
   // console.log(deleteCartButtons);
   addToCartButtons.forEach((addToCartButton) => {
@@ -28,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
           let newValue = currentValue + 1;
           quantityInput.value = newValue;
           updataTotalPrice();
+          console.log(devices);
           console.log("thêm vào giỏ hàng thành công");
         }
       };
@@ -131,7 +133,46 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let buyBtn = document.querySelector(".btn-action");
   // console.log(buyBtn);
-  buyBtn.addEventListener("click", () => {});
+  buyBtn.addEventListener("click", () => {
+    let productIds = [];
+    addToCartButtons.forEach((addToCartButton) => {
+      let productId = addToCartButton.getAttribute("data-product-id");
+      let quantityInput = parseInt(
+        document.getElementById("value" + productId).value,
+      );
+      let updateData = { productId: productId, quantity: quantityInput };
+      productIds.push(updateData);
+      console.log(productId);
+      console.log(quantityInput);
+    });
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/payment-info", true); // Đặt đường dẫn POST
+
+    // Đặt tiêu đề của yêu cầu, ví dụ: "Content-Type" là "application/json"
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    let csrfToken = document
+      .querySelector('meta[name="_csrf"]')
+      .getAttribute("content");
+    let csrfHeader = document
+      .querySelector('meta[name="_csrf_header"]')
+      .getAttribute("content");
+    xhr.setRequestHeader(csrfHeader, csrfToken);
+
+    // Xử lý phản hồi từ máy chủ
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        // Xử lý phản hồi từ máy chủ nếu cần
+        // Ví dụ: chuyển hướng đến trang khác sau khi mua hàng thành công
+        window.location.href = "/payment-info";
+      }
+    };
+
+    // Chuyển đổi dữ liệu cart_items thành JSON và gửi đi
+    var jsonData = JSON.stringify(productIds);
+    console.log(jsonData);
+    xhr.send(jsonData);
+    console.log(JSON.stringify(productIds));
+  });
 
   const updataTotalPrice = () => {
     let totalPrice = 0;
@@ -162,3 +203,20 @@ document.addEventListener("DOMContentLoaded", function () {
     totalPrices.innerText = totalPrice + "đ";
   };
 });
+
+function updateDeviceQuantity(data, updateData) {
+  // Tìm kiếm xem "devices" đã tồn tại trong danh sách data hay chưa
+  let deviceExists = false;
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].devices === updateData.devices) {
+      data[i].quantity = updateData.quantity;
+      deviceExists = true;
+      break;
+    }
+  }
+
+  // Nếu "devices" không tồn tại, thêm mới nó vào danh sách data
+  if (!deviceExists) {
+    data.push(updateData);
+  }
+}
