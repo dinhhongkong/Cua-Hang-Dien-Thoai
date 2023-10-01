@@ -25,6 +25,7 @@ public class DeviceServiceImpl implements DeviceService {
         return deviceRepository.findAll(pageable);
     }
 
+
     @Override
     public List<Device> findGiaBetween(double giaBatDau, double giaKetThuc, Pageable pageable) {
         return deviceRepository.findByGiaBetween(giaBatDau,giaKetThuc,pageable);

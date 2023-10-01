@@ -13,25 +13,115 @@
     <header>
         <h1 th:if = "${title == null}">ADMIN</h1>
         <h1 th:if = "${title} == 'order'">QUẢN LÝ ĐƠN HÀNG</h1>
+        <h1 th:if = "${title} == 'devices'">QUẢN LÝ SẢN PHẨM</h1>
     </header>
     <nav>
         <div id = "admin-avata">
             <img th:src = "@{/img/AdminPage/Admin-removebg-preview.png}" alt="">
         </div>
         <ul>
-            <li class = "clickable-li"><a href="/Admin">Admin</a></li>
-            <li class = "clickable-li"><a th:herf = "@{/Admin/order}">Quản lý sản phẩm</a></li>
+            <li class = "clickable-li"><a href="/Admin">Quản lý admin</a></li>
+            <li class = "clickable-li"><a href="/Admin/devices">Quản lý sản phẩm</a></li>
             <li class = "clickable-li"><a href="/Admin/order">Quản lý đơn hàng</a></li>
         </ul>
     </nav>
     <main>
-        <div id = "admin-acc">
-
+        <div id = "admin-acc" style="display: none">
+            <div class = "search-bar">
+                <input type="text" class = "search-input" placeholder="Tìm kiếm admin theo username">
+                <button class = "search-button">Tìm</button>
+            </div>
+            <div id = "admin-action">
+                <button class="btn btn-success" data-toggle="modal" data-target="#ModalCreateAdmin">Tạo admin</button>
+            </div>
+            <div id = "admin-filter">
+                <label for="admin-status">Tiêu chí:</label>
+                <select id="admin-status">
+                    <option value="tat-ca">Tất cả</option>
+                    <option value="hoat-dong">Đang hoạt động</option>
+                    <option value="dung-hoat-dong">Dừng hoạt động</option>
+                </select>
+            </div>
+            <div id = "admin-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Trạng Thái</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each = "admin : ${listAdmin}">
+                            <td th:text = "${admin.id}"></td>
+                            <td th:text = "${admin.userName}"></td>
+                            <td th:text = "${admin.email}"></td>
+                            <td th:switch = "${admin.enable}">
+                                <p th:case="true">Hoạt động</p>
+                                <p th:case="false">Dừng hoạt động</p>
+                            </td>
+                            <td>
+                                <button class="btn btn-info" th:attr = "data-id = ${admin.userName}" data-toggle="modal" data-target="#ModalDoiMK" btn-use="changePass">Đổi mật khẩu</button>
+                                <div th:switch = "${admin.enable}" style="display: inline">
+                                    <button th:case = "true" class="btn btn-danger" th:attr = "data-id = ${admin.userName}" data-target="#ModalYesNo" data-toggle="modal" btn-use="lock">Khóa</button>
+                                    <button th:case = "false" class="btn btn-success" th:attr = "data-id = ${admin.userName}" data-target="#ModalYesNo" data-toggle="modal" btn-use="unlock">Mở Khóa</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id = "device" style="display: none">
+            <div class = "search-bar">
+                <input type="text" class = "search-input" placeholder="Tìm kiếm theo id sản phẩm">
+                <button class = "search-button" >Tìm</button>
+            </div>
+            <div id = "device-action">
+                <button class="btn btn-success" data-toggle="modal" data-target="#ModalCreateAdmin">Thêm điện thoại mới</button>
+            </div>
+            <div id = "device-filter">
+                <label for="device-status">Tiêu chí:</label>
+                <select id="device-status">
+                    <option value="tat-ca">Tất cả</option>
+                    <option value="hoat-dong">Đang kinh doanh</option>
+                    <option value="dung-hoat-dong">Dừng kinh doanh</option>
+                </select>
+            </div>
+            <div id = "device-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Hình ảnh</th>
+                            <th>Giá</th>
+                            <th>Brand</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each = "device : ${listDevice}">
+                            <td th:text = "${device.id}"></td>
+                            <td th:text = "${device.deviceName}"></td>
+                            <td><img th:src="${device.picture}"></td>
+                            <td th:text = "${device.gia}"></td>
+                            <td th:text = "${device.brand.brandName}"></td>
+                            <td>
+                                <button class="btn btn-info">Infor</button>
+                                <button class="btn btn-danger">Stop</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div id = "order" style="display: none">
-            <div id = "search-bar">
-                <input type="text" id = "search-input" placeholder="Tìm kiếm theo id">
-                <button id = "search-button">Tìm</button>
+            <div class = "search-bar">
+                <input type="text" class = "search-input" placeholder="Tìm kiếm theo id">
+                <button class = "search-button" >Tìm</button>
             </div>
             <div id = "order-filter">
                 <label for="order-status">Tiêu chí:</label>
@@ -104,6 +194,68 @@
                 <div class="modal-body">
                     <button class="btn btn-primary btnYes" data-id = "" data-func = "">Yes</button>
                     <button class="btn btn-danger">No</button>
+                </div>
+            </div>
+        </div>
+        <div id="ModalCreateAdmin" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2></h2>
+                <div class="modal-body">
+                        <div>
+                            <div>
+                                <input type="text" name = "username" placeholder="Username">
+                            </div>
+                            <div>
+                                <input type="password" name = "password" placeholder="password">
+                            </div>
+                            <div>
+                                <input type="email" name = "email" placeholder="Email">
+                            </div>
+                            <button type="submit">Gửi</button>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div id = "ModalDoiMK" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2></h2>
+                <div class="modal-body">
+                    <div>
+                        <div>
+                            <input type="password" name = "password" placeholder="Password">
+                        </div>
+                        <button type="submit">Đổi mật khẩu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id ="ModalAddDT">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2></h2>
+                <div class="modal-body">
+                    <div>
+                        <input type="text" name = "url_hash" placeholder="url_hash">
+                    </div>
+                    <div>
+                        <label for="brand_id">Tiêu chí:</label>
+                        <select id="brand_id">
+                            <option value="moi-nhat">Mới nhất</option>
+                            <option value="chua-duyet">Chưa duyệt</option>
+                            <option value="dang-giao">Đang giao</option>
+                            <option value="da-giao">Đã giao</option>
+                            <option value="huy">Hủy</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="text" name = "device_name" placeholder="device_name">
+                    </div>
+                    <div>
+                        <input type="file" name = "picture" placeholder="">
+                    </div>
+                    <button type="submit">Đổi mật khẩu</button>
                 </div>
             </div>
         </div>

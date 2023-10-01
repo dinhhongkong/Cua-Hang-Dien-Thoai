@@ -10,5 +10,5 @@ public interface DonHangService {
 
     void save(DonHang donhang);
 
-    DonHang getDonHangByid(long id);
+    DonHang findDonHangById(long id);
 }

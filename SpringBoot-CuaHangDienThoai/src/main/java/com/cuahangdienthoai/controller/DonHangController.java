@@ -16,14 +16,14 @@ public class DonHangController {
     @Autowired
     public void setDonHangService(DonHangService donHangService){this.donHangService = donHangService;}
     @PostMapping("/DonHang")
-    public ResponseEntity<DonHang> createBrand(@RequestBody DonHang newDonHang) {
+    public ResponseEntity<DonHang> createDonHang(@RequestBody DonHang newDonHang) {
         donHangService.save(newDonHang);
         return new ResponseEntity<>(newDonHang,HttpStatus.CREATED);
     }
 
     @PostMapping("/Admin/duyet")
     public ResponseEntity<String> duyet(@RequestParam Long donHangId, Authentication authentication){
-        DonHang donHang = donHangService.getDonHangByid(donHangId);
+        DonHang donHang = donHangService.findDonHangById(donHangId);
         donHang.setTrangThai(1);
         donHangService.save(donHang);
         return ResponseEntity.ok("Duyệt thành công");
@@ -31,9 +31,15 @@ public class DonHangController {
 
     @PostMapping("/Admin/huy")
     public ResponseEntity<String> huy(@RequestParam Long donHangId, Authentication authentication){
-        DonHang donHang = donHangService.getDonHangByid(donHangId);
+        DonHang donHang = donHangService.findDonHangById(donHangId);
         donHang.setTrangThai(3);
         donHangService.save(donHang);
         return ResponseEntity.ok("Hủy thành công");
+    }
+
+    @PostMapping("/Admin/donhang")
+    public ResponseEntity<DonHang> findById(@RequestParam long donHangId, Authentication authentication){
+        DonHang donHang = donHangService.findDonHangById(donHangId);
+        return  ResponseEntity.ok(donHang);
     }
 }
