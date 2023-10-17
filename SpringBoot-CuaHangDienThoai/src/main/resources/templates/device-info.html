@@ -195,25 +195,19 @@
                                                     <button class="btn-cta order-button button--large is-flex is-justify-content-center is-align-items-center">
                                                         <strong>MUA NGAY</strong> <span>(Giao nhanh từ 2 giờ hoặc nhận tại cửa hàng)</span>
                                                     </button>
-                                                    <button class="btn-cta button button--small add-to-cart-button" th:data-product-id="${device.id}"><img
+                                                    <button class="btn-cta button button--small add-to-cart-button"
+                                                            th:data-product-id="${device.id}"><img
                                                             src="https://cdn2.cellphones.com.vn/50x,webp,q70/media/wysiwyg/add-to-cart.png"
                                                             width="50" alt="cart-icon"> <span>Thêm vào giỏ</span>
                                                     </button>
                                                 </div>
-                                                <div class="is-flex is-justify-content-space-between">
-                                                    <button class="btn-cta installment-button button--medium"><strong
-                                                            class="has-text-white">TRẢ GÓP <span>0%</span></strong><br>
-                                                        <span class="has-text-white">Trả trước chỉ từ 509.000₫</span>
-                                                    </button>
-                                                    <button class="btn-cta installment-button button--medium"><strong
-                                                            class="has-text-white">TRẢ GÓP QUA THẺ</strong><br> <span
-                                                            class="has-text-white">(Visa, Mastercard, JCB)</span>
-                                                    </button>
-                                                </div> <!----> <!----></div>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div class="boxReview"><h2 class="title is-6" th:text="'Đánh giá & nhận xét '+${device.deviceName}">Đánh giá &amp; nhận xét Xiaomi Redmi
+                                    <div class="boxReview"><h2 class="title is-6"
+                                                               th:text="'Đánh giá & nhận xét '+${device.deviceName}">
+                                        Đánh giá &amp; nhận xét Xiaomi Redmi
                                         Note 12 8GB 128GB</h2> <!---->
                                         <div class="boxReview-review is-flex">
                                             <div class="boxReview-score is-flex is-justify-content-center is-align-items-center has-product">

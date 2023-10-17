@@ -141,7 +141,7 @@
                         </div>
                         <div class="owl-dots disabled"></div>
                     </div>
-                    <a class="readmore-btn" href="https://www.thegioididong.com/dtdd"><span>Xem thêm Điện thoại giá rẻ quá</span></a>
+                    <a class="readmore-btn" href="/devices"><span>Xem thêm Điện thoại giá rẻ quá</span></a>
                 </div>
 
             </div>
@@ -179,7 +179,7 @@
                                         </div>
                                         <h3 th:text="${device.deviceName}"></h3>
                                         <p class="item-txt-online">Giảm giá sốc</p>
-                                        <strong class="price" th:text="${device.gia + '₫'}"></strong>
+                                        <strong class="price" th:text="${device.getPriceFormat() + '₫'}"></strong>
                                     </a>
 
                                 </div>
@@ -194,7 +194,7 @@
                     </div>
                     <div class="owl-dots disabled"></div>
                 </div>
-                <a class="readmore-btn" href="https://www.thegioididong.com/flashsale"><span>Xem tất cả</span></a>
+                <a class="readmore-btn" href="/devices"><span>Xem tất cả</span></a>
             </div>
         </div>
 

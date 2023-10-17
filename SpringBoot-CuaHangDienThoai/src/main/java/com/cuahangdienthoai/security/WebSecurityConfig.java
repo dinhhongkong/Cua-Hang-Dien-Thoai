@@ -13,7 +13,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -33,13 +35,18 @@ public class WebSecurityConfig {
                         .loginProcessingUrl("/j_spring_security_check")
                         .loginPage("/login")
                         .permitAll()
-                        .defaultSuccessUrl("/", true)
+                        .successHandler(successHandler())
                         .failureUrl("/login?error=true")
                         .usernameParameter("email")
                         .passwordParameter("password")
-
                 )
-                .logout(LogoutConfigurer::permitAll);
+                .logout((logout) -> logout
+                        .logoutUrl("/logout")
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .logoutSuccessUrl("/")
+                        .permitAll()
+                )
+        ;
 
         return http.build();
     }
@@ -60,6 +67,11 @@ public class WebSecurityConfig {
         provider.setUserDetailsService(userDetailsService);
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler successHandler() {
+        return new CustomLoginSuccessHandler("/");
     }
 
 }

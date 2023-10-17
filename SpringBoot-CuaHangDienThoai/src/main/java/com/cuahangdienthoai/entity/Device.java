@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -62,5 +63,11 @@ public class Device {
     @ToString.Exclude
     @JsonIgnore
     private List<GioHang> gioHang;
+
+    public String getPriceFormat(){
+        long roundedMoney = Math.round(gia);
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        return decimalFormat.format(roundedMoney);
+    }
 
 }

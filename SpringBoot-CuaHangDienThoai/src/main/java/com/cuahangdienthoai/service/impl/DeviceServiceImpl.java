@@ -1,13 +1,15 @@
 package com.cuahangdienthoai.service.impl;
 
-import com.cuahangdienthoai.dto.DeviceJsonDTO;
+import com.cuahangdienthoai.dto.DeviceQuantityDTO;
 import com.cuahangdienthoai.dto.DevicePayDTO;
 import com.cuahangdienthoai.entity.Device;
 import com.cuahangdienthoai.repository.DeviceRepository;
+import com.cuahangdienthoai.repository.DeviceSpecifications;
 import com.cuahangdienthoai.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,6 +28,10 @@ public class DeviceServiceImpl implements DeviceService {
     @Override
     public Page<Device> findAll(Pageable pageable) {
         return deviceRepository.findAll(pageable);
+    }
+
+    public List<Device> findAllDevice() {
+        return deviceRepository.findAll();
     }
 
     @Override
@@ -67,14 +73,25 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     @Override
-    public ArrayList<DevicePayDTO> prepareDeviceForPayment(List<DeviceJsonDTO> data) {
+    public Page<Device> findByNameContaining(String keyword, Pageable pageable) {
+        return deviceRepository.findByDeviceNameContaining(keyword, pageable);
+    }
+
+    @Override
+    public ArrayList<DevicePayDTO> prepareDeviceForPayment(List<DeviceQuantityDTO> data) {
         ArrayList<DevicePayDTO> deviceList = new ArrayList<DevicePayDTO>();
-        for (DeviceJsonDTO deviceJsonDTO: data) {
+        for (DeviceQuantityDTO deviceQuantityDTO : data) {
             DevicePayDTO devicePayDTO = new DevicePayDTO();
-            devicePayDTO.setDevice( findById(deviceJsonDTO.getDeviceId()));
-            devicePayDTO.setQuantity(deviceJsonDTO.getQuantity());
+            devicePayDTO.setDevice( findById(deviceQuantityDTO.getDeviceId()));
+            devicePayDTO.setQuantity(deviceQuantityDTO.getQuantity());
             deviceList.add(devicePayDTO);
         }
         return deviceList;
+    }
+
+    @Override
+    public Page<Device> searchProducts(String name, Double minPrice, Double maxPrice, Long brand, Pageable pageable) {
+        Specification<Device> spec = new DeviceSpecifications(name, minPrice, maxPrice, brand );
+        return deviceRepository.findAll(spec,pageable);
     }
 }

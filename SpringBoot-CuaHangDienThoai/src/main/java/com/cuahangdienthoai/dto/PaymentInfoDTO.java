@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PaymentInfoDTO {
-    private List<Integer> devicesId;
+    private List<DeviceQuantityDTO> devices;
     private String name;
     private String phoneNumber;
     private String address;

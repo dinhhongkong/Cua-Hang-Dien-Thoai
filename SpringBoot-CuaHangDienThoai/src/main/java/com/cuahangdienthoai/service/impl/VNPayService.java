@@ -1,14 +1,22 @@
 package com.cuahangdienthoai.service.impl;
 
 import com.cuahangdienthoai.config.VNPayConfig;
+import com.cuahangdienthoai.dto.DeviceQuantityDTO;
 import com.cuahangdienthoai.dto.PaymentInfoDTO;
+import com.cuahangdienthoai.entity.Device;
 import com.cuahangdienthoai.entity.DonHang;
 import com.cuahangdienthoai.entity.User;
+import com.cuahangdienthoai.entity.chitietdonhang.ChiTietDonHang;
+import com.cuahangdienthoai.repository.DeviceRepository;
 import com.cuahangdienthoai.repository.DonHangRepository;
 import com.cuahangdienthoai.repository.GioHangRepository;
+import com.cuahangdienthoai.service.DeviceService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -19,8 +27,20 @@ import java.util.*;
 public class VNPayService {
 
     private DonHangRepository donHangRepository;
+    private DeviceService deviceService;
 
-    private void handleOrderInfo(User user, PaymentInfoDTO paymentInfo) {
+    @Autowired
+    public void setDeviceService(DeviceService deviceService) {
+        this.deviceService = deviceService;
+    }
+
+    @Autowired
+    public void setDonHangRepository(DonHangRepository donHangRepository) {
+        this.donHangRepository = donHangRepository;
+    }
+
+    @Transactional
+    public void handleOrderInfo(User user, PaymentInfoDTO paymentInfo, String urlReturn ) {
         DonHang donHang = new DonHang();
         donHang.setUser(user);
         donHang.setSdt(paymentInfo.getPhoneNumber());
@@ -30,7 +50,24 @@ public class VNPayService {
         donHang.setNgayLap( new Date());
         donHang.setMaThanhToan(1);
         donHang.setTrangThai(0);
-        String orderInfo = user.getId().toString() + " thanh toan don hang " + donHangRepository.save(donHang).getId();
+        for(DeviceQuantityDTO item: paymentInfo.getDevices()) {
+            ChiTietDonHang ctDonHang = new ChiTietDonHang();
+            Device device = deviceService.findById(item.getDeviceId());
+            device.setId(item.getDeviceId());
+            ctDonHang.setDevice(device);
+            ctDonHang.setDonHang(donHang);
+            ctDonHang.setSoLuong(item.getQuantity());
+            ctDonHang.setGia(device.getGia());
+            donHang.getListCTDonHang().add(ctDonHang);
+        }
+        donHang = donHangRepository.save(donHang);
+        String orderInfo = user.getId().toString() + " thanh toan don hang " + donHang.getId();
+        int total = 0;
+        for ( ChiTietDonHang item : donHang.getListCTDonHang()) {
+            total += item.getGia();
+        }
+        createOrder(total, orderInfo, urlReturn);
+
     }
     public String createOrder(int total, String orderInfo, String urlReturn){
         String vnp_Version = "2.1.0";
@@ -129,7 +166,6 @@ public class VNPayService {
             if ("00".equals(request.getParameter("vnp_TransactionStatus"))) {
                 return 1;
             } else {
-
                 return 0;
             }
         } else {

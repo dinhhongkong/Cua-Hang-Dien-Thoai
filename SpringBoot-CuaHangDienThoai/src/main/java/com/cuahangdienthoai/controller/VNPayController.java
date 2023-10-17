@@ -26,12 +26,11 @@ public class VNPayController {
 
     @PostMapping("/submitOrder")
     public ResponseEntity<String> submidOrder(
-                              @RequestBody PaymentInfoDTO paymentInfo,
-                              HttpServletRequest request,
-                              Authentication authentication){
+//                              @RequestBody PaymentInfoDTO paymentInfo,
+                              HttpServletRequest request, Authentication authentication){
+
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-//        String vnpayUrl = vnPayService.createOrder(orderTotal, orderInfo, baseUrl);
         String vnpayUrl = vnPayService.createOrder(9000000, "tien dien mua dien thoai", baseUrl);
         return ResponseEntity.ok(vnpayUrl);
     }

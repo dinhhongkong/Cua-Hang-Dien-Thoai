@@ -1,13 +1,15 @@
 package com.cuahangdienthoai.entity;
 
-import com.cuahangdienthoai.repository.UserRepository;
+import com.cuahangdienthoai.entity.chitietdonhang.ChiTietDonHang;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.ToString;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "don_hang")
@@ -47,5 +49,11 @@ public class DonHang {
 
     @Column(name = "trang_thai")
     private int trangThai;
+
+    @OneToMany(mappedBy = "donHang",fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @ToString.Exclude
+    @JsonIgnore
+    private List<ChiTietDonHang> listCTDonHang;
 
 }

@@ -1,7 +1,7 @@
 package com.cuahangdienthoai.service;
 
 
-import com.cuahangdienthoai.dto.DeviceJsonDTO;
+import com.cuahangdienthoai.dto.DeviceQuantityDTO;
 import com.cuahangdienthoai.dto.DevicePayDTO;
 import com.cuahangdienthoai.entity.Device;
 import org.springframework.data.domain.Page;
@@ -19,6 +19,12 @@ public interface DeviceService  {
     void deleteById(long deviceId);
     void save(Device device);
 
-    ArrayList<DevicePayDTO> prepareDeviceForPayment(List<DeviceJsonDTO> data);
+    Page<Device> findByNameContaining(String keyword, Pageable pageable);
+
+    ArrayList<DevicePayDTO> prepareDeviceForPayment(List<DeviceQuantityDTO> data);
+
+    Page<Device> searchProducts(String name, Double minPrice, Double maxPrice, Long brand, Pageable pageable);
+
+    List<Device> findAllDevice();
 
 }
