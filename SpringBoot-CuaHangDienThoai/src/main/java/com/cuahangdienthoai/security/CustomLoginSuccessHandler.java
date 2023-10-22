@@ -19,6 +19,7 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
         HttpSession session = request.getSession();
         if (session != null) {
             String redirectUrl = (String) session.getAttribute("url_prior_login");
+            System.out.println(redirectUrl);
             if (redirectUrl != null) {
                 // we do not forget to clean this attribute from session
                 session.removeAttribute("url_prior_login");

@@ -5,6 +5,7 @@ import com.cuahangdienthoai.entity.CustomUserDetails;
 import com.cuahangdienthoai.entity.giohang.GioHang;
 import com.cuahangdienthoai.service.GioHangService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,10 @@ public class GioHangController {
     @PostMapping("/add-to-cart")
     public ResponseEntity<String> themVaoGioHang(@RequestParam Long productId, Authentication authentication) {
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+        System.out.println("thong tin user "+userDetails);
+        if (userDetails == null) {
+            return new ResponseEntity<>("Chưa đăng nhập", HttpStatus.UNAUTHORIZED);
+        }
         gioHangService.saveByDeviceIdAndUserId(productId,userDetails.getUser().getId());
         return ResponseEntity.ok("Sản phẩm đã được thêm vào giỏ hàng");
     }

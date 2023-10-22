@@ -43,9 +43,9 @@ public class GioHangServiceImpl implements GioHangService {
     @Override
     public GioHang findByGioHangIdAndUserId(long deviceId, long userId) {
         GioHang gioHang = gioHangRepository.findByDeviceIdAndUserId(deviceId, userId);
-        if (gioHang == null) {
-            throw new RuntimeException("Không tìm thấy gio hang chứa "+ deviceId+ " của " + userId);
-        }
+//        if (gioHang == null) {
+//            throw new RuntimeException("Không tìm thấy gio hang chứa "+ deviceId+ " của " + userId);
+//        }
 
         return gioHang;
     }

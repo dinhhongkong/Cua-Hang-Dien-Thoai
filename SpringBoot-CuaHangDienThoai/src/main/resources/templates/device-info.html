@@ -663,9 +663,15 @@
             var csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
             xhr.setRequestHeader(csrfHeader, csrfToken);
             xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    console.log('thêm vào giỏ hàng thành công')
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        console.log('thêm vào giỏ hàng thành công')
+                    }
+                    else {
+                        console.log('trang thái: ' + xhr.status )
+                    }
                 }
+
             };
             xhr.send("productId=" + productId);
         });
