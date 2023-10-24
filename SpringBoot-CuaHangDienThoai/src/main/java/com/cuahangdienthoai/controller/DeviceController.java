@@ -25,6 +25,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class DeviceController {
@@ -93,7 +94,11 @@ public class DeviceController {
     public ResponseEntity<Page<Device>> allDevices(@RequestParam(value = "page", defaultValue = "0") int page,
                                                    @RequestParam(value = "size", defaultValue = "5") int size) {
         Page<Device> devicePage = deviceService.findAll(PageRequest.of(page, size));
-                // Kiểm tra xem trang có dữ liệu không
+        for(Device i : devicePage){
+            Optional<Double> gia = Optional.ofNullable(i.getGia());
+            i.setGia(gia.orElse(0D));
+        }
+
         if (devicePage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

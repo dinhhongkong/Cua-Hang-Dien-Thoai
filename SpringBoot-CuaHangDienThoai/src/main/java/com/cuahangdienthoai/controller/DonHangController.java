@@ -1,5 +1,9 @@
 package com.cuahangdienthoai.controller;
+import com.cuahangdienthoai.entity.Device;
+import com.cuahangdienthoai.entity.chitietdonhang.ChiTietDonHang;
 import com.cuahangdienthoai.entity.DonHang;
+import com.cuahangdienthoai.service.CTDHService;
+import com.cuahangdienthoai.service.DeviceService;
 import com.cuahangdienthoai.service.DonHangService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,8 +20,18 @@ import java.util.Map;
 @RestController
 public class DonHangController {
     private DonHangService donHangService;
+
+    private CTDHService ctdhService;
+
+    private DeviceService deviceService;
     @Autowired
     public void setDonHangService(DonHangService donHangService){this.donHangService = donHangService;}
+
+    @Autowired
+    public  void setCtdhService(CTDHService ctdhService){this.ctdhService = ctdhService;}
+
+    @Autowired
+    public void setDeviceService(DeviceService deviceService){this.deviceService = deviceService;}
     @PostMapping("/DonHang")
     public ResponseEntity<DonHang> createDonHang(@RequestBody DonHang newDonHang) {
         donHangService.save(newDonHang);
@@ -45,4 +59,19 @@ public class DonHangController {
         DonHang donHang = donHangService.findDonHangById(donHangId);
         return  ResponseEntity.ok(donHang);
     }
+
+    @PostMapping("/Admin/donhang/hoanthanh")
+    public ResponseEntity<String> hoanThanhDonHang(@RequestParam long donHangId, Authentication authentication){
+        DonHang donHang = donHangService.findDonHangById(donHangId);
+        donHang.setTrangThai(2);
+        List<ChiTietDonHang> listCTDH = donHang.getListCTDonHang();
+        for(ChiTietDonHang e: listCTDH ){
+            Device device = e.getDevice();
+            device.setSoLuong(device.getSoLuong() - e.getSoLuong());
+            deviceService.save(device);
+        }
+        donHangService.save(donHang);
+        return ResponseEntity.ok("Đơn đã hoàn thành");
+    }
+
 }

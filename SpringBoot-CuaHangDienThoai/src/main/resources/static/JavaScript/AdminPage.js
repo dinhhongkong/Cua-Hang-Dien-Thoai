@@ -22,6 +22,7 @@ function pageDevice(numberPage){
     let xhr = new XMLHttpRequest();
     let csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
     let csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+    console.log(numberPage)
     url = '/devices_page?page=' + numberPage
     console.log(url)
     xhr.open('GET', url, true);
@@ -34,9 +35,11 @@ function pageDevice(numberPage){
             let listDevice = JSON.parse(xhr.responseText);
             console.log(listDevice)
             updateTable(listDevice);
-            var divElement = document.createElement('div');
-            divElement.className = 'page';
-
+            const myDiv = document.querySelector("#device");
+            let tmp = myDiv.querySelector(".pagination")
+            if(tmp != null){
+                tmp.remove()
+            }
             var ulElement = document.createElement('ul');
             ulElement.className = 'pagination';
 
@@ -46,30 +49,42 @@ function pageDevice(numberPage){
                 liElement.className = 'disabled';
             }
             var aElement = document.createElement('a');
-            aElement.href = '/admin?page=' + (listDevice.number - 1);
+            aElement.addEventListener("click", ()=>{
+                pageDevice(listDevice.number - 1)
+            })
             aElement.textContent = '<<';
             liElement.appendChild(aElement);
             ulElement.appendChild(liElement);
 
             // Thêm các nút trang
-            for (var i = listDevice.number - 1; i <= listDevice.number + 2; i++) {
-                if (i >= 0 && i < listDevice.totalPages) {
-                    var liElement = document.createElement('li');
-                    var aElement = document.createElement('a');
-                    aElement.textContent = i + 1;
-                    aElement.addEventListener("click", ()=>{
-                        console.log("ádsa")
-                        console.log(i)
-                        pageDevice(i)
-                    })
-                    if((i) === listDevice.number){
-                        aElement.className = 'active-page'
+            if(listDevice == 0){
+                for (var i = listDevice.number; i <= listDevice.number + 2; i++) {
+                    if (i >= 0 && i < listDevice.totalPages) {
+                        var liElement = document.createElement('li');
+                        var aElement = document.createElement('button');
+                        aElement.textContent = i+1;
+                        if((i) === listDevice.number){
+                            aElement.className = 'active-page'
+                        }
+                        liElement.appendChild(aElement);
+                        ulElement.appendChild(liElement);
                     }
-                    liElement.appendChild(aElement);
-                    ulElement.appendChild(liElement);
                 }
             }
-
+            else{
+                for (var i = listDevice.number-1; i <= listDevice.number + 2; i++) {
+                    if (i >= 0 && i < listDevice.totalPages) {
+                        var liElement = document.createElement('li');
+                        var aElement = document.createElement('button');
+                        aElement.textContent = i+1;
+                        if((i) === listDevice.number){
+                            aElement.className = 'active-page'
+                        }
+                        liElement.appendChild(aElement);
+                        ulElement.appendChild(liElement);
+                    }
+                }
+            }
             // Thêm dấu '...'
             if (listDevice.number < listDevice.totalPages - 3) {
                 var liElement = document.createElement('li');
@@ -80,7 +95,9 @@ function pageDevice(numberPage){
             }
             var liElement = document.createElement('li');
             var aElement = document.createElement('a');
-            aElement.href = '/admin?page=' + (listDevice.totalPages - 1);
+            aElement.addEventListener("click", ()=>{
+                pageDevice(listDevice.totalPages - 1)
+            })
             aElement.textContent = listDevice.totalPages - 1;
             liElement.appendChild(aElement);
             ulElement.appendChild(liElement);
@@ -90,12 +107,23 @@ function pageDevice(numberPage){
                 liElement.className = 'disabled';
             }
             var aElement = document.createElement('a');
-            aElement.href = '/admin?page=' + (listDevice.totalPages - 1);
+            aElement.addEventListener("click", ()=>{
+                pageDevice(listDevice.number + 1)
+            })
             aElement.textContent = ">>";
             liElement.appendChild(aElement);
             ulElement.appendChild(liElement);
             let page = document.querySelector("#device")
+            console.log(ulElement)
             page.appendChild(ulElement)
+            tmp = myDiv.querySelector(".pagination")
+            let btn = tmp.querySelectorAll("button")
+            btn.forEach((e) =>{
+                e.addEventListener("click", ()=>{
+                    console.log(e.innerText - 1)
+                    pageDevice(e.innerText - 1)
+                })
+            })
         } else {
             console.error('Lỗi khi tải dữ liệu từ "Admin/devices":', xhr.status, xhr.statusText);
         }
@@ -154,6 +182,23 @@ function cancelOrder(idDonHang){
     }
 }
 
+function  succsessOrder(idDonHang){
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "/Admin/donhang/hoanthanh", true)
+    xhr.setRequestHeader("content-Type", "application/x-www-form-urlencoded")
+    let csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+    let csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+    xhr.setRequestHeader(csrfHeader,csrfToken);
+    xhr.send("donHangId=" + encodeURIComponent(idDonHang));
+    xhr.onreadystatechange = function (){
+        if(xhr.readyState === 4 && xhr.status === 200){
+            console.log('Đơn hàng đã được hoàn thành')
+            location.reload()
+        }
+    }
+}
+
+
 function adminBan(userName){
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "/Admin/ban", true)
@@ -209,12 +254,19 @@ modalInforBtns.forEach((btn) => {
     btn.addEventListener("click",() => {
         let modal = document.querySelector(btn.getAttribute("data-target").toString())
         modal.style.display = "flex";
-        if(btn.getAttribute("data-target").toString() == "#ModalYesNo" && (TITLE == "QUẢN LÝ ĐƠN HÀNG")){
+        if(btn.getAttribute("data-target").toString() == "#ModalYesNo" && (TITLE == "QUẢN LÝ ĐƠN HÀNG") &&  btn.getAttribute("btn-use") =="huy"){
             titleModal = modal.querySelector("h2")
             titleModal.innerText = "Bạn có muốn hủy đơn hàng này không"
             btnYes = modal.querySelector(".btn-primary")
             btnYes.setAttribute("data-id",btn.getAttribute("data-id"))
             btnYes.setAttribute("data-func","orderCancel")
+        }
+        else if(btn.getAttribute("data-target").toString() == "#ModalYesNo" && (TITLE == "QUẢN LÝ ĐƠN HÀNG") &&  btn.getAttribute("btn-use") =="hoanthanh"){
+            titleModal = modal.querySelector("h2")
+            titleModal.innerText = "Đơn hàng này đã hoàn thanh?"
+            btnYes = modal.querySelector(".btn-primary")
+            btnYes.setAttribute("data-id",btn.getAttribute("data-id"))
+            btnYes.setAttribute("data-func","succsessOrder")
         }
         else if(btn.getAttribute("data-target").toString() == "#ModalCreateAdmin" && (TITLE == "ADMIN")){
             titleModal = modal.querySelector("h2")
@@ -304,6 +356,10 @@ btnYes.forEach((btn) =>{
         else if(func == "adminUnLock"){
             let userName = btn.getAttribute("data-id")
             adminUnlock(userName)
+        }
+        else if(func == "succsessOrder"){
+            let idDonHang = btn.getAttribute("data-id")
+            succsessOrder(idDonHang)
         }
     })
 })
