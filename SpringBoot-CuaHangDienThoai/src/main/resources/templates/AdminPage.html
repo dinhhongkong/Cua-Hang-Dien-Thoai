@@ -80,7 +80,7 @@
                 <button class = "search-button" >Tìm</button>
             </div>
             <div id = "device-action">
-                <button class="btn btn-success" data-toggle="modal" data-target="#ModalCreateAdmin">Thêm điện thoại mới</button>
+                <button class="btn btn-success" data-toggle="modal" data-target="#ModalAddDT">Thêm điện thoại mới</button>
             </div>
             <div id = "device-filter">
                 <label for="device-status">Tiêu chí:</label>
@@ -212,7 +212,7 @@
                             <div>
                                 <input type="email" name = "email" placeholder="Email">
                             </div>
-                            <button type="submit">Gửi</button>
+                            <button type="submit" name ="createAdmin">Gửi</button>
                         </div>
                 </div>
             </div>
@@ -231,31 +231,54 @@
                 </div>
             </div>
         </div>
-        <div id ="ModalAddDT">
+        <div id ="ModalAddDT" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2></h2>
                 <div class="modal-body">
                     <div>
-                        <input type="text" name = "url_hash" placeholder="url_hash">
-                    </div>
-                    <div>
-                        <label for="brand_id">Tiêu chí:</label>
+                        <label for="brand_id">Brand:</label>
                         <select id="brand_id">
-                            <option value="moi-nhat">Mới nhất</option>
-                            <option value="chua-duyet">Chưa duyệt</option>
-                            <option value="dang-giao">Đang giao</option>
-                            <option value="da-giao">Đã giao</option>
-                            <option value="huy">Hủy</option>
                         </select>
                     </div>
                     <div>
-                        <input type="text" name = "device_name" placeholder="device_name">
+                        <input type="text" name = "device_name" placeholder="device_name" required>
+                    </div>
+                    <div id="img-modal-add">
+                        <img src="" alt="ảnh điện thoại">
+                        <input type="file" name = "picture" placeholder="picture">
                     </div>
                     <div>
-                        <input type="file" name = "picture" placeholder="">
+                        <input type="text" name = "released_at" placeholder="released_at">
+                        <input type="text" name = "body" placeholder="body">
                     </div>
-                    <button type="submit">Đổi mật khẩu</button>
+                    <div>
+                        <input type="text" name = "os" placeholder="os">
+                        <input type="text" name = "storage" placeholder="storage">
+                    </div>
+                    <div>
+                        <input type="text" name = "display_size" placeholder="display_size">
+                        <input type="text" name = "display_resolution" placeholder="display_resolution">
+                    </div>
+                    <div>
+                        <input type="text" name = "camera_pixels" placeholder="camera_pixels">
+                        <input type="text" name = "video_pixels" placeholder="video_pixels">
+                    </div>
+                    <div>
+                        <input type="text" name = "ram" placeholder="ram">
+                        <input type="text" name = "chipset" placeholder="chipset">
+                    </div>
+                    <div>
+                        <input type="text" name = "battery_size" placeholder="battery_size">
+                        <input type="text" name = "battery_type" placeholder="battery_type">
+                    </div>
+                    <div>
+                        <input type="text" name = "specifications" placeholder="specifications" required>
+                    </div>
+                    <div>
+                        <input type="number" name = "gia" placeholder="gia">
+                    </div>
+                    <button type="submit" class="btn btn-success" name = "addDevices">Thêm điện thoại</button>
                 </div>
             </div>
         </div>
