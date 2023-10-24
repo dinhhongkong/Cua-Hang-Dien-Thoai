@@ -28,7 +28,7 @@ public class DonHangServiceImpl implements DonHangService {
     }
 
     @Override
-    public DonHang getDonHangByid(long id) {
+    public DonHang findDonHangById(long id) {
         return donHangRepository.findById(id);
     }
 
