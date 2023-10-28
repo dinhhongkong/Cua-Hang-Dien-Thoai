@@ -9855,10 +9855,10 @@
             <!---->
             <!---->
             <ul class="listing-cart">
-                <li data-v-61b791c9="" class="product-item" th:each="phone : ${devices}" >
+                <li data-v-61b791c9="" class="product-item" th:id="${phone.device.id}" th:each="phone : ${devices}" >
                     <!---->
                     <div data-v-61b791c9="" class="imgsp">
-                        <a data-v-61b791c9="" href="/dtdd/xiaomi-redmi-note-12-8gb-256gb" target="_blank"><img
+                        <a  href="/dtdd/xiaomi-redmi-note-12-8gb-256gb" target="_blank"><img
                                 alt="Điện thoại Xiaomi Redmi Note 12 (8GB/256GB)"
                                 class=" ls-is-cached lazyloaded"
                                 data-v-61b791c9="" loading="lazy"
@@ -9875,7 +9875,7 @@
                                                                               href="/dtdd/xiaomi-redmi-note-12-8gb-256gb"
                                                                               class="product-item__name" th:text="${phone.device.deviceName}"> Điện thoại
                                 Xiaomi Redmi Note 12 (8GB/256GB) </a></div>
-                            <span data-v-61b791c9=""> 5.790.000₫ <!----><strike
+                            <span data-v-61b791c9="" class="price"> 5.790.000₫ <!----><strike
                                     data-v-61b791c9="">6.490.000₫</strike></span></div>
                         <hr data-v-61b791c9="" style="width: 65%; visibility: hidden;">
                         <!---->
@@ -9946,7 +9946,7 @@
                         <div data-v-d7d831c6="" class="fillname"><input data-v-d7d831c6="" placeholder=""
                                                                         delaytime="200" maxlength="50" id="cusName"
                                                                         name="cusName" required="required"
-                                                                        class="capitalize untouched pristine required"><label
+                                                                        class="input-name capitalize untouched pristine required"><label
                                 data-v-d7d831c6="" for="cusName" class="form-label">Họ và Tên</label>
                             <!---->
                         </div>
@@ -9954,7 +9954,7 @@
                                                                                     delaytime="200" type="tel"
                                                                                     maxlength="10" id="cusPhone"
                                                                                     name="cusPhone" required="required"
-                                                                                    class="untouched pristine required phoneNumber__input"><label
+                                                                                    class="input-phone untouched pristine required phoneNumber__input"><label
                                 data-v-d7d831c6="" for="cusPhone"
                                 class="form-label">Số điện thoại</label>
                             <!---->
@@ -10053,7 +10053,7 @@
                                 </div>
                                 <div class="filladdress"><input placeholder="" delaytime="200" maxlength="255"
                                                                 id="cusAddr" name="cusAddr" required="required"
-                                                                class="untouched pristine required"><label for="cusAddr"
+                                                                class="address untouched pristine required"><label for="cusAddr"
                                                                                                            class="form-label">Số
                                     nhà, tên đường</label>
                                     <!---->
@@ -10275,16 +10275,16 @@
                 <div>
                     <h3 style="text-transform: none;"> Chọn hình thức thanh toán: </h3>
                     <ul class="formality-pay-new">
-                        <li class="normal-payment"><a><input type="radio" name="payment-methods" id="normal-payment" value="normal-payment" class="cartnew-choose-dot"></input><div class="text-payment"><span><i class="choose-payment-default"></i><span>Thanh toán tiền mặt khi nhận hàng</span></span></div></a>
+                        <li class="normal-payment"><a><input type="radio" name="payment-methods" id="normal-payment" value="false" class="cartnew-choose-dot"></input><div class="text-payment"><span><i class="choose-payment-default"></i><span>Thanh toán tiền mặt khi nhận hàng</span></span></div></a>
                             <!---->
                             <!---->
                         </li>
 
-                        <li class="qrcode"><a><input type="radio" name="payment-methods" id="qrcode" value="qrcode" class="cartnew-choose-dot"></input><div class="text-payment"><span><i class="choose-payment-QR-Code"></i><span>Qua VNPAY-QR</span></span></div></a>
+                        <li class="qrcode"><a><input type="radio" name="payment-methods" id="qrcode" value="false" class="cartnew-choose-dot"></input><div class="text-payment"><span><i class="choose-payment-QR-Code"></i><span>Qua VNPAY-QR</span></span></div></a>
                             <!---->
                             <!---->
                         </li>
-                        <li class="momo"><a><input type="radio" name="payment-methods" id="momo" value="momo" class="cartnew-choose-dot"></input><div class="text-payment"><span><i class="choose-payment-MOMO"></i><span>Ví MoMo</span></span></div></a>
+                        <li class="momo"><a><input type="radio" name="payment-methods" id="momo" value="false" class="cartnew-choose-dot"></input><div class="text-payment"><span><i class="choose-payment-MOMO"></i><span>Ví MoMo</span></span></div></a>
                             <!---->
                             <!---->
                         </li>
@@ -10371,49 +10371,51 @@
 
 <div id="crm-survey-clone"></div>
 <script  th:src="@{/js/danhMucHanhChinh.js}" type="text/javascript"></script>
-<script>
-    document.getElementById("submitButton").addEventListener("click", function () {
-        // Lấy giá trị của csrf token và csrf header từ thẻ meta
-        var csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute("content");
-        var csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute("content");
+<script  th:src="@{/js/payment-info.js}" type="text/javascript"></script>
 
-        // Tạo yêu cầu XMLHttpRequest
-        var xhr = new XMLHttpRequest();
+<!--<script>-->
+<!--    document.getElementById("submitButton").addEventListener("click", function () {-->
+<!--        // Lấy giá trị của csrf token và csrf header từ thẻ meta-->
+<!--        var csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute("content");-->
+<!--        var csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute("content");-->
 
-        // Thiết lập phương thức và URL của yêu cầu POST
-        xhr.open("POST", "/submitOrder", true);
+<!--        // Tạo yêu cầu XMLHttpRequest-->
+<!--        var xhr = new XMLHttpRequest();-->
 
-        // Thiết lập tiêu đề csrf header
-        xhr.setRequestHeader(csrfHeader, csrfToken);
+<!--        // Thiết lập phương thức và URL của yêu cầu POST-->
+<!--        xhr.open("POST", "/submitOrder", true);-->
 
-        // Thiết lập nội dung yêu cầu (nếu cần)
-        xhr.setRequestHeader("Content-Type", "application/json");
+<!--        // Thiết lập tiêu đề csrf header-->
+<!--        xhr.setRequestHeader(csrfHeader, csrfToken);-->
 
-        // Thiết lập hàm xử lý khi yêu cầu hoàn thành
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    // Xử lý phản hồi thành công
-                    console.log(xhr.responseText);
-                    window.location.href = xhr.responseText;
+<!--        // Thiết lập nội dung yêu cầu (nếu cần)-->
+<!--        xhr.setRequestHeader("Content-Type", "application/json");-->
 
-                } else {
-                    // Xử lý phản hồi lỗi
-                    console.error("Lỗi khi gửi yêu cầu: " + xhr.status);
-                }
-            }
-        };
+<!--        // Thiết lập hàm xử lý khi yêu cầu hoàn thành-->
+<!--        xhr.onreadystatechange = function () {-->
+<!--            if (xhr.readyState === 4) {-->
+<!--                if (xhr.status === 200) {-->
+<!--                    // Xử lý phản hồi thành công-->
+<!--                    console.log(xhr.responseText);-->
+<!--                    window.location.href = xhr.responseText;-->
 
-        // Dữ liệu cần gửi (nếu cần)
-        // var data = { key: "value" };
-        //
-        // // Chuyển đổi dữ liệu thành chuỗi JSON (nếu cần)
-        // var jsonData = JSON.stringify(data);
+<!--                } else {-->
+<!--                    // Xử lý phản hồi lỗi-->
+<!--                    console.error("Lỗi khi gửi yêu cầu: " + xhr.status);-->
+<!--                }-->
+<!--            }-->
+<!--        };-->
 
-        // Gửi yêu cầu POST
-        xhr.send();
-    });
-</script>
+<!--        // Dữ liệu cần gửi (nếu cần)-->
+<!--        // var data = { key: "value" };-->
+<!--        //-->
+<!--        // // Chuyển đổi dữ liệu thành chuỗi JSON (nếu cần)-->
+<!--        // var jsonData = JSON.stringify(data);-->
+
+<!--        // Gửi yêu cầu POST-->
+<!--        xhr.send();-->
+<!--    });-->
+<!--</script>-->
 
 </body>
 

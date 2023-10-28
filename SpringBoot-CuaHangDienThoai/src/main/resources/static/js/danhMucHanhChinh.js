@@ -10,9 +10,12 @@ let data = fetch("/data/data.json")
     renderCity(res);
   });
 
+console.log(data);
 function renderCity(data) {
   for (const x of data) {
+    console.log(x);
     citis.options[citis.options.length] = new Option(x.Name, x.Id);
+    // console.log(x.Name, x.Id);
   }
   citis.onchange = function () {
     district.length = 1;
