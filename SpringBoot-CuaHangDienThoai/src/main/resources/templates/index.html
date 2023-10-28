@@ -9,7 +9,15 @@
     <link rel="stylesheet" th:href="@{/css/header/f6c4fdb.css}"/>
     <link rel="stylesheet" th:href="@{/css/header/0135102.css}"/>
     <link rel="stylesheet" th:href="@{/css/main-index/thegioididong.css}"/>
-
+    <link rel="stylesheet" th:href="@{/css/chatbot.css}"/>
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
 </head>
 <body>
 <!--Header-->
@@ -20,8 +28,32 @@
             th:src="@{/img/index/bn454-1920x440.webp}"
             alt="Banner Big Campaign"></a>
 </div>
-
 <section class="main-container">
+    <div class="chat-bot">
+        <header><h2>chat bot</h2></header>
+        <!-- client -->
+        <ul class="chat-box">
+            <li class="chat incoming">
+                <span class="material-symbols-outlined"> smart_toy </span>
+                <p>hi there</p>
+            </li>
+            <li class="chat outcoming">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing
+                    elit. Eveniet, incidunt!
+                </p>
+            </li>
+        </ul>
+        <div class="chat-input">
+            <textarea placeholder="Enter a message..." required></textarea>
+            <span id="send-btn" class="material-symbols-outlined"
+            >send</span
+            >
+        </div>
+    </div>
+    <div class="chat-btn">
+        <img th:src="@{/img/index/Circle-icons-chat.svg.png}" alt="chat box icon btn" />
+    </div>
     <div class="bg-tophome">
         <div class="home-slider" id="owl-home">
             <div class="slider-banner home-top owl-carousel">
@@ -222,6 +254,8 @@
 
 <script async="async" defer="defer" th:src="@{/js/homeTGĐ.js}" type="text/javascript"></script>
 <script async="async" defer="defer" th:src="@{/js/homeGTM.js}" type="text/javascript"></script>
+<script async="async" defer="defer" th:src="@{/js/chat-bot.js}" type="text/javascript"></script>
+<script async="async" defer="defer" th:src="@{/js/jquery-3.4.1.min.js}" type="text/javascript"></script>
 
 
 </body>
