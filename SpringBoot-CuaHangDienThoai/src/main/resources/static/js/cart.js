@@ -107,27 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
       checkBox.value = (!isTrueSet).toString();
       // console.log(checkBox.value);
       updataTotalPrice();
-      // console.log(test);
-      // if (checkBox.value === "true") {
-      //   let price = parseInt(
-      //     checkBox
-      //       .closest(".block__product-item__outer")
-      //       .querySelector(".product__price--show").innerText,
-      //     10,
-      //   );
-      //   let quantity = parseInt(
-      //     document.getElementById(
-      //       "value" +
-      //         checkBox
-      //           .closest(".block__product-item__outer")
-      //           .querySelector(".plus")
-      //           .getAttribute("data-product-id"),
-      //     ).value,
-      //     10,
-      //   );
-      //   console.log(price);
-      //   console.log(quantity);
-      // }
     });
   });
 
