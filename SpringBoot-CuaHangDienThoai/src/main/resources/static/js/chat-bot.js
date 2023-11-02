@@ -23,7 +23,27 @@ const handleChat = () => {
   let userMessage = chatInput.value.trim();
   if (!userMessage) return;
   chatBox.appendChild(createLi(userMessage, "outcoming"));
-  chatBox.appendChild(createLi(userMessage, "incoming"));
+  // chatBox.appendChild(createLi("hello", "incoming"));
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "/chat-bot", true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  var csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+  var csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+  xhr.setRequestHeader(csrfHeader, csrfToken);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        var jsonString = xhr.responseText
+        var jsonObject = JSON.parse(jsonString);
+        var responseValue = jsonObject.response;
+        chatBox.appendChild(createLi(responseValue, "incoming"));
+      } else {
+        console.log('trang thái: ' + xhr.status)
+      }
+    }
+
+  };
+  xhr.send("chatContent=" + userMessage);
   chatInput.value = "";
   console.log(userMessage);
 };

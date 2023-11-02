@@ -1,12 +1,13 @@
 package com.cuahangdienthoai.controller;
 
+import com.cuahangdienthoai.dto.ChatContentDTO;
 import com.cuahangdienthoai.service.impl.ChatBotService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 public class ChatBotController {
     private ChatBotService chatBotService;
 
@@ -15,11 +16,12 @@ public class ChatBotController {
         this.chatBotService = chatBotService;
     }
 
-    @GetMapping("/chat-bot")
-    public String handlePostRequest() {
-        String a = chatBotService.getResponseChat();
+    @PostMapping("/chat-bot")
+    public ResponseEntity<String> handleChatRequest(@RequestParam String chatContent) {
+        ChatContentDTO chatContentDTO = new ChatContentDTO("test1",chatContent);
+        String a = chatBotService.getResponseChat(chatContentDTO);
         System.out.println(a);
-        return a;
+        return ResponseEntity.ok(a);
     }
 
 
