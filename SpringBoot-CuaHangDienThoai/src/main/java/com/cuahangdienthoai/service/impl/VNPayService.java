@@ -43,7 +43,7 @@ public class VNPayService {
     public void handleOrderInfo(User user, PaymentInfoDTO paymentInfo, String urlReturn ) {
         DonHang donHang = new DonHang();
         donHang.setUser(user);
-        donHang.setSdt(paymentInfo.getPhoneNumber());
+        donHang.setSdt(paymentInfo.getPhone());
         donHang.setTenNguoiNhan(paymentInfo.getName());
         donHang.setDiaChi(paymentInfo.getAddress());
         donHang.setGhiChu("");

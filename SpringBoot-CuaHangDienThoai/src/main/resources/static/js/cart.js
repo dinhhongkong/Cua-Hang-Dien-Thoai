@@ -115,11 +115,11 @@ document.addEventListener("DOMContentLoaded", function () {
   buyBtn.addEventListener("click", () => {
     let productIds = [];
     addToCartButtons.forEach((addToCartButton) => {
-      let productId = addToCartButton.getAttribute("data-product-id");
+      let productId = parseInt(addToCartButton.getAttribute("data-product-id"));
       let quantityInput = parseInt(
         document.getElementById("value" + productId).value,
       );
-      let updateData = { productId: productId, quantity: quantityInput };
+      let updateData = { deviceId: productId, quantity: quantityInput };
       productIds.push(updateData);
       console.log(productId);
       console.log(quantityInput);
@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Chuyển đổi dữ liệu cart_items thành JSON và gửi đi
     var jsonData = JSON.stringify(productIds);
-    console.log(jsonData);
+    console.log("đây là json khi gửi: " +jsonData);
     xhr.send(jsonData);
     console.log(JSON.stringify(productIds));
   });

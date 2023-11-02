@@ -35,6 +35,12 @@ public class VNPayController {
         return ResponseEntity.ok(vnpayUrl);
     }
 
+    @PostMapping("/test")
+    public ResponseEntity<String> test(@RequestBody PaymentInfoDTO paymentInfo) {
+        System.out.println(paymentInfo);
+        return ResponseEntity.ok("hello");
+    }
+
     @GetMapping("/vnpay-payment")
     public String GetMapping(HttpServletRequest request, Model model, Authentication authentication){
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
