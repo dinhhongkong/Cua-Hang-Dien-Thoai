@@ -18,8 +18,18 @@ public class RecommendationServiceImpl implements RecommendationService {
         String finalUrl = builder.toUriString();
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(finalUrl, String.class);
-        System.out.println("Response code: " + responseEntity.getStatusCode());
-        System.out.println("Response body: " + responseEntity.getBody());
+        return responseEntity.getBody();
+    }
+
+    @Override
+    public String getRecommendOfUser(int userId) {
+        String uri = "http://localhost:5000/cothebanquantam";
+        String productId = Integer.toString(userId);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri)
+                .queryParam("user_id", userId);
+        String finalUrl = builder.toUriString();
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> responseEntity = restTemplate.getForEntity(finalUrl, String.class);
         return responseEntity.getBody();
     }
 }

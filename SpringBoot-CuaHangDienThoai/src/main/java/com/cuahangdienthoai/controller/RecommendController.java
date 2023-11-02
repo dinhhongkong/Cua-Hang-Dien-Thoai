@@ -20,7 +20,12 @@ public class RecommendController {
     @GetMapping("/recommendofdevices")
     public ResponseEntity<String> recommendOfDevices(@RequestParam int productId){
         String result = recommendationService.getRecommendOfDevices(productId);
-        System.out.println(result);
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/recommendofuser")
+    public  ResponseEntity<String> recommendOfUser(@RequestParam int userId){
+        String result = recommendationService.getRecommendOfUser(userId);
         return ResponseEntity.ok(result);
     }
 }
