@@ -1,3 +1,95 @@
+function stopBusines(productId){
+    console.log("Ádsad")
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "/Admin/device/stop", true)
+    xhr.setRequestHeader("content-Type", "application/x-www-form-urlencoded")
+    let csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+    let csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+    xhr.setRequestHeader(csrfHeader,csrfToken);
+    xhr.send("productId=" + encodeURIComponent(productId));
+    xhr.onreadystatechange = function (){
+        if(xhr.readyState === 4 && xhr.status === 200){
+            console.log('Đã chặn tài khoản thành công')
+            location.reload()
+        }
+    }
+}
+
+function updateCNSP(){
+
+}
+
+function updateVariable(){
+    modalInforBtns = document.querySelectorAll("button[data-toggle='modal']");
+    modalInforBtns.forEach((btn) =>{
+        btn.addEventListener("click",()=>{
+            let modal = document.querySelector(btn.getAttribute("data-target").toString())
+            modal.style.display = "flex";
+            if(btn.getAttribute("data-target").toString() == "#ModalYesNo" &&(TITLE == "QUẢN LÝ SẢN PHẨM")){
+                titleModal = modal.querySelector("h2")
+                console.log(btn.getAttribute("data-id"))
+                console.log(btn)
+                titleModal.innerText = "Bạn có muốn dừng kinh doanh sản phẩm : "+ btn.getAttribute("data-id").toString() + "?";
+                btnYes = modal.querySelector(".btn-primary")
+                btnYes.setAttribute("data-id",btn.getAttribute("data-id"))
+                btnYes.setAttribute("data-func","stopBusines")
+            }
+            else if(btn.getAttribute("data-target").toString() == "#ModalUpdateDT" && (TITLE == "QUẢN LÝ SẢN PHẨM")){
+                titleModal = modal.querySelector("h2")
+                titleModal.innerText = "Cập nhập sản phẩm"
+                let deviceId = btn.getAttribute("data-id").toString()
+                let xhr = new XMLHttpRequest();
+                xhr.open("GET", "/device/findbyid?id=" + deviceId, true)
+                xhr.setRequestHeader("content-Type", "application/json")
+                let csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+                let csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+                xhr.setRequestHeader("content-Type", "application/json")
+                xhr.setRequestHeader(csrfHeader,csrfToken);
+                xhr.send();
+                xhr.onreadystatechange = function (){
+                    if(xhr.readyState === 4 && xhr.status === 200){
+                        let device = JSON.parse(xhr.responseText)
+                        modal.querySelector("img").src = device.picture
+                        modal.querySelector("input[name = 'id']").value = device.id;
+                        modal.querySelector("input[name = 'device_name']").value = device.deviceName;
+                        modal.querySelector("input[name = 'released_at']").value = device.releaseAt;
+                        modal.querySelector("input[name = 'body']").value = device.body;
+                        modal.querySelector("input[name = 'os']").value = device.os;
+                        modal.querySelector("input[name = 'storage']").value = device.storage;
+                        modal.querySelector("input[name = 'display_size']").value = device.displaySize;
+                        modal .querySelector("input[name = 'display_resolution']").value = device.displayResolution;
+                        modal .querySelector("input[name = 'camera_pixels']").value = device.cameraPixels;
+                        modal .querySelector("input[name = 'video_pixels']").value = device.videoPixels;
+                        modal .querySelector("input[name = 'ram']").value = device.ram;
+                        modal .querySelector("input[name = 'chipset']").value = device.chipset;
+                        modal .querySelector("input[name = 'battery_size']").value = device.batterySize;
+                        modal .querySelector("input[name = 'battery_type']").value = device.batteryType;
+                        modal .querySelector("input[name = 'specifications']").value = device.specifications;
+                        modal .querySelector("input[name = 'gia']").value = device.gia;
+                        modal .querySelector("input[name = 'soluong']").value = device.soLuong;
+                        xhr = new XMLHttpRequest()
+                        xhr.open("GET", "/brand", true)
+                        xhr.setRequestHeader("content-Type", "application/json")
+                        xhr.setRequestHeader(csrfHeader,csrfToken);
+                        xhr.send();
+                        xhr.onreadystatechange = function (){
+                            if(xhr.readyState === 4 && xhr.status === 200){
+                                const responseEntity = JSON.parse(xhr.responseText)
+                                const brandId = modal.querySelector("#brand_idupdate")
+                                for (let brand of responseEntity){
+                                    option = document.createElement("option")
+                                    option.value = brand.id;
+                                    option.innerText = brand.brandName;
+                                    brandId.appendChild(option)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    })
+}
 function updateTable(data) {
     var tbody = document.querySelector('#device-table tbody');
     tbody.innerHTML = ''; // Xóa tất cả các hàng hiện có trong bảng
@@ -11,8 +103,8 @@ function updateTable(data) {
             <td>${device.gia}</td>
             <td>${device.brand}</td>
             <td>
-                <button class="btn btn-info">Infor</button>
-                <button class="btn btn-danger">Stop</button>
+               <button class="btn btn-info" data-toggle="modal" data-target="#ModalUpdateDT" data-id = ${device.id}>Cập nhập</button>
+               <button class="btn btn-danger" data-toggle="modal" data-target="#ModalYesNo" data-id = ${device.id}>Stop</button>
             </td>
         `;
         tbody.appendChild(row);
@@ -22,9 +114,7 @@ function pageDevice(numberPage){
     let xhr = new XMLHttpRequest();
     let csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
     let csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
-    console.log(numberPage)
     url = '/devices_page?page=' + numberPage
-    console.log(url)
     xhr.open('GET', url, true);
     xhr.setRequestHeader(csrfHeader,csrfToken);
     xhr.send()
@@ -35,6 +125,7 @@ function pageDevice(numberPage){
             let listDevice = JSON.parse(xhr.responseText);
             console.log(listDevice)
             updateTable(listDevice);
+            updateVariable()
             const myDiv = document.querySelector("#device");
             let tmp = myDiv.querySelector(".pagination")
             if(tmp != null){
@@ -114,7 +205,6 @@ function pageDevice(numberPage){
             liElement.appendChild(aElement);
             ulElement.appendChild(liElement);
             let page = document.querySelector("#device")
-            console.log(ulElement)
             page.appendChild(ulElement)
             tmp = myDiv.querySelector(".pagination")
             let btn = tmp.querySelectorAll("button")
@@ -215,6 +305,7 @@ function adminBan(userName){
     }
 }
 
+
 function adminUnlock(userName){
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "/Admin/unlock", true)
@@ -235,7 +326,6 @@ function adminUnlock(userName){
 
 let clickableLiElements = document.querySelectorAll(".clickable-li")
 
-console.log(clickableLiElements)
 
 clickableLiElements.forEach(function (liElement){
     liElement.addEventListener("click", function (){
@@ -249,11 +339,11 @@ clickableLiElements.forEach(function (liElement){
 
 // Hiển thị modal
 let modalInforBtns = document.querySelectorAll("button[data-toggle='modal']");
-
 modalInforBtns.forEach((btn) => {
     btn.addEventListener("click",() => {
         let modal = document.querySelector(btn.getAttribute("data-target").toString())
         modal.style.display = "flex";
+        console.log(btn)
         if(btn.getAttribute("data-target").toString() == "#ModalYesNo" && (TITLE == "QUẢN LÝ ĐƠN HÀNG") &&  btn.getAttribute("btn-use") =="huy"){
             titleModal = modal.querySelector("h2")
             titleModal.innerText = "Bạn có muốn hủy đơn hàng này không"
@@ -341,7 +431,6 @@ btnChangPass.addEventListener("click", () =>{
 
 
 let btnYes = document.querySelectorAll(".btnYes")
-console.log(btnYes)
 btnYes.forEach((btn) =>{
     btn.addEventListener("click",()=>{
         let func = btn.getAttribute("data-func")
@@ -360,6 +449,10 @@ btnYes.forEach((btn) =>{
         else if(func == "succsessOrder"){
             let idDonHang = btn.getAttribute("data-id")
             succsessOrder(idDonHang)
+        }
+        else if(func = "stopBusines"){
+            let productId = btn.getAttribute("data-id")
+            stopBusines(productId)
         }
     })
 })
@@ -544,6 +637,70 @@ function addDevices(){
     }
 }
 
+function updateDevices(){
+    let modal = document.querySelector("#ModalUpdateDT");
+    let brand_id = modal.querySelector("#brand_idupdate");
+    let selectedOption = brand_id.options[brand_id.selectedIndex];
+    let selectedValue = selectedOption.value;
+    let id = modal.querySelector("input[name = 'id']").value;
+    let device_name = modal.querySelector("input[name = 'device_name']").value;
+    let released_at = modal.querySelector("input[name = 'released_at']").value;
+    let body = modal.querySelector("input[name = 'body']").value;
+    let file = modal.querySelector("input[name = 'picture']").files[0];
+    let os = modal.querySelector("input[name = 'os']").value;
+    let storage = modal.querySelector("input[name = 'storage']").value;
+    let display_size = modal.querySelector("input[name = 'display_size']").value;
+    let display_resolution = modal.querySelector("input[name = 'display_resolution']").value;
+    let camera_pixels = modal.querySelector("input[name = 'camera_pixels']").value;
+    let video_pixels = modal.querySelector("input[name = 'video_pixels']").value;
+    let ram = modal.querySelector("input[name = 'ram']").value;
+    let chipset = modal.querySelector("input[name = 'chipset']").value;
+    let battery_size = modal.querySelector("input[name = 'battery_size']").value;
+    let battery_type = modal.querySelector("input[name = 'battery_type']").value;
+    let specifications = modal.querySelector("input[name = 'specifications']").value;
+    let gia = modal.querySelector("input[name = 'gia']").value;
+    let soLuong = modal.querySelector("input[name = 'soluong']").value;
+    const xhr = new XMLHttpRequest();
+    let formData =   new FormData();
+    xhr.open("POST", "/Admin/addDevices", true)
+    let csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+    let csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+    formData.append("productId", parseInt(id, 10));
+    formData.append("brandId", parseInt(selectedValue, 10));
+    formData.append("soLuong", parseInt(soLuong, 10));
+    formData.append("deviceName", device_name);
+    formData.append("releasedAt", released_at);
+    formData.append("body", body);
+    formData.append("file", file);
+    formData.append("os", os);
+    formData.append("storage", storage);
+    formData.append("displaySize", display_size);
+    formData.append("displayResolution", display_resolution);
+    formData.append("cameraPixels", camera_pixels);
+    formData.append("videoPixels", video_pixels);
+    formData.append("ram", ram);
+    formData.append("chipset", chipset);
+    formData.append("batterySize", battery_size);
+    formData.append("batteryType", battery_type);
+    formData.append("specifications", specifications);
+    formData.append("gia", gia);
+    xhr.setRequestHeader(csrfHeader,csrfToken);
+    console.log(device_name)
+    console.log(file)
+    console.log(specifications)
+    var formDataEntries = formData.entries();
+    for (var pair of formDataEntries) {
+        console.log(pair[0] + ': ' + pair[1]);
+    }
+    xhr.send(formData);
+    xhr.onreadystatechange = function (){
+        if(xhr.readyState === 4 && xhr.status === 200){
+            console.log('cập nhập sản phẩm thành công')
+            location.reload()
+        }
+    }
+}
+
 
 btnSubmit = document.querySelectorAll("button[type='submit']")
 btnSubmit.forEach((btn)=>{
@@ -554,6 +711,9 @@ btnSubmit.forEach((btn)=>{
         }
         else if (name == "addDevices"){
             addDevices()
+        }
+        else if(name =="updateDevice"){
+            updateDevices()
         }
     })
 })
