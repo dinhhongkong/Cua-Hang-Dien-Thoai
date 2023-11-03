@@ -63,6 +63,7 @@ public class DeviceController {
         String name = deviceName.replace("-", " ");
         Device device = deviceService.findByDeviceName(name);
         model.addAttribute("device", device);
+        model.addAttribute("recommendedDevice", device);
         return "device-info";
     }
 

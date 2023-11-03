@@ -302,8 +302,7 @@
                                                     <p class="trade--price">Giá thu đến:
                                                         <strong>6.250.000đ</strong></p></a> <a target="_blank"
                                                                                                href="https://cellphones.com.vn/thu-cu-doi-moi?exchange=24746-36242"
-                                                                                               class="exchange button__compare is-flex is-justify-content-center is-align-items-center">Lên
-                                                    đời ngay</a></div>
+                                                                                               class="exchange button__compare is-flex is-justify-content-center is-align-items-center">Mua ngay</a></div>
                                             </div>
                                         </div>
                                         <div class="swiper-slide swiper-slide-prev"
@@ -340,37 +339,20 @@
                                                     đời ngay</a></div>
                                             </div>
                                         </div>
-                                        <div class="swiper-slide swiper-slide-next"
-                                             style="width: 228.8px; margin-right: 10px;">
+                                        <div class="swiper-slide" th:each="device : ${recommendedDevice}" style="width: 228.8px; margin-right: 10px;">
                                             <div class="product-info-container">
                                                 <div class="product-info"><a class="product__link button__link">
                                                     <div class="product__image"><img
-                                                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-11-128gb.png"
-                                                            width="358" height="358"
-                                                            alt="iPhone 11 128GB | Chính hãng VN/A "
-                                                            class="product__img"></div>
-                                                    <span class="product__name"><h3>iPhone 11 128GB | Chính hãng VN/A </h3></span>
-                                                    <p class="trade--price">Giá thu đến:
-                                                        <strong>5.850.000đ</strong></p></a> <a target="_blank"
-                                                                                               href="https://cellphones.com.vn/thu-cu-doi-moi?exchange=18388-36242"
-                                                                                               class="exchange button__compare is-flex is-justify-content-center is-align-items-center">Lên
-                                                    đời ngay</a></div>
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide" style="width: 228.8px; margin-right: 10px;">
-                                            <div class="product-info-container">
-                                                <div class="product-info"><a class="product__link button__link">
-                                                    <div class="product__image"><img
-                                                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/1/_/1_253_2.jpg"
+                                                            th:src="${device.picture}"
                                                             width="358" height="358"
                                                             alt="iPhone 11 256GB I Chính hãng VN/A "
                                                             class="product__img"></div>
-                                                    <span class="product__name"><h3>iPhone 11 256GB I Chính hãng VN/A </h3></span>
-                                                    <p class="trade--price">Giá thu đến:
-                                                        <strong>6.350.000đ</strong></p></a> <a target="_blank"
-                                                                                               href="https://cellphones.com.vn/thu-cu-doi-moi?exchange=18395-36242"
-                                                                                               class="exchange button__compare is-flex is-justify-content-center is-align-items-center">Lên
-                                                    đời ngay</a></div>
+                                                    <span class="product__name"><h3 th:text="${device.deviceName}"></h3></span>
+                                                    <p class="trade--price">Giá chỉ có:
+                                                        <strong th:text="${device.getPriceFormat() + '₫'}"></strong></p></a> <a target="_blank"
+                                                                                               th:href="${device.deviceName.replace(' ','-') + '\info'}"
+                                                                                               class="exchange button__compare is-flex is-justify-content-center is-align-items-center">Mua ngay</a>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="swiper-slide" style="width: 228.8px; margin-right: 10px;">
@@ -437,26 +419,8 @@
                                                     đời ngay</a></div>
                                             </div>
                                         </div>
-                                        <div class="swiper-slide" style="width: 228.8px; margin-right: 10px;">
-                                            <div class="product-info-container more-trade-product is-flex is-flex-wrap-wrap is-justify-content-center is-align-items-center">
-                                                <div class="product-info"><a class="product__link button__link">
-                                                    <div class="product__image"><img
-                                                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:69:69/q:80/plain/https://cellphones.com.vn/media/cps-images/trade-placeholder.png"
-                                                            width="69" height="69" alt="Thu cũ đổi mới"
-                                                            class="product__img"></div>
-                                                </a> <a target="_blank"
-                                                        href="https://cellphones.com.vn/thu-cu-doi-moi?id=36242"
-                                                        class="exchange button__compare is-flex is-justify-content-center is-align-items-center">Chọn
-                                                    sản phẩm khác</a></div>
-                                            </div>
-                                        </div>
                                     </div>
-                                    <div class="swiper-button-prev button__view-product-prev" tabindex="0"
-                                         role="button" aria-label="Previous slide" aria-disabled="false"></div>
-                                    <div class="swiper-button-next button__view-product-next" tabindex="0"
-                                         role="button" aria-label="Next slide" aria-disabled="false"></div>
-                                    <span class="swiper-notification" aria-live="assertive"
-                                          aria-atomic="true"></span></div>
+                                </div>
                             </div>
                             <!--Có thể bạn quan tâm-->
                             <div class="same-product-head">
@@ -650,7 +614,6 @@
                                     <span class="swiper-notification" aria-live="assertive"
                                           aria-atomic="true"></span></div>
                             </div>
-
 
 
                             <div class="boxReview">

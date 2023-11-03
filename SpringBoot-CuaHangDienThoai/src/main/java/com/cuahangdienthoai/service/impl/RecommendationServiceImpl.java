@@ -18,8 +18,8 @@ public class RecommendationServiceImpl implements RecommendationService {
         String finalUrl = builder.toUriString();
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(finalUrl, String.class);
-        System.out.println("Response code: " + responseEntity.getStatusCode());
-        System.out.println("Response body: " + responseEntity.getBody());
+//        System.out.println("Response code: " + responseEntity.getStatusCode());
+//        System.out.println("Response body: " + responseEntity.getBody());
         return responseEntity.getBody();
     }
 }
