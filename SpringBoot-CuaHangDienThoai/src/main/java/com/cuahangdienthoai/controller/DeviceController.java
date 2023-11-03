@@ -2,9 +2,12 @@ package com.cuahangdienthoai.controller;
 
 import com.cuahangdienthoai.dto.DevicePayDTO;
 import com.cuahangdienthoai.dto.DeviceQuantityDTO;
+import com.cuahangdienthoai.entity.CustomUserDetails;
 import com.cuahangdienthoai.entity.Device;
+import com.cuahangdienthoai.entity.UserHistory;
 import com.cuahangdienthoai.service.BrandService;
 import com.cuahangdienthoai.service.DeviceService;
+import com.cuahangdienthoai.service.UserHistoryService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -33,6 +36,7 @@ import java.sql.Date;
 public class DeviceController {
     private DeviceService deviceService;
     private BrandService brandService;
+    private UserHistoryService userHistoryService;
 
     @Autowired
     private ResourceLoader resourceLoader;
@@ -50,6 +54,10 @@ public class DeviceController {
     public void setBrandService(BrandService brandService){
         this.brandService = brandService;
     }
+    @Autowired
+    public void setUserHistoryService(UserHistoryService userHistoryService){
+        this.userHistoryService = userHistoryService;
+    }
 
     @GetMapping("/")
     public String home(Model model) {
@@ -61,9 +69,18 @@ public class DeviceController {
     }
 
     @GetMapping("/{deviceName}/info")
-    public String info(@PathVariable String deviceName, Model model) {
+    public String info(@PathVariable String deviceName, Model model, Authentication authentication) {
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         String name = deviceName.replace("-", " ");
         Device device = deviceService.findByDeviceName(name);
+        UserHistory userHistory = new UserHistory();
+        userHistory.setUser_id(userDetails.getUser().getId());
+        userHistory.setItem_id(device.getId());
+        userHistory.setRating(1L);
+        userHistory.setBuy(false);
+        Date currentDate = new Date(System.currentTimeMillis());
+        userHistory.setTimestamp(currentDate);
+        userHistoryService.save(userHistory);
         model.addAttribute("device", device);
         return "device-info";
     }
