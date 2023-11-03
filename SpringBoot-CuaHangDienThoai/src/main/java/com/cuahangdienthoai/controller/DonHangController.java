@@ -1,10 +1,12 @@
 package com.cuahangdienthoai.controller;
+import com.cuahangdienthoai.entity.CustomUserDetails;
 import com.cuahangdienthoai.entity.Device;
+import com.cuahangdienthoai.entity.UserHistory;
 import com.cuahangdienthoai.entity.chitietdonhang.ChiTietDonHang;
 import com.cuahangdienthoai.entity.DonHang;
-import com.cuahangdienthoai.service.CTDHService;
 import com.cuahangdienthoai.service.DeviceService;
 import com.cuahangdienthoai.service.DonHangService;
+import com.cuahangdienthoai.service.UserHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,20 +17,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class DonHangController {
     private DonHangService donHangService;
 
-    private CTDHService ctdhService;
-
+    private UserHistoryService userHistoryService;
     private DeviceService deviceService;
     @Autowired
     public void setDonHangService(DonHangService donHangService){this.donHangService = donHangService;}
 
     @Autowired
-    public  void setCtdhService(CTDHService ctdhService){this.ctdhService = ctdhService;}
+    public  void setUserHistoryService(UserHistoryService userHistoryService){
+        this.userHistoryService = userHistoryService;
+    }
 
     @Autowired
     public void setDeviceService(DeviceService deviceService){this.deviceService = deviceService;}
@@ -62,14 +64,22 @@ public class DonHangController {
 
     @PostMapping("/Admin/donhang/hoanthanh")
     public ResponseEntity<String> hoanThanhDonHang(@RequestParam long donHangId, Authentication authentication){
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         DonHang donHang = donHangService.findDonHangById(donHangId);
         donHang.setTrangThai(2);
         List<ChiTietDonHang> listCTDH = donHang.getListCTDonHang();
         for(ChiTietDonHang e: listCTDH ){
             Device device = e.getDevice();
             device.setSoLuong(device.getSoLuong() - e.getSoLuong());
+            UserHistory userHistory = new UserHistory();
+            userHistory.setUser_id(userDetails.getUser().getId());
+            userHistory.setItem_id(device.getId());
+            userHistory.setRating(1L);
+            userHistory.setBuy(true);
+            userHistoryService.save(userHistory);
             deviceService.save(device);
         }
+
         donHangService.save(donHang);
         return ResponseEntity.ok("Đơn đã hoàn thành");
     }
