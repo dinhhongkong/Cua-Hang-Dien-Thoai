@@ -12,7 +12,7 @@ import java.util.List;
 public class PaymentInfoDTO {
     private List<DeviceQuantityDTO> devices;
     private String name;
-    private String phoneNumber;
+    private String phone;
     private String address;
     private Integer paymentMethod;
 }

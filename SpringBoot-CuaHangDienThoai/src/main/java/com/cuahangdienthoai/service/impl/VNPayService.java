@@ -10,6 +10,7 @@ import com.cuahangdienthoai.entity.chitietdonhang.ChiTietDonHang;
 import com.cuahangdienthoai.repository.DeviceRepository;
 import com.cuahangdienthoai.repository.DonHangRepository;
 import com.cuahangdienthoai.repository.GioHangRepository;
+import com.cuahangdienthoai.service.CTDHService;
 import com.cuahangdienthoai.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,12 +23,16 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class VNPayService {
 
     private DonHangRepository donHangRepository;
     private DeviceService deviceService;
+
+    private CTDHService ctdhService;
 
     @Autowired
     public void setDeviceService(DeviceService deviceService) {
@@ -39,17 +44,24 @@ public class VNPayService {
         this.donHangRepository = donHangRepository;
     }
 
+    @Autowired
+    public void setCtdhService(CTDHService ctdhService) {
+        this.ctdhService = ctdhService;
+    }
+
     @Transactional
-    public void handleOrderInfo(User user, PaymentInfoDTO paymentInfo, String urlReturn ) {
+    public String  handleOrderInfo(User user, PaymentInfoDTO paymentInfo, String urlReturn ) {
         DonHang donHang = new DonHang();
         donHang.setUser(user);
-        donHang.setSdt(paymentInfo.getPhoneNumber());
+        donHang.setSdt(paymentInfo.getPhone());
         donHang.setTenNguoiNhan(paymentInfo.getName());
         donHang.setDiaChi(paymentInfo.getAddress());
         donHang.setGhiChu("");
         donHang.setNgayLap( new Date());
         donHang.setMaThanhToan(1);
         donHang.setTrangThai(0);
+
+        donHang = donHangRepository.save(donHang);
         for(DeviceQuantityDTO item: paymentInfo.getDevices()) {
             ChiTietDonHang ctDonHang = new ChiTietDonHang();
             Device device = deviceService.findById(item.getDeviceId());
@@ -58,18 +70,22 @@ public class VNPayService {
             ctDonHang.setDonHang(donHang);
             ctDonHang.setSoLuong(item.getQuantity());
             ctDonHang.setGia(device.getGia());
-            donHang.getListCTDonHang().add(ctDonHang);
+            ctdhService.save(ctDonHang);
         }
-        donHang = donHangRepository.save(donHang);
         String orderInfo = user.getId().toString() + " thanh toan don hang " + donHang.getId();
         int total = 0;
-        for ( ChiTietDonHang item : donHang.getListCTDonHang()) {
-            total += item.getGia();
+        for ( DeviceQuantityDTO item : paymentInfo.getDevices()) {
+            Device device = deviceService.findById(item.getDeviceId());
+            total += (int) (device.getGia() * item.getQuantity());
         }
-        createOrder(total, orderInfo, urlReturn);
+        return createOrder(total, orderInfo, urlReturn);
 
     }
-    public String createOrder(int total, String orderInfo, String urlReturn){
+
+
+
+
+    private String createOrder(int total, String orderInfo, String urlReturn){
         String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
         String vnp_TxnRef = VNPayConfig.getRandomNumber(8);
@@ -138,7 +154,7 @@ public class VNPayService {
         return paymentUrl;
     }
 
-    public int orderReturn(HttpServletRequest request, long userId){
+    public int orderReturn(HttpServletRequest request, String orderInfo,long userId){
         Map fields = new HashMap();
         for (Enumeration params = request.getParameterNames(); params.hasMoreElements();) {
             String fieldName = null;
@@ -164,6 +180,26 @@ public class VNPayService {
         String signValue = VNPayConfig.hashAllFields(fields);
         if (signValue.equals(vnp_SecureHash)) {
             if ("00".equals(request.getParameter("vnp_TransactionStatus"))) {
+                Pattern pattern = Pattern.compile("\\d+");
+                Matcher matcher = pattern.matcher(orderInfo);
+
+                List<String> numbers = new ArrayList<>();
+                // Lặp qua các kết quả tìm thấy
+                while (matcher.find()) {
+                    numbers.add(matcher.group());
+                }
+
+                // Kiểm tra nếu có ít nhất 2 số nguyên trong danh sách
+                if (numbers.size() >= 2) {
+                    // Lấy số đầu tiên và số cuối cùng trong danh sách
+                    String firstNumber = numbers.get(0);
+                    String lastNumber = numbers.get(numbers.size() - 1);
+                    DonHang donhang = donHangRepository.findById(Long.parseLong(lastNumber));
+                    donhang.setMaThanhToan(2);
+                    System.out.println("Số cuối cùng: " + lastNumber);
+                } else {
+                    System.out.println("Không tìm thấy đủ số nguyên trong chuỗi.");
+                }
                 return 1;
             } else {
                 return 0;

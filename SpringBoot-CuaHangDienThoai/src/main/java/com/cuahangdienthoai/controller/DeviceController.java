@@ -82,6 +82,7 @@ public class DeviceController {
         userHistory.setTimestamp(currentDate);
         userHistoryService.save(userHistory);
         model.addAttribute("device", device);
+        model.addAttribute("recommendedDevice", device);
         return "device-info";
     }
 
@@ -154,6 +155,7 @@ public class DeviceController {
     @PostMapping("/payment-info")
     public String createPaymentInfo(@RequestBody List<DeviceQuantityDTO> requestData, HttpSession session) {
         session.setAttribute("DevicesPayment",requestData );
+        System.out.println("ở post" +requestData);
         return "redirect:payment-info";
     }
 
@@ -161,6 +163,7 @@ public class DeviceController {
     public String createPaymentInfo(HttpSession session, Model model) {
         List<DeviceQuantityDTO> myData = (List<DeviceQuantityDTO>) session.getAttribute("DevicesPayment");
         ArrayList<DevicePayDTO> devices = deviceService.prepareDeviceForPayment(myData);
+        System.out.println("ở get: " + myData);
         model.addAttribute("devices",devices );
         return "payment-info";
     }

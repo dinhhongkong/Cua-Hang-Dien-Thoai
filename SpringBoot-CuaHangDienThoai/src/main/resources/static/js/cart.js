@@ -107,27 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
       checkBox.value = (!isTrueSet).toString();
       // console.log(checkBox.value);
       updataTotalPrice();
-      // console.log(test);
-      // if (checkBox.value === "true") {
-      //   let price = parseInt(
-      //     checkBox
-      //       .closest(".block__product-item__outer")
-      //       .querySelector(".product__price--show").innerText,
-      //     10,
-      //   );
-      //   let quantity = parseInt(
-      //     document.getElementById(
-      //       "value" +
-      //         checkBox
-      //           .closest(".block__product-item__outer")
-      //           .querySelector(".plus")
-      //           .getAttribute("data-product-id"),
-      //     ).value,
-      //     10,
-      //   );
-      //   console.log(price);
-      //   console.log(quantity);
-      // }
     });
   });
 
@@ -136,14 +115,20 @@ document.addEventListener("DOMContentLoaded", function () {
   buyBtn.addEventListener("click", () => {
     let productIds = [];
     addToCartButtons.forEach((addToCartButton) => {
-      let productId = addToCartButton.getAttribute("data-product-id");
-      let quantityInput = parseInt(
-        document.getElementById("value" + productId).value,
-      );
-      let updateData = { productId: productId, quantity: quantityInput };
-      productIds.push(updateData);
-      console.log(productId);
-      console.log(quantityInput);
+      let checkbox = addToCartButton
+        .closest(".block__product-item__outer")
+        .querySelector(".custom-control-input");
+      console.log(checkbox.value);
+      if (checkbox.value === "true") {
+        let productId = parseInt(
+          addToCartButton.getAttribute("data-product-id"),
+        );
+        let quantityInput = parseInt(
+          document.getElementById("value" + productId).value,
+        );
+        let updateData = { deviceId: productId, quantity: quantityInput };
+        productIds.push(updateData);
+      }
     });
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/payment-info", true); // Đặt đường dẫn POST
@@ -169,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Chuyển đổi dữ liệu cart_items thành JSON và gửi đi
     var jsonData = JSON.stringify(productIds);
-    console.log(jsonData);
+    console.log("đây là json khi gửi: " + jsonData);
     xhr.send(jsonData);
     console.log(JSON.stringify(productIds));
   });
@@ -184,6 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .querySelector(".product__price--show").innerText,
           10,
         );
+        // console.log(price);
         let quantity = parseInt(
           document.getElementById(
             "value" +
@@ -197,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // console.log(price);
         // console.log(quantity);
         totalPrice += quantity * price;
-        console.log(totalPrice);
+        // console.log(totalPrice);
       }
     });
     totalPrices.innerText = totalPrice + "đ";
