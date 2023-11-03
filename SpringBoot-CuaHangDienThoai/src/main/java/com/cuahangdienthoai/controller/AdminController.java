@@ -46,4 +46,11 @@ public class AdminController {
         model.addAttribute("listDevice",listDevice);
         return "AdminPage";
     }
+    @GetMapping("Admin/users")
+    public String adminUsers(Model model){
+        model.addAttribute("title", "users");
+        List<User> listUser = userService.findAllByRole("user");
+        model.addAttribute("listUser",listUser);
+        return "AdminPage";
+    }
 }

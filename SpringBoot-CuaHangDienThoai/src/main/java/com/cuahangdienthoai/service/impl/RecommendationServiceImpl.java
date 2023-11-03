@@ -32,4 +32,13 @@ public class RecommendationServiceImpl implements RecommendationService {
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(finalUrl, String.class);
         return responseEntity.getBody();
     }
+
+    @Override
+    public void train() {
+        String uri = "http://localhost:5000/trainmodel";
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri);
+        String finalUrl = builder.toUriString();
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> responseEntity = restTemplate.getForEntity(finalUrl, String.class);
+    }
 }

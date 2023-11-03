@@ -234,6 +234,10 @@ else if(TITLE == "ADMIN"){
     let page = document.querySelector("#admin-acc")
     page.style.display = "block"
 }
+else if(TITLE == "QUẢN LÝ KHÁCH HÀNG"){
+    let page = document.querySelector("#user-acc")
+    page.style.display = "block"
+}
 
 /* Don Hang */
 let btn_approve_order = document.querySelectorAll(".approve-order")
@@ -322,6 +326,52 @@ function adminUnlock(userName){
     }
 }
 
+function userBan(userName){
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "/Admin/user/ban", true)
+    xhr.setRequestHeader("content-Type", "application/x-www-form-urlencoded")
+    let csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+    let csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+    xhr.setRequestHeader(csrfHeader,csrfToken);
+    xhr.send("userName=" + encodeURIComponent(userName));
+    xhr.onreadystatechange = function (){
+        if(xhr.readyState === 4 && xhr.status === 200){
+            console.log('Đã chặn tài khoản thành công')
+            location.reload()
+        }
+    }
+}
+
+function userUnlock(userName){
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "/Admin/user/unlock", true)
+    xhr.setRequestHeader("content-Type", "application/x-www-form-urlencoded")
+    let csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+    let csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+    xhr.setRequestHeader(csrfHeader,csrfToken);
+    xhr.send("userName=" + encodeURIComponent(userName));
+    xhr.onreadystatechange = function (){
+        if(xhr.readyState === 4 && xhr.status === 200){
+            console.log('Đã chặn tài khoản thành công')
+            location.reload()
+        }
+    }
+}
+
+function trainAI(){
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "/Admin/train", true)
+    xhr.setRequestHeader("content-Type", "application/x-www-form-urlencoded")
+    let csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+    let csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+    xhr.setRequestHeader(csrfHeader,csrfToken);
+    xhr.onreadystatechange = function (){
+        if(xhr.readyState === 4 && xhr.status === 200){
+            alert("Hoàn thành");
+            location.reload()
+        }
+    }
+}
 
 
 let clickableLiElements = document.querySelectorAll(".clickable-li")
@@ -375,6 +425,26 @@ modalInforBtns.forEach((btn) => {
             btnYes = modal.querySelector(".btn-primary")
             btnYes.setAttribute("data-id",btn.getAttribute("data-id"))
             btnYes.setAttribute("data-func","adminUnLock")
+        }
+        else if(btn.getAttribute("data-target").toString() == "#ModalYesNo" && (TITLE == "ADMIN") && btn.getAttribute("data-use") =="trainai"){
+            titleModal = modal.querySelector("h2")
+            titleModal.innerText = "Có muốn tái đào đạo lại mô hình không?";
+            btnYes = modal.querySelector(".btn-primary")
+            btnYes.setAttribute("data-func","trainai")
+        }
+        else if(btn.getAttribute("data-target").toString() == "#ModalYesNo" && (TITLE == "QUẢN LÝ KHÁCH HÀNG") && btn.getAttribute("btn-use") =="lock"){
+            titleModal = modal.querySelector("h2")
+            titleModal.innerText = "Khóa tài khoản khách hàng có username : "+ btn.getAttribute("data-id").toString() + "?";
+            btnYes = modal.querySelector(".btn-primary")
+            btnYes.setAttribute("data-id",btn.getAttribute("data-id"))
+            btnYes.setAttribute("data-func","userBan")
+        }
+        else if(btn.getAttribute("data-target").toString() == "#ModalYesNo" && (TITLE == "QUẢN LÝ KHÁCH HÀNG") && btn.getAttribute("btn-use") =="unlock"){
+            titleModal = modal.querySelector("h2")
+            titleModal.innerText = "Khóa tài khoản khách hàng có username : "+ btn.getAttribute("data-id").toString() + "?";
+            btnYes = modal.querySelector(".btn-primary")
+            btnYes.setAttribute("data-id",btn.getAttribute("data-id"))
+            btnYes.setAttribute("data-func","userUnlock")
         }
         else if(btn.getAttribute("data-target").toString() == "#ModalDoiMK" && (TITLE == "ADMIN") && btn.getAttribute("btn-use") == "changePass"){
             titleModal = modal.querySelector("h2")
@@ -450,9 +520,18 @@ btnYes.forEach((btn) =>{
             let idDonHang = btn.getAttribute("data-id")
             succsessOrder(idDonHang)
         }
-        else if(func = "stopBusines"){
+        else if(func == "stopBusines"){
             let productId = btn.getAttribute("data-id")
             stopBusines(productId)
+        }
+        else if(func == "userBan"){
+            console.log("sadasd")
+            let userName = btn.getAttribute("data-id")
+            userBan(userName)
+        }
+        else if(func == "userUnlock"){
+            let userName = btn.getAttribute("data-id")
+            userUnlock(userName)
         }
     })
 })

@@ -14,6 +14,7 @@
         <h1 th:if = "${title == null}">ADMIN</h1>
         <h1 th:if = "${title} == 'order'">QUẢN LÝ ĐƠN HÀNG</h1>
         <h1 th:if = "${title} == 'devices'">QUẢN LÝ SẢN PHẨM</h1>
+        <h1 th:if = "${title} == 'users'">QUẢN LÝ KHÁCH HÀNG</h1>
     </header>
     <nav>
         <div id = "admin-avata">
@@ -23,6 +24,7 @@
             <li class = "clickable-li"><a href="/Admin">Quản lý admin</a></li>
             <li class = "clickable-li"><a href="/Admin/devices">Quản lý sản phẩm</a></li>
             <li class = "clickable-li"><a href="/Admin/order">Quản lý đơn hàng</a></li>
+            <li class = "clickable-li"><a href="/Admin/users">Quản lý khách hàng</a></li>
         </ul>
     </nav>
     <main>
@@ -33,6 +35,7 @@
             </div>
             <div id = "admin-action">
                 <button class="btn btn-success" data-toggle="modal" data-target="#ModalCreateAdmin">Tạo admin</button>
+                <button class="btn btn-success" data-toggle="modal" data-target="#ModalYesNo" style="margin-left: 10px" data-use = "trainai">Train AI</button>
             </div>
             <div id = "admin-filter">
                 <label for="admin-status">Tiêu chí:</label>
@@ -176,6 +179,50 @@
                             </td>
                         </tr>
                     <!-- Các hàng dữ liệu khác -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id = "user-acc" style="display: none">
+            <div class = "search-bar">
+                <input type="text" class = "search-input" placeholder="Tìm kiếm admin theo username">
+                <button class = "search-button">Tìm</button>
+            </div>
+            <div id = "user-filter">
+                <label for="admin-status">Tiêu chí:</label>
+                <select id="user-status">
+                    <option value="tat-ca">Tất cả</option>
+                    <option value="hoat-dong">Đang hoạt động</option>
+                    <option value="dung-hoat-dong">Dừng hoạt động</option>
+                </select>
+            </div>
+            <div id = "user-table">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Trạng Thái</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each = "user : ${listUser}">
+                        <td th:text = "${user.id}"></td>
+                        <td th:text = "${user.userName}"></td>
+                        <td th:text = "${user.email}"></td>
+                        <td th:switch = "${user.enable}">
+                            <p th:case="true">Hoạt động</p>
+                            <p th:case="false">Dừng hoạt động</p>
+                        </td>
+                        <td>
+                            <div th:switch = "${user.enable}" style="display: inline">
+                                <button th:case = "true" class="btn btn-danger" th:attr = "data-id = ${user.userName}" data-target="#ModalYesNo" data-toggle="modal" btn-use="lock">Khóa</button>
+                                <button th:case = "false" class="btn btn-success" th:attr = "data-id = ${user.userName}" data-target="#ModalYesNo" data-toggle="modal" btn-use="unlock">Mở Khóa</button>
+                            </div>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

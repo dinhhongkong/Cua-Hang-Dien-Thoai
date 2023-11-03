@@ -28,4 +28,10 @@ public class RecommendController {
         String result = recommendationService.getRecommendOfUser(userId);
         return ResponseEntity.ok(result);
     }
+
+    @GetMapping("/Admin/train")
+    public ResponseEntity<String> train(){
+        recommendationService.train();
+        return ResponseEntity.ok("thành công");
+    }
 }

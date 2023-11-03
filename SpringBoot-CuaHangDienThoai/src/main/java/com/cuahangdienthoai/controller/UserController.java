@@ -55,4 +55,19 @@ public class UserController {
         return ResponseEntity.ok("success");
     }
 
+    @PostMapping("Admin/user/ban")
+    public  ResponseEntity<String> userBan(@RequestParam String userName, Authentication authentication){
+         User user = userService.findByUsername(userName);
+         user.setEnable(false);
+         userService.save(user);
+         return ResponseEntity.ok("success");
+    }
+
+    @PostMapping("Admin/user/unlock")
+    public  ResponseEntity<String> userUnlock(@RequestParam String userName, Authentication authentication){
+        User user = userService.findByUsername(userName);
+        user.setEnable(true);
+        userService.save(user);
+        return ResponseEntity.ok("success");
+    }
 }
