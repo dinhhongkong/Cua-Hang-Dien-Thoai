@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.sql.Date;
 
 @Controller
 public class DeviceController {
@@ -169,7 +171,60 @@ public class DeviceController {
 
 
     @PostMapping("/Admin/addDevices")
-    public ResponseEntity<Device> themDienThoai(@RequestParam Long brandId, @RequestParam String deviceName, @RequestParam(name = "releasedAt", required = false ) String releasedAt,
+    public ResponseEntity<Device> themDienThoai(@RequestParam Long productId ,@RequestParam Long brandId, @RequestParam String deviceName, @RequestParam(name = "releasedAt", required = false ) String releasedAt,
+                                                @RequestParam(name = "body", required = false ) String body,
+                                                @RequestPart(name = "file", required = false) MultipartFile file,
+                                                @RequestParam(name = "os", required = false ) String os,
+                                                @RequestParam(name = "storage", required = false ) String storage,
+                                                @RequestParam(name = "displaySize", required = false ) String displaySize,
+                                                @RequestParam(name = "displayResolution", required = false ) String displayResolution,
+                                                @RequestParam(name = "cameraPixels", required = false ) String cameraPixels,
+                                                @RequestParam(name = "videoPixels", required = false ) String videoPixels,
+                                                @RequestParam(name = "ram", required = false ) String ram,
+                                                @RequestParam(name = "chipset", required = false ) String chipset,
+                                                @RequestParam(name = "batterySize", required = false ) String batterySize,
+                                                @RequestParam(name = "batteryType", required = false ) String batteryType,
+                                                @RequestParam(name = "specifications", required = false ) String specifications,
+                                                @RequestParam(name = "gia", required = false ) Double gia,
+                                                @RequestParam(name = "soLuong", required = false) Long soLuong
+                                                ) throws IOException {
+        System.out.println("thành công1");
+        Device device = deviceService.findById(productId);
+        device.setBrand(brandService.findById(brandId));
+        device.setDeviceName(deviceName);
+        device.setReleaseAt(releasedAt);
+        device.setBody(body);
+        System.out.println(resourceLoader);
+        Resource staticResource = resourceLoader.getResource("classpath:static/img");
+        if (file != null) {
+            // Lưu ảnh vào máy chủ
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get(staticResource.getURI()).resolve(file.getOriginalFilename());
+            Files.write(path, bytes);
+            device.setPicture(path.toString());
+            System.out.println("thành công2");
+        } else {
+            System.out.println("ảnh vẫn giữ nguyên");
+        }
+        device.setOs(os);
+        device.setStorage(storage);
+        device.setDisplaySize(displaySize);
+        device.setDisplayResolution(displayResolution);
+        device.setCameraPixels(cameraPixels);
+        device.setVideoPixels(videoPixels);
+        device.setRam(ram);
+        device.setChipset(chipset);
+        device.setBatterySize(batterySize);
+        device.setBatteryType(batteryType);
+        device.setSpecifications(specifications);
+        device.setGia(gia);
+        device.setSoLuong(soLuong);
+        deviceService.save(device);
+        return ResponseEntity.ok(device);
+    }
+
+    @PostMapping("/Admin/updateDevices")
+    public ResponseEntity<Device> updateDienThaoi(@RequestParam Long brandId, @RequestParam String deviceName, @RequestParam(name = "releasedAt", required = false ) String releasedAt,
                                                 @RequestParam(name = "body", required = false ) String body,
                                                 @RequestPart(name = "file", required = false ) MultipartFile file,
                                                 @RequestParam(name = "os", required = false ) String os,
@@ -184,7 +239,7 @@ public class DeviceController {
                                                 @RequestParam(name = "batteryType", required = false ) String batteryType,
                                                 @RequestParam(name = "specifications", required = false ) String specifications,
                                                 @RequestParam(name = "gia", required = false ) Double gia
-                                                ) throws IOException {
+    ) throws IOException {
         System.out.println("thành công1");
         Device device = new Device();
         device.setBrand(brandService.findById(brandId));
@@ -202,7 +257,7 @@ public class DeviceController {
             device.setPicture(path.toString());
             System.out.println("thành công2");
         } else {
-            System.out.println("có lỗi");
+            System.out.println("ảnh vẫn dữ nguyên");
         }
         device.setOs(os);
         device.setStorage(storage);
@@ -221,7 +276,6 @@ public class DeviceController {
     }
 
 
-
 //    @GetMapping("/update")
 //    public String update() {
 //        Random generator = new Random();
@@ -234,4 +288,19 @@ public class DeviceController {
 //        }
 //        return "login";
 //    }
+
+    @GetMapping("/device/findbyid")
+    public ResponseEntity<Device> findById(@RequestParam Long id, Authentication authentication){
+        Device device = deviceService.findById(id);
+        return ResponseEntity.ok(device);
+    }
+
+    @PostMapping("/Admin/device/stop")
+    public  ResponseEntity<String> dungKinhDoanh(@RequestParam Long productId, Authentication authentication){
+        Device device = deviceService.findById(productId);
+        Date currentDate = new Date(System.currentTimeMillis());
+        device.setDeletedAt(currentDate);
+        deviceService.save(device);
+        return ResponseEntity.ok("success");
+    }
 }
