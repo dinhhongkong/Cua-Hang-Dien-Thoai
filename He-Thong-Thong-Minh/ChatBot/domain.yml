@@ -1,0 +1,55 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - out_of_scope
+  - affirm
+  - deny
+  - device_info
+  - bot_challenge
+  - price_info
+  - wondering
+  - wondering_os
+
+entities:
+  - device_name
+  - os
+  - brand
+
+slots:
+  device_name:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: device_name
+
+responses:
+  utter_greet:
+  - text: "Chào anh chị, anh chị cần gì ạ"
+  - text: "Chào anh chị, anh chị cần giúp gì không ạ"
+
+  utter_happy:
+  - text: "Hihi :)"
+
+  utter_goodbye:
+  - text: "Tạm biệt anh chị, chúc anh chị ngày mới tốt lành"
+
+  utter_fallback:
+  - text: "Em xin lỗi, em chưa hiểu ý muốn của anh chị ạ. Anh chị có thể nói lại được không?"
+  - text: "Em chưa hiểu được yêu cầu của anh chị. Anh chị có thể nói lại được không?"
+  - text: "Xin lỗi, em không hiểu. Anh chị có thể nói rõ hơn hoặc đặt câu hỏi khác không?"
+  - text: "Xin lỗi em chưa được học để trả lời câu hỏi này. Anh chị có thể nói rõ hơn hoặc đặt câu hỏi khác không?"
+
+  utter_wondering:
+  - text: "Anh chị đang muốn tìm hiều điện thoại cụ thể nào ạ? Điện thoại Android hay Ios"
+  - text: "Anh chị đang muốn mua loại điện thoại nào ạ? Điện thoại Android hay Ios ạ"
+
+actions:
+  - action_extract_device
+  - action_get_device_price
+  - action_extract_device_os
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

@@ -6,6 +6,8 @@ import com.cuahangdienthoai.entity.Device;
 import com.cuahangdienthoai.repository.DeviceRepository;
 import com.cuahangdienthoai.repository.DeviceSpecifications;
 import com.cuahangdienthoai.service.DeviceService;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,6 +22,13 @@ import java.util.Optional;
 public class DeviceServiceImpl implements DeviceService {
     private DeviceRepository deviceRepository;
 
+    private RecommendationServiceImpl recommendationService;
+
+    @Autowired
+    public void setRecommendationService(RecommendationServiceImpl recommendationService) {
+        this.recommendationService = recommendationService;
+    }
+
     @Autowired
     public void setDeviceRepository(DeviceRepository deviceRepository) {
         this.deviceRepository = deviceRepository;
@@ -32,6 +41,28 @@ public class DeviceServiceImpl implements DeviceService {
 
     public List<Device> findAllDevice() {
         return deviceRepository.findAll();
+    }
+
+    @Override
+    public ArrayList<Device> RecommendOfDevices(Long deviceId) {
+        String jsonString = recommendationService.getRecommendOfDevices(deviceId);
+        ObjectMapper objectMapper = new ObjectMapper();
+        ArrayList<Long> devicesId;
+        ArrayList<Device> devices = new ArrayList<>();
+        try {
+            devicesId = objectMapper.readValue(jsonString, new TypeReference<ArrayList<Long>>(){});
+            for(Long item: devicesId ) {
+                Optional<Device> device =  deviceRepository.findById(item);
+                if( device.isPresent()) {
+                    devices.add(device.get());
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return devices ;
     }
 
     @Override

@@ -27,4 +27,6 @@ public interface DeviceService  {
 
     List<Device> findAllDevice();
 
+    ArrayList<Device> RecommendOfDevices(Long deviceId);
+
 }

@@ -121,7 +121,7 @@
                             <div class="block-content-product">
                                 <div class="block-content-product-left"><!---->
                                     <div class="cps-block-content" style="max-height: 100000px;">
-                                        <div class="ksp-content p-2 mb-2"><h2 class="ksp-title has-text-centered">Giá
+                                        <div class="ksp-content p-2 mb-2"><h2 class="ksp-title has-text-centered" th:text="${'Giá chỉ còn: ' + device.getPriceFormat() + 'đ'}">Giá
                                             chỉ còn: 3.300.00đ</h2></div>
                                         <div><p style="text-align: justify">
                                             <img style=" width: 40%; margin: auto"
@@ -322,103 +322,23 @@
                                                     đời ngay</a></div>
                                             </div>
                                         </div>
-                                        <div class="swiper-slide swiper-slide-active"
-                                             style="width: 228.8px; margin-right: 10px;">
+                                        <div class="swiper-slide" th:each="device1 : ${recommendedDevice}" style="width: 228.8px; margin-right: 10px;">
                                             <div class="product-info-container">
                                                 <div class="product-info"><a class="product__link button__link">
                                                     <div class="product__image"><img
-                                                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-12-128gb_2.png"
-                                                            width="358" height="358"
-                                                            alt="iPhone 12 128GB | Chính hãng VN/A "
-                                                            class="product__img"></div>
-                                                    <span class="product__name"><h3>iPhone 12 128GB | Chính hãng VN/A </h3></span>
-                                                    <p class="trade--price">Giá thu đến:
-                                                        <strong>7.250.000đ</strong></p></a> <a target="_blank"
-                                                                                               href="https://cellphones.com.vn/thu-cu-doi-moi?exchange=27451-36242"
-                                                                                               class="exchange button__compare is-flex is-justify-content-center is-align-items-center">Lên
-                                                    đời ngay</a></div>
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide" th:each="device : ${recommendedDevice}" style="width: 228.8px; margin-right: 10px;">
-                                            <div class="product-info-container">
-                                                <div class="product-info"><a class="product__link button__link">
-                                                    <div class="product__image"><img
-                                                            th:src="${device.picture}"
+                                                            th:src="${device1.picture}"
                                                             width="358" height="358"
                                                             alt="iPhone 11 256GB I Chính hãng VN/A "
                                                             class="product__img"></div>
-                                                    <span class="product__name"><h3 th:text="${device.deviceName}"></h3></span>
+                                                    <span class="product__name"><h3 th:text="${device1.deviceName}"></h3></span>
                                                     <p class="trade--price">Giá chỉ có:
-                                                        <strong th:text="${device.getPriceFormat() + '₫'}"></strong></p></a> <a target="_blank"
-                                                                                               th:href="${device.deviceName.replace(' ','-') + '\info'}"
+                                                        <strong th:text="${device1.getPriceFormat() + '₫'}"></strong></p></a> <a target="_blank"
+                                                                                               th:href="${ '/'+ device1.deviceName.replace(' ','-') + '\info'}"
                                                                                                class="exchange button__compare is-flex is-justify-content-center is-align-items-center">Mua ngay</a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="swiper-slide" style="width: 228.8px; margin-right: 10px;">
-                                            <div class="product-info-container">
-                                                <div class="product-info"><a class="product__link button__link">
-                                                    <div class="product__image"><img
-                                                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-12_7__7.jpg"
-                                                            width="358" height="358"
-                                                            alt="iPhone 12 256GB I Chính hãng VN/A "
-                                                            class="product__img"></div>
-                                                    <span class="product__name"><h3>iPhone 12 256GB I Chính hãng VN/A </h3></span>
-                                                    <p class="trade--price">Giá thu đến:
-                                                        <strong>7.750.000đ</strong></p></a> <a target="_blank"
-                                                                                               href="https://cellphones.com.vn/thu-cu-doi-moi?exchange=27457-36242"
-                                                                                               class="exchange button__compare is-flex is-justify-content-center is-align-items-center">Lên
-                                                    đời ngay</a></div>
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide" style="width: 228.8px; margin-right: 10px;">
-                                            <div class="product-info-container">
-                                                <div class="product-info"><a class="product__link button__link">
-                                                    <div class="product__image"><img
-                                                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/1/_/1_359_2.png"
-                                                            width="358" height="358"
-                                                            alt="iPhone SE 2022 128GB | Chính hãng VN/A"
-                                                            class="product__img"></div>
-                                                    <span class="product__name"><h3>iPhone SE 2022 128GB | Chính hãng VN/A</h3></span>
-                                                    <p class="trade--price">Giá thu đến:
-                                                        <strong>4.850.000đ</strong></p></a> <a target="_blank"
-                                                                                               href="https://cellphones.com.vn/thu-cu-doi-moi?exchange=44667-36242"
-                                                                                               class="exchange button__compare is-flex is-justify-content-center is-align-items-center">Lên
-                                                    đời ngay</a></div>
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide" style="width: 228.8px; margin-right: 10px;">
-                                            <div class="product-info-container">
-                                                <div class="product-info"><a class="product__link button__link">
-                                                    <div class="product__image"><img
-                                                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/1/_/1_359.png"
-                                                            width="358" height="358"
-                                                            alt="iPhone SE 2022 256GB | Chính hãng VN/A"
-                                                            class="product__img"></div>
-                                                    <span class="product__name"><h3>iPhone SE 2022 256GB | Chính hãng VN/A</h3></span>
-                                                    <p class="trade--price">Giá thu đến:
-                                                        <strong>5.350.000đ</strong></p></a> <a target="_blank"
-                                                                                               href="https://cellphones.com.vn/thu-cu-doi-moi?exchange=44672-36242"
-                                                                                               class="exchange button__compare is-flex is-justify-content-center is-align-items-center">Lên
-                                                    đời ngay</a></div>
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide" style="width: 228.8px; margin-right: 10px;">
-                                            <div class="product-info-container">
-                                                <div class="product-info"><a class="product__link button__link">
-                                                    <div class="product__image"><img
-                                                            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-se-2020_1__4.jpg"
-                                                            width="358" height="358"
-                                                            alt=" iPhone SE 2020 256GB I Chính hãng VN/A "
-                                                            class="product__img"></div>
-                                                    <span class="product__name"><h3> iPhone SE 2020 256GB I Chính hãng VN/A </h3></span>
-                                                    <p class="trade--price">Giá thu đến:
-                                                        <strong>3.650.000đ</strong></p></a> <a target="_blank"
-                                                                                               href="https://cellphones.com.vn/thu-cu-doi-moi?exchange=23500-36242"
-                                                                                               class="exchange button__compare is-flex is-justify-content-center is-align-items-center">Lên
-                                                    đời ngay</a></div>
-                                            </div>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>

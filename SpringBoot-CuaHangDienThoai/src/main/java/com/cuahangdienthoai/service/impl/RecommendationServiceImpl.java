@@ -10,9 +10,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Service
 public class RecommendationServiceImpl implements RecommendationService {
     @Override
-    public String getRecommendOfDevices(int product) {
+    public String getRecommendOfDevices(Long product) {
         String uri = "http://localhost:5000/sanphamcolienquan";
-        String productId = Integer.toString(product);
+        String productId = Long.toString(product);
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri)
                 .queryParam("product_id", productId);
         String finalUrl = builder.toUriString();

@@ -17,11 +17,11 @@ public class RecommendController {
     public void setRecommendationService(RecommendationService recommendationService){
         this.recommendationService = recommendationService;
     }
-    @GetMapping("/recommendofdevices")
-    public ResponseEntity<String> recommendOfDevices(@RequestParam int productId){
-        String result = recommendationService.getRecommendOfDevices(productId);
-        return ResponseEntity.ok(result);
-    }
+//    @GetMapping("/recommendofdevices")
+//    public ResponseEntity<String> recommendOfDevices(@RequestParam int productId){
+//        String result = recommendationService.getRecommendOfDevices(productId);
+//        return ResponseEntity.ok(result);
+//    }
 
     @GetMapping("/recommendofuser")
     public  ResponseEntity<String> recommendOfUser(@RequestParam int userId){

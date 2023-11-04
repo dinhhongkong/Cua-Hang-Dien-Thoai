@@ -1,0 +1,2244 @@
+version: "3.1"
+
+nlu:
+- lookup: device_name
+  examples: |
+    - apple iphone 8
+    - micromax vdeo 3
+    - micromax vdeo 4
+    - micromax vdeo 5
+    - samsung galaxy xcover 4
+    - huawei mediapad t3 8.0
+    - asus zenfone live zb501kl
+    - xiaomi redmi note 4x
+    - gionee a1
+    - xiaomi mi max 2
+    - coolpad 3632
+    - lg x power2
+    - huawei watch 2
+    - archos 50 graphite
+    - archos 55 graphite
+    - vivo y55s
+    - alcatel a3
+    - alcatel a5 led
+    - alcatel u5
+    - archos 50 saphir
+    - sony xperia xz premium
+    - huawei watch 2 classic
+    - sony xperia xa1 ultra
+    - sony xperia xa1
+    - nokia 3310 (2017)
+    - huawei p10 lite
+    - sony xperia xzs
+    - zte blade v8 mini
+    - zte blade v8 lite
+    - lenovo tab 4 8
+    - lenovo tab 4 8 plus
+    - lenovo tab 4 10
+    - lenovo tab 4 10 plus
+    - gionee a1 plus
+    - zte nubia n1 lite
+    - xiaomi redmi 4 (4x)
+    - zte blade a520
+    - sony xperia xz1 compact
+    - lava x28 plus
+    - blackberry aurora
+    - oppo f3 plus
+    - leeco le pro3 elite
+    - zte nubia z17 mini
+    - vivo y25
+    - coolpad note 5 lite
+    - sony xperia l1
+    - apple ipad 9.7 (2017)
+    - blu life one x2 mini
+    - allview p6 energy mini
+    - allview x4 soul style
+    - lava z10
+    - lava z25
+    - verykool s4513 luna ii
+    - samsung gear s3 classic lte
+    - micromax spark vdeo q415
+    - xiaomi mi 6 plus
+    - htc u11
+    - micromax dual 5
+    - huawei y7 prime
+    - htc desire 728 ultra
+    - motorola moto x4
+    - huawei mediapad t3 7.0
+    - huawei mediapad t3 10
+    - huawei mediapad m3 lite 10
+    - zte grand x4
+    - alcatel flash (2017)
+    - huawei y5 (2017)
+    - bq aquaris x pro
+    - bq aquaris x
+    - micromax bharat 2 q402
+    - oppo r11
+    - motorola moto c
+    - motorola moto c plus
+    - oneplus 5
+    - gionee s10
+    - panasonic eluga ray max
+    - panasonic eluga ray x
+    - micromax canvas evok note e453
+    - micromax canvas evok power q4260
+    - blu studio selfie lte
+    - verykool s5007 lotus plus
+    - verykool s5027 bolt pro
+    - verykool s5028 bolt
+    - verykool s5035 spear
+    - zte axon 7s
+    - meizu e2
+    - zte max xl
+    - panasonic eluga pulse x
+    - panasonic eluga pulse
+    - huawei y6ii compact
+    - vivo v5s
+    - motorola moto e4 (usa)
+    - motorola moto e4 plus (usa)
+    - sony xperia x ultra
+    - oppo f3
+    - blu r1 plus
+    - panasonic eluga mark 2
+    - huawei nova 2
+    - gionee m6s plus
+    - motorola moto z2 play
+    - samsung galaxy j7 (2017)
+    - samsung galaxy s8 active
+    - zte nubia z17
+    - lg k20 plus
+    - lg harmony
+    - vivo x9s plus
+    - asus zenfone go zb552kl
+    - samsung z4
+    - samsung galaxy note fe
+    - samsung galaxy j7 max
+    - oppo a77 (mediatek)
+    - huawei y3 (2017)
+    - huawei y7
+    - panasonic eluga ray
+    - panasonic p85
+    - verykool s5526 alpha
+    - verykool s5034 spear jr.
+    - lava a77
+    - motorola moto z2 force
+    - lg stylo 3 plus
+    - huawei y6 (2017)
+    - lg x venture
+    - meizu m5c
+    - motorola moto g5s
+    - motorola moto g5s plus
+    - honor 6a (pro)
+    - gionee s10b
+    - gionee s10c
+    - huawei nova 2 plus
+    - honor 9
+    - samsung galaxy j5 (2017)
+    - allview x4 soul mini
+    - xiaomi mi note 3
+    - panasonic eluga i3 mega
+    - blu studio mega
+    - asus zenpad 3s 8.0 z582kl
+    - lg v30
+    - blu studio j2
+    - yu yureka black
+    - huawei mediapad m3 lite 8
+    - apple ipad pro 10.5 (2017)
+    - apple ipad pro 12.9 (2017)
+    - samsung galaxy c10
+    - oppo r11 plus
+    - google pixel 2 xl
+    - motorola moto e4
+    - motorola moto e4 plus
+    - vodafone smart n8
+    - gionee a1 lite
+    - samsung galaxy tab a 8.0 (2017)
+    - zte nubia m2 play
+    - yota yotaphone 3
+    - lava a44
+    - verykool s4009 crystal
+    - verykool t7445
+    - blu grand xl
+    - blu grand x lte
+    - google pixel 2
+    - plum ram 6
+    - blu studio j1
+    - blu tank xtreme pro
+    - archos diamond alpha
+    - archos diamond gamma
+    - archos sense 55s
+    - archos sense 50x
+    - allview x4 soul lite
+    - allview p9 energy lite (2017)
+    - allview x4 xtreme
+    - vodafone smart v8
+    - vivo x9s
+    - zte nubia m2
+    - zte nubia m2 lite
+    - zte nubia n2
+    - asus zenfone 4 max zc554kl
+    - vodafone smart e8
+    - vodafone smart tab n8
+    - zte blade v7 plus
+    - xiaomi redmi y1 (note 5a)
+    - coolpad defiant
+    - micromax canvas 2 q4310
+    - lg q6
+    - qmobile noir a1
+    - qmobile noir e2
+    - qmobile j7 pro
+    - qmobile m6
+    - qmobile m6 lite
+    - qmobile king kong max
+    - qmobile energy x2
+    - qmobile m350 pro
+    - qmobile e1
+    - qmobile noir s6 plus
+    - qmobile noir j7
+    - xiaomi redmi 5
+    - nokia 130 (2017)
+    - nokia 105 (2017)
+    - panasonic p55 max
+    - micromax canvas 1
+    - blu r2 lte
+    - blu r2
+    - vivo y53
+    - xiaomi mi a1 (mi 5x)
+    - oppo a77
+    - samsung galaxy j7 v
+    - zte grand x view 2
+    - lg g pad iv 8.0 fhd
+    - lg q8 (2017)
+    - asus zenfone 4 ze554kl
+    - asus zenfone 4 pro zs551kl
+    - asus zenfone 4 selfie zd553kl
+    - samsung galaxy j7 nxt
+    - icemobile g8 lte
+    - sharp z3
+    - yu yunique 2
+    - samsung galaxy c7 (2017)
+    - samsung galaxy a8+ (2018)
+    - meizu pro 7 plus
+    - lava a97 2gb+
+    - zte blade a601
+    - lenovo k8 note
+    - micromax selfie 2 q4311
+    - blu grand mini
+    - sharp aquos s2
+    - xiaomi mi 6c
+    - honor note 10
+    - verykool sl5565 rocket
+    - asus zenpad z8s zt582kl
+    - meizu m6 note
+    - alcatel pulsemix
+    - sony xperia xz1
+    - amazon fire 7 (2017)
+    - amazon fire hd 8 (2017)
+    - coolpad nx1
+    - asus zenfone 4 selfie pro zd552kl
+    - t-mobile revvl
+    - asus zenfone 4 max plus zc554kl
+    - asus zenfone 4 max zc520kl
+    - panasonic eluga a3
+    - panasonic eluga a3 pro
+    - asus zenfone 4 max pro zc554kl
+    - gionee x1
+    - panasonic eluga i2 activ
+    - lg k7 (2017)
+    - xiaomi redmi y1 lite
+    - alcatel u5 hd
+    - coolpad cool play 6
+    - coolpad cool m7
+    - sharp aquos s3 mini
+    - micromax canvas infinity
+    - blu studio j8
+    - blu studio j8 lte
+    - blu touchbook m7 pro
+    - verykool s5528 cosmo
+    - verykool s5527 alpha pro
+    - micromax evok dual note e4815
+    - alcatel a7
+    - vivo y69
+    - alcatel idol 5
+    - huawei p9 lite mini
+    - lenovo k8 plus
+    - blu vivo 8
+    - archos diamond alpha +
+    - archos diamond tab
+    - zte nubia z17 lite
+    - samsung gear sport
+    - sony xperia xa1 plus
+    - blu studio g mini
+    - blu studio pro
+    - alcatel a7 xl
+    - alcatel idol 5s
+    - blu touchbook m7
+    - blu grand xl lte
+    - cat s31
+    - cat s41
+    - oppo a71
+    - lenovo k8
+    - panasonic p9
+    - vivo x20
+    - vivo v7+
+    - huawei mate 10 pro
+    - allview x4 soul mini s
+    - honor 6c pro
+    - huawei mate 10 lite
+    - apple iphone x
+    - apple watch series 3 aluminum
+    - apple watch series 3
+    - apple watch edition series 3
+    - asus zenfone 4 selfie zb553kl
+    - huawei g10
+    - yu yureka 2
+    - blu s1
+    - asus zenfone v v520kl
+    - nokia 9 pureview
+    - meizu m6
+    - panasonic eluga ray 700
+    - panasonic eluga ray 500
+    - gionee x1s
+    - amazon fire hd 10 (2017)
+    - vivo x20 plus
+    - gionee m7
+    - panasonic eluga i4
+    - nokia 3310 3g
+    - huawei mate 10
+    - panasonic p99
+    - gionee m7 power
+    - honor 7x
+    - lava z60
+    - plum phantom
+    - samsung galaxy tab a 8.0 & s pen (2015)
+    - htc desire 10 compact
+    - htc u11 life
+    - samsung galaxy a8 (2018)
+    - lava z80
+    - lava z90
+    - oppo f5
+    - oppo a39
+    - blackberry motion
+    - asus zenfone 4 selfie lite zb553kl
+    - xiaomi redmi note 5 pro
+    - zte tempo x
+    - zte blade force
+    - zte nubia z17 minis
+    - samsung galaxy tab active 2
+    - xiaomi redmi 5a
+    - huawei mate 10 porsche design
+    - samsung galaxy j2 (2017)
+    - zte nubia z17s
+    - zte axon m
+    - archos diamond omega
+    - samsung galaxy j2 pro (2018)
+    - blu c5 (2017)
+    - blu grand m2
+    - nokia 7
+    - htc u11+
+    - oppo f5 youth
+    - huawei watch 2 pro
+    - oppo r11s
+    - oneplus 5t
+    - zte blade x
+    - micromax canvas infinity pro
+    - micromax dual 4 e4816
+    - micromax canvas selfie 3 q460
+    - micromax bharat 2+
+    - micromax bharat 3 q437
+    - micromax bharat 4 q440
+    - micromax selfie 2 note q4601
+    - vivo xplay7
+    - sony xperia r1 (plus)
+    - razer phone
+    - blu studio g3
+    - blu grand m2 lte
+    - blu c5 lte
+    - oppo r11s plus
+    - samsung galaxy j3 (2018)
+    - panasonic eluga a4
+    - panasonic eluga i5
+    - verykool s6005x cyprus pro
+    - verykool s5205 orion pro
+    - verykool s5029 bolt pro
+    - plum gator 4
+    - vivo v7
+    - honor view 10
+    - panasonic p91
+    - verykool sl5029 bolt pro lte
+    - lenovo tab 7
+    - lenovo tab 7 essential
+    - huawei nova 2s
+    - micromax bharat 2 ultra
+    - blu r2 plus
+    - blu life one x3
+    - lenovo moto tab
+    - gionee s11s
+    - gionee s11
+    - gionee m7 plus
+    - gionee s11 lite
+    - blu grand 5.5 hd ii
+    - asus zenfone max plus (m1) zb570tl
+    - panasonic eluga c
+    - verykool s5031 bolt turbo
+    - sony xperia h8541
+    - oppo a83
+    - samsung galaxy j5 prime (2017)
+    - xiaomi redmi 5 plus (redmi note 5)
+    - panasonic eluga i9
+    - huawei p smart
+    - honor 9 lite
+    - xiaomi mi max 3
+    - blu dash l4 lte
+    - blu dash l5 lte
+    - samsung galaxy s9
+    - samsung galaxy s9+
+    - plum compass lte
+    - plum axe 4
+    - zte blade a6
+    - zte blade v9
+    - nokia 6.1
+    - lenovo k320t
+    - energizer power max p600s
+    - energizer power max p550s
+    - energizer energy s550
+    - energizer energy s500e
+    - energizer energy e520 lte
+    - energizer hardcase h550s
+    - energizer energy 400 lte
+    - energizer hardcase h240s
+    - energizer energy 100 (2017)
+    - energizer energy e10
+    - energizer energy e20
+    - sony xperia xa2 ultra
+    - sony xperia xa2
+    - sony xperia l2
+    - verykool s5200 orion
+    - alcatel 3c
+    - htc u11 eyes
+    - wiko view
+    - wiko view prime
+    - wiko view xl
+    - wiko wim
+    - wiko wim lite
+    - wiko tommy2
+    - wiko tommy2 plus
+    - meizu m6s
+    - motorola moto x5
+    - motorola moto g6
+    - motorola moto g6 plus
+    - motorola moto g6 play
+    - motorola moto z3 play
+    - alcatel 3v
+    - vivo x20 plus ud
+    - lg x4+
+    - blu studio view xl
+    - motorola moto e5
+    - allview v3 viper
+    - allview x4 soul vision
+    - allview x4 soul infinity plus
+    - alcatel 5
+    - allview x4 soul infinity l
+    - allview x4 soul infinity n
+    - allview x4 soul infinity s
+    - allview x4 soul infinity z
+    - wiko harry
+    - wiko jerry
+    - wiko jerry2
+    - wiko kenny
+    - wiko lenny3 max
+    - wiko lenny4
+    - wiko lenny4 plus
+    - wiko robby2
+    - wiko sunny2
+    - wiko sunny2 plus
+    - wiko sunny max
+    - wiko ufeel fab
+    - wiko ufeel go
+    - wiko ufeel
+    - wiko upulse lite
+    - wiko upulse
+    - zte maven 2
+    - bq aquaris v
+    - bq aquaris v plus
+    - bq aquaris u2
+    - bq aquaris u2 lite
+    - zte blade a3
+    - blackview s8
+    - blackview s6
+    - blackview p6000
+    - blackview a10
+    - blackview a7 pro
+    - blackview a7
+    - nokia 3310 4g
+    - lg aristo 2
+    - haier l7
+    - haier g7
+    - haier g51
+    - oppo a71 (2018)
+    - nokia 1
+    - micromax bharat 5
+    - micromax bharat 5 plus
+    - haier l8
+    - haier i6
+    - haier g8
+    - nokia 7 plus
+    - sharp r1s
+    - sharp pi
+    - asus zenfone 5 ze620kl
+    - panasonic p100
+    - blu vivo one
+    - blu studio j8m lte
+    - xiaomi mi 8
+    - meizu e3
+    - xiaomi mi mix 2s
+    - asus zenfone 5 lite zc600kl
+    - zte axon 9 pro
+    - allview p8 pro
+    - htc desire 12
+    - blu vivo x
+    - lg k8 (2018)
+    - lg k10 (2018)
+    - honor 7a
+    - cat s61
+    - bq aquaris vs
+    - bq aquaris vs plus
+    - energizer power max p16k pro
+    - huawei mediapad m5 10 (pro)
+    - sony xperia xz2
+    - sony xperia xz2 compact
+    - zte tempo go
+    - alcatel 3x (2018)
+    - alcatel 3
+    - alcatel 1x
+    - nokia 8 sirocco
+    - zte blade v9 vita
+    - nokia 8110 4g
+    - lg v30s thinq
+    - huawei mediapad m5 10
+    - huawei mediapad m5 8
+    - alcatel 1t 10
+    - alcatel 1t 7
+    - motorola moto e5 plus
+    - asus zenfone 5z zs620kl
+    - asus zenfone max (m1) zb555kl
+    - huawei p20 lite
+    - verykool s5036 apollo
+    - verykool s5037 apollo quattro
+    - verykool s5702 royale quattro
+    - htc desire 12+
+    - ulefone t2 pro
+    - wiko view2 pro
+    - wiko view2
+    - huawei p20 pro
+    - huawei p20
+    - oppo r15
+    - oneplus 6
+    - zte nubia n3
+    - honor 7c
+    - huawei y9 (2018)
+    - vivo y65
+    - huawei y7 prime (2018)
+    - lg g7 thinq
+    - lenovo s5
+    - vivo v9
+    - oppo r15 pro
+    - htc u12+
+    - xiaomi redmi note 5 ai dual camera
+    - oppo f7
+    - lg zone 4
+    - vivo x21 ud
+    - vivo x21
+    - micromax bharat 5 pro
+    - plum flipper (2018)
+    - plum compass 2
+    - plum optimax 2
+    - plum optimax 12
+    - plum optimax 11
+    - blu vivo xl3 plus
+    - blu x link
+    - zte nubia v18
+    - oppo a1
+    - samsung galaxy j7 prime 2
+    - micromax canvas infinity life
+    - lava z50
+    - sharp aquos s3
+    - acer chromebook tab 10
+    - xiaomi mi a2 (mi 6x)
+    - huawei mate rs porsche design
+    - apple ipad 9.7 (2018)
+    - lenovo k5
+    - lenovo k5 play
+    - plum tag 3g
+    - blu dash l4
+    - sonim xp8
+    - vivo y71
+    - panasonic eluga ray 550
+    - lava z91
+    - archos saphir 50x
+    - zte blade a910
+    - samsung galaxy j7 duo
+    - blu vivo one plus
+    - samsung galaxy a6 (2018)
+    - samsung galaxy a6+ (2018)
+    - honor 10
+    - meizu 15 lite
+    - meizu 15
+    - meizu 15 plus
+    - zte nubia z18 mini
+    - huawei y6 (2018)
+    - samsung galaxy note9
+    - xiaomi black shark
+    - blu vivo xl3
+    - sony xperia xz2 premium
+    - vivo v9 youth
+    - oppo a3
+    - haier hurricane
+    - haier c300
+    - zte nubia z18
+    - panasonic p101
+    - asus zenfone max pro (m1) zb601kl/zb602k
+    - zte nubia red magic
+    - motorola moto e5 play
+    - panasonic eluga i7
+    - samsung galaxy s9 active
+    - nokia 6.1 plus (nokia x6)
+    - htc u12 life
+    - vivo y83
+    - micromax canvas 1 2018
+    - gionee f205
+    - coolpad cool 2
+    - blu studio view
+    - xiaomi redmi s2 (redmi y2)
+    - vivo y53i
+    - blackberry key2
+    - huawei y7 pro (2018)
+    - coolpad note 6
+    - lg k30
+    - lg v35 thinq
+    - panasonic p95
+    - sharp aquos r2
+    - asus zenfone live (l1) za550kl
+    - energizer power max p20
+    - huawei y3 (2018)
+    - bq aquaris x2 pro
+    - bq aquaris x2
+    - huawei watch 2 2018
+    - realme 1
+    - vivo x21i
+    - samsung galaxy s light luxury
+    - samsung galaxy j6
+    - samsung galaxy j4
+    - samsung galaxy j8
+    - lg q7
+    - micromax bharat go
+    - oppo f7 youth
+    - huawei y5 prime (2018)
+    - meizu m8c
+    - honor 7s
+    - vivo z1
+    - meizu m6t
+    - nokia 5.1
+    - nokia 3.1
+    - nokia 2.1
+    - xiaomi redmi 6a
+    - xiaomi mi 8 explorer
+    - xiaomi mi 8 se
+    - samsung galaxy a8 star (a9 star)
+    - motorola one power (p30 note)
+    - lenovo z5
+    - blu pure view
+    - asus rog phone zs600kl
+    - lenovo a5
+    - lenovo k5 note (2018)
+    - vivo nex s
+    - lg q stylus
+    - honor 9n (9i)
+    - honor play
+    - vivo nex a
+    - sony xperia xz3
+    - sharp aquos s3 high
+    - samsung galaxy j7 (2018)
+    - vodafone smart n9
+    - vodafone smart n9 lite
+    - xiaomi redmi 6
+    - energizer energy e10+
+    - energizer energy e11
+    - energizer energy e500
+    - energizer energy e500s
+    - energizer hardcase h500s
+    - energizer power max p490
+    - energizer power max p490s
+    - panasonic p90
+    - nokia 5.1 plus (nokia x5)
+    - xiaomi mi a2 lite (redmi 6 pro)
+    - oppo find x lamborghini
+    - xiaomi mi pad 4
+    - vivo y81
+    - lg q stylo 4
+    - allview soul x5 pro
+    - blu grand m3
+    - blu c6
+    - samsung galaxy j2 core
+    - google pixel 3
+    - google pixel 3 xl
+    - vivo v9 6gb
+    - oppo a5 (ax5)
+    - samsung galaxy on6
+    - vivo z1i
+    - samsung galaxy tab s4 10.5
+    - samsung galaxy tab a 10.5
+    - samsung galaxy tab advanced2
+    - huawei y7 (2018)
+    - lava z91 (2gb)
+    - huawei nova 3
+    - sony xperia xa2 plus
+    - oppo a3s
+    - motorola moto e5 play go
+    - alcatel 5v
+    - huawei p smart+ 2019
+    - sharp aquos c10
+    - sharp aquos b10
+    - lava z61
+    - blu studio g4
+    - lg k11 plus
+    - meizu 16 plus
+    - meizu 16
+    - blackberry evolve
+    - blackberry evolve x
+    - motorola moto z3
+    - huawei mate 20 lite
+    - lg q8 (2018)
+    - oppo f9 (f9 pro)
+    - oppo r17
+    - oppo rx17 pro
+    - samsung galaxy watch
+    - palm palm
+    - alcatel 7
+    - blackberry key2 le
+    - xiaomi pocophone f1
+    - motorola p30
+    - xiaomi mi pad 4 plus
+    - vivo y83 pro
+    - coolpad mega 5a
+    - vivo v11 (v11 pro)
+    - realme 2
+    - lg v40 thinq
+    - blu c4
+    - blu c5
+    - lava z60s
+    - lg g7 one
+    - lg g7 fit
+    - honor 8x max
+    - blu vivo xi+
+    - yu ace
+    - lg candy
+    - motorola one (p30 play)
+    - sharp aquos d10
+    - vivo x23
+    - honor 8x
+    - blu vivo xi
+    - vivo v11i
+    - vivo y97
+    - oppo a7x
+    - apple iphone xs
+    - apple iphone xs max
+    - apple iphone xr
+    - apple watch series 4
+    - apple watch series 4 aluminum
+    - huawei y9 (2019)
+    - blu advance l4
+    - allview x5 soul
+    - wiko view2 plus
+    - wiko view2 go
+    - xiaomi mi 8 lite
+    - wiko view max
+    - samsung galaxy folder2
+    - xiaomi redmi note 6 pro
+    - samsung galaxy j6+
+    - samsung galaxy j4+
+    - xiaomi mi 8 pro
+    - meizu 16x
+    - meizu v8 pro
+    - meizu v8
+    - samsung galaxy a7 (2018)
+    - meizu x8
+    - nokia 8.1 (nokia x7)
+    - huawei mate 20 pro
+    - samsung galaxy a9 (2018)
+    - realme 2 pro
+    - realme c1
+    - zte nubia x
+    - cat b35
+    - lenovo z5 pro
+    - oneplus 6t
+    - huawei mediapad m5 lite
+    - samsung galaxy a6s
+    - sony xperia 10
+    - nokia 7.1
+    - lg watch w7
+    - panasonic eluga x1 pro
+    - motorola moto g7
+    - vivo y71i
+    - blu grand m2 (2018)
+    - blu studio mega (2018)
+    - oppo k1
+    - panasonic eluga ray 600
+    - razer phone 2
+    - nokia 3.1 plus
+    - vivo z3i
+    - honor 8c
+    - huawei mate 20
+    - huawei mate 20 rs porsche design
+    - huawei mate 20 x
+    - vivo z3
+    - lenovo k9
+    - asus zenfone lite (l1) za551kl
+    - asus zenfone max (m1) zb556kl
+    - lenovo k5 pro
+    - lenovo s5 pro
+    - panasonic eluga ray 530
+    - plum gator 5
+    - xiaomi mi mix 3
+    - allview p10 style
+    - oppo r15x
+    - honor magic 2
+    - xiaomi black shark helo
+    - panasonic eluga z1 pro
+    - meizu note 8
+    - htc exodus 1
+    - apple ipad pro 11 (2018)
+    - apple ipad pro 12.9 (2018)
+    - vivo y93
+    - panasonic p85 nxt
+    - lava z81
+    - allview soul x5 mini
+    - allview allwatch v
+    - oppo rx17 neo
+    - oppo a7
+    - huawei watch gt
+    - samsung galaxy j4 core
+    - plum ram 8
+    - vivo y95
+    - allview soul x5 style
+    - huawei watch magic
+    - vivo z1 lite
+    - honor 10 lite
+    - vivo y81i
+    - nokia 106 (2018)
+    - sharp aquos r2 compact
+    - kyocera duraforce pro 2
+    - google pixel 3a
+    - huawei p smart 2019
+    - asus zenfone max pro (m2) zb631kl
+    - lg q9
+    - huawei mediapad t5
+    - realme u1
+    - infinix zero 5
+    - infinix zero 5 pro
+    - infinix note 5 stylus
+    - infinix note 5
+    - infinix note 4
+    - infinix note 4 pro
+    - infinix s3x
+    - infinix hot s3
+    - infinix s2 pro
+    - infinix hot 6x
+    - meizu 16s
+    - infinix hot 6 pro
+    - infinix hot 6
+    - infinix hot 5
+    - infinix hot 5 lite
+    - infinix smart 2 pro
+    - infinix smart 2
+    - infinix smart
+    - samsung galaxy a8s
+    - zte nubia red magic mars
+    - vivo nex dual display
+    - lenovo z5s
+    - asus zenfone max (m2) zb633kl
+    - tecno phantom 6
+    - tecno phantom 6 plus
+    - tecno phantom 8
+    - tecno camon 11 pro
+    - tecno camon 11
+    - tecno camon cm
+    - tecno camon cx
+    - tecno camon cx air
+    - tecno camon cx manchester city le
+    - tecno camon x
+    - tecno camon x pro
+    - tecno spark
+    - tecno spark 2
+    - tecno spark cm
+    - tecno spark plus
+    - meizu c9 pro
+    - meizu c9
+    - tecno spark pro
+    - tecno pouvoir 1
+    - tecno pouvoir 2
+    - tecno pouvoir 2 pro
+    - tecno pop 1 lite
+    - tecno f2
+    - tecno f2 lte
+    - tecno pop 1
+    - tecno pop 1 pro
+    - tecno pop 1s
+    - huawei enjoy 9
+    - vivo y93s
+    - honor view 20
+    - oneplus 6t mclaren
+    - blu vivo xl4
+    - allview a10 plus
+    - infinix hot 4
+    - infinix hot 4 pro
+    - infinix hot s
+    - infinix note 3
+    - infinix note 3 pro
+    - infinix smart 2 hd
+    - infinix zero 4
+    - infinix zero 4 plus
+    - vivo y91
+    - huawei nova 4
+    - blu vivo go
+    - vodafone smart x9
+    - vodafone smart e9
+    - yezz epic t
+    - yezz andy 5e5
+    - htc desire 12s
+    - coolpad cool play 8
+    - lenovo z5 pro gt
+    - lenovo s5 pro gt
+    - allview allwatch hybrid s
+    - allview allwatch hybrid t
+    - plum flipper 2
+    - plum optimax 13
+    - plum phantom 2
+    - vivo y93 (mediatek)
+    - motorola p40
+    - xiaomi redmi 7
+    - xiaomi mi play
+    - huawei y7 pro (2019)
+    - huawei y5 lite (2018)
+    - huawei y6 prime (2018)
+    - plum tag 2 3g
+    - allview a10 lite 2019
+    - samsung galaxy m30
+    - samsung galaxy m20
+    - xiaomi mi 9
+    - samsung galaxy m10
+    - honor play 8a
+    - alcatel 1x (2019)
+    - alcatel 1c (2019)
+    - sharp aquos zero
+    - xiaomi redmi note 7
+    - yezz andy 4e7
+    - micromax infinity n12
+    - micromax infinity n11
+    - micromax bharat 5 infinity
+    - blu vivo one plus (2019)
+    - yezz max 1
+    - vivo y91 (mediatek)
+    - xiaomi redmi note 7 pro
+    - vivo y55l (vivo 1603)
+    - samsung galaxy fold
+    - vivo y89
+    - motorola moto g7 power
+    - meizu zero
+    - oppo find x2 pro
+    - huawei p30
+    - huawei y7 prime (2019)
+    - motorola moto g7 play
+    - motorola moto g7 plus
+    - xiaomi redmi go
+    - samsung galaxy s10+
+    - samsung galaxy s10
+    - samsung galaxy s10e
+    - nokia 1 plus
+    - realme c1 (2019)
+    - lg g8 thinq
+    - lava z92
+    - blu c6l
+    - sony xperia 1
+    - lg tribute empire
+    - huawei p30 lite
+    - energizer ultimate u650s
+    - energizer ultimate u630s pop
+    - energizer ultimate u620s pop
+    - energizer ultimate u620s
+    - energizer ultimate u570s
+    - xiaomi mi max 4
+    - xiaomi mi max 4 pro
+    - vivo v15 pro
+    - samsung galaxy a50
+    - meizu note 9
+    - energizer hardcase h591s
+    - energizer hardcase h570s
+    - realme 3
+    - energizer hardcase h501s
+    - energizer hardcase h280s
+    - energizer hardcase h241
+    - energizer hardcase h242
+    - energizer hardcase h242s
+    - motorola moto z4 play
+    - blu studio x8 hd (2019)
+    - oppo f11 pro
+    - energizer energy e551s
+    - energizer energy e401
+    - energizer energy e241s
+    - energizer energy e241
+    - energizer energy e220s
+    - energizer energy e220
+    - energizer power max p18k pop
+    - alcatel tetra
+    - motorola moto e5 cruise
+    - huawei y6 pro (2019)
+    - tecno camon iace2x
+    - tecno camon iace2
+    - samsung galaxy a30
+    - samsung galaxy a10
+    - samsung galaxy tab s5e
+    - samsung galaxy tab a 10.1 (2019)
+    - xiaomi mi 9 se
+    - xiaomi mi 9 explorer
+    - lg q60
+    - lg k50
+    - lg k40
+    - samsung galaxy s10 5g
+    - samsung galaxy watch active
+    - energizer power max p8100s
+    - sony xperia 10 plus
+    - sony xperia l3
+    - archos diamond
+    - archos oxygen 68xl
+    - archos oxygen 63
+    - archos oxygen 57
+    - blu c5l
+    - alcatel 1s
+    - alcatel 3 (2019)
+    - alcatel 3l
+    - alcatel 3t 10
+    - xiaomi mi mix 3 5g
+    - nokia 4.2
+    - nokia 3.2
+    - huawei mate x
+    - nokia 210
+    - lg v50 thinq 5g
+    - lg g8s thinq
+    - lenovo tab v7
+    - zte axon 10 pro 5g
+    - zte blade v10
+    - zte nubia alpha
+    - vivo iqoo
+    - vivo v15
+    - honor 20
+    - samsung galaxy a60
+    - oppo f11
+    - panasonic eluga ray 800
+    - honor tab 5
+    - huawei y6 (2019)
+    - allview p10 life
+    - lava z40
+    - oneplus 7
+    - vivo y91i (india)
+    - huawei y7 (2019)
+    - oppo a5s (ax5s)
+    - huawei nova 4e
+    - honor magic 2 3d
+    - vivo x27
+    - motorola razr 2019
+    - oppo reno
+    - huawei nova 3i
+    - asus zenfone max shot zb634kl
+    - asus zenfone max plus (m2) zb634kl
+    - huawei p30 pro
+    - samsung galaxy a2 core
+    - apple ipad mini (2019)
+    - apple ipad air (2019)
+    - xiaomi black shark 2
+    - samsung galaxy a20
+    - honor 20 lite
+    - samsung galaxy a40
+    - huawei y max
+    - huawei enjoy 9s
+    - huawei enjoy 9e
+    - samsung galaxy a70
+    - motorola one vision
+    - nokia 8.1 plus
+    - vivo s1 (china)
+    - xiaomi mi 9x
+    - samsung galaxy tab a 8.0 & s pen (2019)
+    - nokia x71
+    - oppo a7n
+    - oppo reno 10x zoom
+    - lenovo k6 enjoy
+    - infinix zero 6
+    - infinix zero 6 pro
+    - infinix hot 7
+    - samsung galaxy a80
+    - vivo x27 pro
+    - samsung galaxy a20e
+    - honor 8a pro
+    - honor 20i
+    - honor 8s
+    - samsung galaxy tab a 8.0 (2018)
+    - vivo y17
+    - asus zenfone live (l2)
+    - huawei mediapad m5 lite 8
+    - realme 3 pro
+    - realme c2
+    - lenovo z6 pro
+    - samsung galaxy view2
+    - oppo a1k
+    - xiaomi redmi y3
+    - huawei y5 (2019)
+    - oppo reno 5g
+    - oppo a9
+    - infinix s4
+    - infinix hot 7 pro
+    - infinix smart3 plus
+    - vivo z3x
+    - motorola moto e6
+    - energizer hardcase h10
+    - energizer energy e12
+    - allview soul x6 xtreme
+    - allview p10 pro
+    - allview p10 max
+    - allview p10 mini
+    - oneplus 7 pro
+    - google pixel 3a xl
+    - motorola moto z4
+    - zte nubia red magic 3
+    - motorola moto z4 force
+    - huawei p smart z
+    - zte axon 10 pro
+    - vivo s1 pro (china)
+    - zte blade a7
+    - asus zenfone 6 zs630kl
+    - oppo k3
+    - realme x
+    - zte blade a7 vita
+    - oppo reno z
+    - huawei p20 lite (2019)
+    - oneplus 7 pro 5g
+    - huawei mate 20 x (5g)
+    - oppo a9x
+    - xiaomi redmi note 7s
+    - xiaomi redmi k20 pro
+    - allview soul x6 mini
+    - honor 20 pro
+    - lenovo z6 youth
+    - zte blade a5 (2019)
+    - zte blade a3 (2019)
+    - zte blade l8
+    - zte blade v10 vita
+    - xiaomi redmi 7a
+    - vivo z5x
+    - blu g9
+    - vivo y15
+    - xiaomi redmi k20
+    - samsung galaxy m40
+    - wiko view3
+    - wiko view3 pro
+    - meizu 16xs
+    - vodafone smart n10
+    - vodafone smart v10
+    - huawei nova 5i
+    - huawei nova 5
+    - vivo y12
+    - samsung galaxy xcover 4s
+    - nokia 2.2
+    - samsung galaxy note10+
+    - wiko sunny3
+    - htc desire 19+
+    - htc u19e
+    - nokia 3.1 a
+    - nokia 3.1 c
+    - xiaomi mi 9t
+    - motorola one action
+    - honor pad 5 10.1
+    - honor pad 5 8
+    - huawei y9 prime (2019)
+    - vivo z1pro
+    - lenovo yoga tab 3 10
+    - motorola one zoom
+    - huawei nova 5 pro
+    - huawei mediapad m6 8.4
+    - huawei mediapad m6 10.8
+    - xiaomi mi cc9
+    - vivo iqoo neo
+    - lg w10
+    - lg w30
+    - lg w30 pro
+    - lenovo z6 pro 5g
+    - zte nubia x 5g
+    - panasonic eluga i7 (2019)
+    - lenovo z6
+    - lg stylo 5
+    - xiaomi mi cc9e
+    - samsung galaxy tab a 8.0 (2019)
+    - infinix note 6
+    - coolpad cool 3 plus
+    - t-mobile revvlry
+    - t-mobile revvlry+
+    - huawei nova 5i pro
+    - vivo s1
+    - tecno phantom 9
+    - realme 3i
+    - xiaomi mi a3
+    - asus rog phone ii zs660kl
+    - honor 9x (china)
+    - honor 9x pro
+    - nokia 105 (2019)
+    - nokia 220 4g
+    - blu g5
+    - blu g5 plus
+    - blu g6
+    - blu g8
+    - xiaomi black shark 2 pro
+    - zte nubia z20
+    - samsung galaxy tab s6
+    - vivo z5
+    - vivo v17 neo
+    - samsung galaxy watch active2
+    - vivo y90
+    - samsung galaxy watch active2 aluminum
+    - samsung galaxy note10+ 5g
+    - samsung galaxy note10
+    - samsung galaxy note10 5g
+    - samsung galaxy a10e
+    - xiaomi mi 9t pro
+    - meizu 16s pro
+    - samsung galaxy a10s
+    - vivo iqoo pro 5g
+    - samsung galaxy a90 5g
+    - samsung galaxy a30s
+    - htc wildfire x
+    - oppo reno2
+    - huawei p smart pro 2019
+    - xiaomi redmi 8
+    - realme 5 pro
+    - realme 5
+    - huawei nova 5t
+    - lg k50s
+    - lg k40s
+    - samsung galaxy a50s
+    - vivo iqoo pro
+    - oppo reno a
+    - oppo reno2 z
+    - oppo reno2 f
+    - blu g9 pro
+    - xiaomi redmi note 8 pro
+    - realme xt
+    - xiaomi redmi note 8
+    - lg q70
+    - oneplus 7t
+    - vivo nex 3 5g
+    - samsung galaxy m30s
+    - oppo a9 (2020)
+    - vivo z1x
+    - lenovo k10 note
+    - lenovo a6 note
+    - huawei mediapad m6 turbo 8.4
+    - lenovo tab m7
+    - lenovo tab m8 (hd)
+    - lenovo tab m8 (fhd)
+    - lg k30 (2019)
+    - lg k20 (2019)
+    - honor play 3
+    - huawei enjoy 10 plus
+    - motorola moto e6 plus
+    - honor 20s
+    - nokia 7.2
+    - nokia 6.2
+    - nokia 800 tough
+    - nokia 2720 flip
+    - alcatel smart tab 7
+    - realme q
+    - zte nubia red magic 3s
+    - sony xperia 5
+    - tcl plex
+    - alcatel 3x (2019)
+    - alcatel 1v (2019)
+    - lg g8x thinq
+    - nokia 110 (2019)
+    - apple iphone 11 pro max
+    - apple iphone 11 pro
+    - apple iphone 11
+    - vivo v17 pro
+    - samsung galaxy tab active pro
+    - samsung galaxy fold 5g
+    - samsung galaxy a20s
+    - blu vivo x5
+    - blu vivo xl5
+    - blu bold n1
+    - infinix hot 8
+    - apple ipad 10.2 (2019)
+    - apple watch series 5 aluminum
+    - apple watch series 5
+    - apple watch edition series 5
+    - samsung galaxy m10s
+    - xiaomi mi 9 lite
+    - realme xt 730g
+    - tecno camon 12
+    - tecno camon 12 pro
+    - tecno pouvoir 3
+    - tecno pouvoir 3 plus
+    - tecno pouvoir 3 air
+    - tecno spark 3
+    - tecno spark 3 pro
+    - tecno spark go
+    - oneplus 7t pro
+    - vivo nex 3
+    - tecno pop 2 f
+    - tecno pop 2 plus
+    - blu studio mega 2019
+    - blu studio mini
+    - honor play 3e
+    - realme x2
+    - huawei mate 30 pro 5g
+    - huawei mate 30 5g
+    - lenovo k10 plus
+    - oppo a5 (2020)
+    - xiaomi redmi k20 pro premium
+    - huawei mate 30 pro
+    - huawei mate 30
+    - huawei mate 30 rs porsche design
+    - huawei watch gt 2
+    - huawei mate 30 lite
+    - vivo u10
+    - xiaomi mi 9 pro
+    - xiaomi mi 9 pro 5g
+    - xiaomi mi mix alpha
+    - oppo reno ace
+    - google pixel 4 xl
+    - google pixel 4
+    - xiaomi redmi 8a
+    - yezz liv1
+    - samsung galaxy a70s
+    - motorola one macro
+    - oppo a11
+    - coolpad cool 5
+    - yezz max 1 plus
+    - realme x2 pro
+    - huawei enjoy 10
+    - lg v50s thinq 5g
+    - oppo k5
+    - allview v4 viper
+    - allview viva 1003g lite
+    - allview viva 1003g
+    - allview viva home
+    - samsung galaxy a91
+    - zte blade v20
+    - honor 20 lite (china)
+    - infinix s5
+    - motorola moto g8 plus
+    - samsung galaxy s10 lite
+    - motorola moto g8 play
+    - oneplus 8 pro
+    - zte blade 20
+    - huawei nova 5z
+    - vivo u3
+    - htc exodus 1s
+    - vivo y11 (2019)
+    - meizu 16t
+    - infinix hot 8 lite
+    - oneplus 7t pro 5g mclaren
+    - blu advance l5
+    - blu c6 2019
+    - honor 9x
+    - motorola moto e6 play
+    - huawei enjoy 10s
+    - vivo iqoo neo 855
+    - xiaomi mi cc9 pro
+    - xiaomi mi note 10
+    - samsung galaxy xcover fieldpro
+    - cat s52
+    - allview viva c703
+    - vivo y19
+    - xiaomi mi watch (china)
+    - oppo reno3 5g
+    - vivo x30 pro
+    - motorola one hyper
+    - xiaomi mi note 10 pro
+    - xiaomi redmi note 8t
+    - vivo y5s
+    - vivo s5
+    - vivo y3
+    - vivo y3 standard
+    - vivo y3 (4gb+64gb)
+    - lg g pad 5 10.1
+    - meizu m10
+    - zte blade 10 prime
+    - zte blade a7 prime
+    - huawei y9s
+    - realme c2 2020
+    - vivo y91i
+    - lenovo yoga smart tab
+    - coolpad legacy
+    - wiko y80
+    - sharp aquos v
+    - samsung galaxy a51
+    - vivo u20
+    - htc desire 19s
+    - vivo v17 (russia)
+    - blu c5 2019
+    - blu c5 plus
+    - realme 5s
+    - honor view
+    - huawei nova 6
+    - vivo s1 pro
+    - huawei matepad pro 10.8 (2019)
+    - honor magicwatch 2
+    - infinix smart 4c
+    - honor v30 pro
+    - honor v30
+    - vivo z5i
+    - xiaomi redmi k30 5g
+    - infinix smart 4
+    - orange neva jet 5g
+    - vivo v17
+    - huawei nova 6 5g
+    - vivo y9s
+    - alcatel 1
+    - alcatel 3088
+    - vivo iqoo neo 855 racing
+    - nokia 2.3
+    - huawei nova 6 se
+    - realme x50 5g (china)
+    - xiaomi redmi k30
+    - oppo reno3 pro 5g
+    - nokia c1
+    - blu view 1
+    - samsung galaxy a71
+    - huawei p40 lite
+    - vivo x30
+    - zte axon 10s pro 5g
+    - samsung galaxy a01
+    - oppo a91
+    - samsung galaxy xcover pro
+    - oppo a8
+    - samsung galaxy note10 lite
+    - samsung galaxy tab s6 5g
+    - tecno camon 12 air
+    - tecno pop 3 plus
+    - tecno spark 4 lite
+    - infinix s5 lite
+    - oppo f15
+    - realme 5i
+    - nokia 6131 nfc
+    - huawei y6s (2019)
+    - sony xperia 5 plus
+    - xiaomi watch color
+    - realme c2s
+    - alcatel 3l (2020)
+    - alcatel 1s (2020)
+    - alcatel 1v (2020)
+    - alcatel 1b (2020)
+    - ulefone armor 7
+    - ulefone armor 6s
+    - ulefone armor 3w
+    - ulefone armor 3wt
+    - ulefone armor x6
+    - ulefone armor x5
+    - ulefone armor x3
+    - ulefone t2
+    - ulefone armor 5s
+    - cat s42
+    - coolpad legacy 5g
+    - ulefone armor 6e
+    - ulefone note 7p
+    - ulefone note 7
+    - ulefone s11
+    - ulefone armor x2
+    - ulefone s1
+    - ulefone armor x
+    - ulefone armor 2
+    - allview v4 viper pro
+    - samsung galaxy s20 ultra 5g
+    - samsung galaxy s20+ 5g
+    - alcatel 3v (2019)
+    - lava z71
+    - samsung galaxy s20 5g
+    - blu g60
+    - blu g70
+    - blu tank xtreme
+    - oppo find x2
+    - lenovo m10 fhd rel
+    - xiaomi poco x2
+    - motorola moto g8
+    - motorola moto g8 power
+    - oppo reno3 pro
+    - samsung galaxy z flip
+    - xiaomi mi 10 pro 5g
+    - realme c3
+    - motorola moto g stylus
+    - huawei nova 7i
+    - energizer ultimate u710s
+    - energizer u680s
+    - energizer e280s
+    - fairphone 3+
+    - zte blade max view
+    - zte nubia red magic 5g
+    - lg x power 3
+    - huawei p30 lite new edition
+    - huawei y7p
+    - vivo iqoo 3 5g
+    - motorola moto g power
+    - oppo reno3 youth
+    - xiaomi redmi 8a dual
+    - samsung galaxy m31
+    - samsung galaxy s20+
+    - samsung galaxy s20
+    - xiaomi mi 10 5g
+    - oppo a31
+    - samsung galaxy s20 ultra
+    - honor 9x lite
+    - lg k41s
+    - lg k51s
+    - lg k61
+    - realme c3 (3 cameras)
+    - lg w10 alpha
+    - sony xperia l4
+    - vivo z6 5g
+    - tecno camon 15
+    - tecno camon 15 pro
+    - sony xperia 10 ii
+    - sony xperia 1 ii
+    - realme x50 pro 5g
+    - huawei mate xs
+    - honor view30 pro
+    - huawei matepad pro 10.8 5g (2019)
+    - honor view30
+    - lg q51
+    - lg v60 thinq 5g
+    - htc wildfire r70
+    - blu j2
+    - blu j4
+    - blu j6
+    - alcatel 3t 8
+    - xiaomi black shark 3 pro
+    - xiaomi black shark 3
+    - samsung galaxy m21
+    - huawei p40 lite e
+    - realme 6
+    - realme 6 pro
+    - oppo watch
+    - infinix s5 pro
+    - nokia 5.3
+    - huawei p40 pro+
+    - motorola edge+
+    - xiaomi redmi note 9 pro (india)
+    - vivo v19 (indonesia)
+    - vivo nex 3s 5g
+    - google pixel 4a
+    - samsung galaxy m11
+    - oppo reno3
+    - xiaomi redmi note 9 pro max
+    - infinix s5 pro (48+40)
+    - infinix s5 pro (16+32)
+    - meizu 17
+    - realme 6i
+    - nokia c2
+    - samsung galaxy a11
+    - motorola edge
+    - vivo v19
+    - motorola moto e6s (2020)
+    - apple ipad pro 12.9 (2020)
+    - apple ipad pro 11 (2020)
+    - samsung galaxy a41
+    - zte axon 11 5g
+    - xiaomi redmi k30 pro
+    - ulefone armor x7
+    - nokia 8.3 5g
+    - nokia 1.3
+    - nokia 5310 (2020)
+    - realme narzo 10
+    - samsung galaxy a71 5g
+    - xiaomi redmi note 9s
+    - samsung galaxy m51
+    - samsung galaxy a31
+    - xiaomi redmi k30 pro zoom
+    - vivo s6 5g
+    - huawei p40 pro
+    - huawei p40
+    - motorola moto g8 power lite
+    - honor play 9a
+    - infinix hot 9
+    - samsung galaxy a51 5g
+    - samsung galaxy tab s6 lite
+    - xiaomi mi 10 lite 5g
+    - blu studio x9 hd
+    - oneplus 8
+    - honor 30s
+    - honor 8a prime
+    - oppo ace2
+    - ulefone armor 7e
+    - huawei watch gt 2e
+    - honor play 4t
+    - honor play 4t pro
+    - xiaomi redmi 8a pro
+    - apple iphone se (2020)
+    - oppo a12
+    - samsung galaxy a21
+    - oppo a12e
+    - vivo y50
+    - infinix note 7
+    - oppo find x2 lite
+    - infinix note 7 lite
+    - tcl 10 5g
+    - tcl 10 pro
+    - tcl 10l
+    - honor 30 pro
+    - honor 8a 2020
+    - xiaomi mi note 10 lite
+    - oppo a92s
+    - lenovo k7
+    - lg folder 2
+    - honor 30 pro+
+    - honor 30
+    - tecno camon 15 air
+    - tecno camon 15 premier
+    - honor 20e
+    - xiaomi redmi note 9
+    - zte nubia play
+    - oppo a52
+    - oppo find x2 neo
+    - oppo a72
+    - realme x50m 5g
+    - realme x3
+    - xiaomi redmi k30i 5g
+    - vivo iqoo neo3 5g
+    - xiaomi redmi 10x 4g
+    - huawei nova 7 pro 5g
+    - huawei nova 7 5g
+    - huawei nova 7 se
+    - huawei matepad 10.4
+    - xiaomi mi 10 youth 5g
+    - samsung galaxy j2 core (2020)
+    - lg velvet 5g
+    - xiaomi mi 10 lite zoom
+    - oppo a92
+    - huawei p smart 2020
+    - honor 9s
+    - honor 9c
+    - honor 9a
+    - samsung galaxy m01
+    - xiaomi redmi note 9 pro
+    - honor 8s 2020
+    - huawei p30 pro new edition
+    - xiaomi poco f2 pro
+    - tecno spark 5
+    - huawei y6p
+    - huawei y5p
+    - lenovo legion pro
+    - tecno spark 5 air
+    - oneplus 8 5g uw (verizon)
+    - huawei y8s
+    - honor x10 5g
+    - oneplus 8 5g (t-mobile)
+    - vivo y30
+    - huawei matepad t8
+    - meizu 17 pro
+    - xiaomi redmi 9
+    - realme narzo 10a
+    - xiaomi redmi k30 5g racing
+    - huawei p40 lite 5g
+    - apple iphone 12 pro max
+    - vivo x50 lite
+    - samsung galaxy a21s
+    - nokia 125
+    - nokia 150 (2020)
+    - nokia 9.3 pureview
+    - samsung galaxy a quantum
+    - samsung galaxy z flip 5g
+    - amazon fire hd 8 (2020)
+    - amazon fire hd 8 plus (2020)
+    - xiaomi redmi note 10
+    - realme x50 pro player
+    - huawei y8p
+    - realme x3 superzoom
+    - vivo iqoo z1
+    - huawei enjoy z 5g
+    - honor v6
+    - samsung galaxy s20 5g uw
+    - lg stylo 6
+    - lg v60 thinq 5g uw
+    - lg q61
+    - honor play4 pro
+    - sharp aquos zero 2
+    - vivo x50 pro
+    - samsung galaxy note20 ultra 5g
+    - realme watch
+    - vivo y70s
+    - oppo reno4 pro 5g
+    - oppo reno4 5g
+    - xiaomi redmi 10x 5g
+    - xiaomi redmi 10x pro 5g
+    - realme 6s
+    - motorola moto g pro
+    - gionee k6
+    - vivo x50 5g
+    - infinix hot 9 pro
+    - nokia c5 endi
+    - nokia c2 tava
+    - nokia c2 tennen
+    - samsung galaxy a71 5g uw
+    - xiaomi redmi 9c nfc
+    - xiaomi redmi 9c
+    - xiaomi redmi 9a
+    - vivo x50 pro+
+    - zte axon 11 se 5g
+    - zte nubia red magic 5g lite
+    - honor play4
+    - zte axon 11 4g
+    - infinix hot 9 play
+    - motorola moto g fast
+    - motorola moto e (2020)
+    - oppo a12s
+    - oneplus nord
+    - motorola one fusion+
+    - vivo z5x (2020)
+    - huawei p smart s
+    - ulefone armor x7 pro
+    - ulefone note 8p
+    - vivo v19 neo
+    - asus rog phone 3
+    - htc desire 20 pro
+    - htc u20 5g
+    - huawei enjoy 20 pro
+    - tecno spark power 2
+    - allview soul x7 style
+    - allview soul x7 pro
+    - allview viva 803g
+    - honor 30 youth
+    - xiaomi mi watch revolve
+    - honor x10 max 5g
+    - motorola moto g 5g plus
+    - realme c11
+    - realme narzo
+    - realme c3i
+    - vivo iqoo z1x
+    - blu g80
+    - blu g90
+    - samsung galaxy a01 core
+    - samsung galaxy watch3
+    - samsung galaxy m01 core
+    - motorola one fusion
+    - xiaomi poco m2 pro
+    - realme x50 5g
+    - tcl 10 plus
+    - tcl 10 se
+    - ulefone armor 9
+    - lava z61 pro
+    - tecno spark 5 pro
+    - samsung galaxy note20 5g
+    - realme c15
+    - oppo reno4 pro
+    - asus rog phone 3 strix
+    - lenovo legion duel
+    - vivo y51s
+    - realme 6i (india)
+    - oppo a72 5g
+    - samsung galaxy m31s
+    - vivo iqoo u1
+    - samsung galaxy m01s
+    - samsung galaxy tab s7+
+    - samsung galaxy tab s7
+    - samsung galaxy note20
+    - zte nubia red magic 5s
+    - lg velvet
+    - zte nubia watch
+    - samsung galaxy z fold2 5g
+    - ulefone note 9p
+    - tecno pouvoir 4
+    - tecno pouvoir 4 pro
+    - yezz go 1
+    - vivo s7
+    - oppo reno4
+    - xiaomi redmi k30 ultra
+    - xiaomi black shark 3s
+    - nokia c3
+    - realme v5 5g
+    - xiaomi redmi 9 prime
+    - oppo k7 5g
+    - samsung galaxy note20 ultra
+    - vivo x50
+    - htc wildfire e2
+    - cat s62 pro
+    - blu studio x10
+    - lenovo m10 plus
+    - xiaomi mi 10 ultra
+    - huawei matepad 10.8
+    - huawei enjoy tablet 2
+    - huawei childrens watch 4x
+    - microsoft surface duo
+    - vivo s1 prime
+    - infinix smart 5
+    - lg q92 5g
+    - realme c12
+    - zte axon 20 5g
+    - samsung galaxy a51 5g uw
+    - vivo iqoo 5 pro 5g
+    - vivo iqoo 5 5g
+    - motorola one vision plus
+    - oppo reno4 z 5g
+    - oppo a53
+    - samsung galaxy s20 fe 5g
+    - lg velvet 5g uw
+    - asus zenfone 7
+    - realme x7 pro
+    - yezz art 1
+    - lg k31
+    - ulefone armor 8
+    - motorola moto g9 (india)
+    - google pixel 4a 5g
+    - google pixel 5
+    - motorola moto g9 play
+    - oppo f17 pro
+    - gionee k3 pro
+    - yezz liv 2 lte
+    - gionee max
+    - gionee m30
+    - asus zenfone 7 pro
+    - vivo y20
+    - vivo y20i
+    - sony xperia 5 ii
+    - fairphone 3
+    - xiaomi redmi 9 (india)
+    - xiaomi redmi 9i
+    - realme 7 pro
+    - infinix zero 8
+    - blu g90 pro
+    - nokia 3.4
+    - lenovo tab p11 pro
+    - lenovo tab m10 hd gen 2
+    - motorola one 5g
+    - realme x7
+    - realme v3
+    - motorola razr 5g
+    - samsung galaxy tab a7 10.4 (2020)
+    - samsung galaxy a42 5g
+    - oppo f17
+    - ulefone note 8
+    - xiaomi poco x3 nfc
+    - realme 7 (asia)
+    - huawei enjoy 20 plus 5g
+    - huawei enjoy 20 5g
+    - tcl 10 tabmax
+    - oneplus 8t
+    - tecno camon 16 premier
+    - honor watch gs pro
+    - honor watch es
+    - honor pad 6
+    - honor pad x6
+    - huawei watch gt 2 pro
+    - huawei watch fit
+    - samsung galaxy s20 fe
+    - huawei y9a
+    - realme 7i
+    - oppo a93
+    - motorola moto g9 plus
+    - oppo reno4 se
+    - xiaomi poco m2
+    - vivo v20
+    - motorola moto e7 plus
+    - xiaomi mi 10t pro 5g
+    - honor 30i
+    - realme c17
+    - ulefone armor x5 pro
+    - ulefone armor 9e
+    - lg wing 5g
+    - vivo y51 (2020, september)
+    - apple ipad air (2020)
+    - apple ipad 10.2 (2020)
+    - apple watch se
+    - apple watch series 6 aluminum
+    - apple watch series 6
+    - apple watch edition series 6
+    - huawei matepad 5g
+    - lg q31
+    - infinix hot 10
+    - blu g50
+    - oppo a32
+    - realme narzo 20 pro
+    - realme narzo 20
+    - realme narzo 20a
+    - lg k71
+    - lg k42
+    - nokia 2.4
+    - xiaomi poco x3
+    - vivo v20 pro
+    - lg k52
+    - lg k62
+    - oppo reno4 lite
+    - vivo watch
+    - vivo v20 se
+    - nokia 7.3
+    - samsung galaxy a72
+    - blu g50 plus
+    - tecno spark 6
+    - ulefone armor 8 5g
+    - xiaomi mi 10t 5g
+    - oppo a33 (2020)
+    - huawei p smart 2021
+    - samsung galaxy tab active3
+    - gionee s12 lite
+    - oppo reno4 f
+    - vivo x50e
+    - xiaomi mi 10t lite 5g
+    - xiaomi mi watch
+    - xiaomi poco c3
+    - samsung galaxy tab a 8.4 (2020)
+    - t-mobile revvl 4
+    - t-mobile revvl 4+
+    - t-mobile revvl 5g
+    - tcl 10 tabmid
+    - tcl movetime
+    - oppo a73
+    - alcatel 3x (2020)
+    - coolpad cool 12a
+    - coolpad cool 10
+    - ulefone armor x8
+    - huawei matepad t 10s
+    - realme 7 (global)
+    - samsung galaxy m31 prime
+    - oppo a15
+    - samsung galaxy f41
+    - oppo a73 5g
+    - alcatel go flip 3
+    - alcatel go flip v
+    - oppo a53s
+    - tecno camon 16
+    - vivo y73s
+    - realme q2 pro
+    - realme q2
+    - realme q2i
+    - apple iphone 12 pro
+    - apple iphone 12
+    - apple iphone 12 mini
+    - motorola moto e7
+    - oneplus 8t+ 5g
+    - coolpad cool 6
+    - infinix note 8
+    - infinix note 8i
+    - infinix hot 10 lite
+    - xiaomi redmi k30s
+    - motorola one 5g uw
+    - huawei nova 7 se 5g youth
+    - wiko y61
+    - wiko view4 lite
+    - wiko sunny4
+    - wiko view3 lite
+    - wiko y60
+    - wiko sunny3 plus
+    - wiko tommy3 plus
+    - wiko jerry3
+    - huawei mate 40 pro
+    - htc desire 20+
+    - vivo y20s
+    - vivo y70
+    - nokia 225 4g
+    - nokia 215 4g
+    - gionee s12
+    - blu j7l
+    - blu j5l
+    - blu j6 2020
+    - blu c6l 2020
+    - blu c6 2020
+    - blu c5l 2020
+    - xiaomi mi watch color sports
+    - vivo x51 5g
+    - vivo iqoo u1x
+    - vivo y3s
+    - vivo y11s
+    - huawei y7a
+    - nokia 2 v tella
+    - tecno spark 6 air
+    - tecno pova
+    - huawei mate 40 pro+
+    - huawei mate 40 rs porsche design
+    - vivo y30 (china)
+    - huawei mate 40
+    - huawei watch gt 2 porsche design
+    - huawei mate 30e pro 5g
+    - oneplus nord n10 5g
+    - oneplus nord n100
+    - lg q52
+    - tcl 10 5g uw
+    - realme c15 qualcomm edition
+    - ulefone watch
+    - ulefone watch gps
+    - ulefone watch pro
+    - lg k92 5g
+    - honor 10x lite
+    - lenovo a7
+    - zte blade 20 5g
+    - micromax in 1b
+    - micromax in note 1
+    - realme watch s
+    - zte blade a7s 2020
+    - vivo s7e
+    - oppo k7x
+    - motorola moto g9 power
+    - nokia 8000 4g
+    - nokia 6300 4g
+    - motorola moto g 5g
+    - samsung galaxy m12 (india)
+    - huawei nova 8 se
+    - samsung galaxy m21s
+    - xiaomi redmi note 9 5g
+    - xiaomi redmi note 9 pro 5g
+    - motorola moto g stylus (2021)
+    - nokia c1 plus
+    - lg w31+
+    - lg w31
+    - lg w11
+    - nokia 8 v 5g uw
+    - oppo reno5 5g
+    - realme 7 5g
+    - xiaomi redmi 9at
+    - htc wildfire e1
+    - htc wildfire e1 plus
+    - htc wildfire e1 lite
+    - htc wildfire e
+    - samsung galaxy s21 ultra 5g
+    - lg k22
+    - yezz art 1 pro
+    - xiaomi poco m3
+    - gionee m12
+    - zte axon 20 4g
+    - vivo y12s
+    - samsung galaxy a02s
+    - samsung galaxy a12
+    - lenovo k12 pro
+    - oppo reno5 pro 5g
+    - blu g50 mega
+    - oppo a53 5g
+    - xiaomi redmi note 9 4g
+    - xiaomi redmi watch
+    - zte watch live
+    - tcl 20 5g
+    - zte blade 20 pro 5g
+    - zte blade v2020 5g
+    - xiaomi mi 10i 5g
+    - xiaomi redmi 9 power
+    - zte axon 20 5g extreme
+    - alcatel 1se (2020)
+    - nokia 3 v
+    - amazon fire hd 10 (2019)
+    - vivo y51 (2020, december)
+    - infinix zero 8i
+    - vivo y52s
+    - nokia 5.4
+    - samsung galaxy s21+ 5g
+    - samsung galaxy s21 5g
+    - oppo find x3 pro
+    - gionee k30 pro
+    - ulefone armor 10 5g
+    - lenovo k12 (china)
+    - samsung galaxy a52 5g
+    - oppo reno5 pro+ 5g
+    - xiaomi mi watch lite
+    - tecno camon 16 pro
+    - tecno camon 16 s
+    - tecno spark 6 go
+    - tecno spark go 2020
+    - gionee p12
+    - vivo iqoo u3
+    - blu view mega
+    - samsung galaxy a52
+    - huawei nova 8 pro 5g
+    - vivo y30 standard
+    - oppo a15s
+    - huawei nova 8 5g
+    - infinix smart hd 2021
+    - samsung galaxy a72 5g
+    - samsung galaxy a32 5g
+    - lenovo k12
+    - realme 7i (global)
+    - realme watch s pro
+    - huawei enjoy 20 se
+    - vivo v20 2021
+    - oppo reno5 4g
+    - vivo x60 pro (china)
+    - xiaomi mi 11
+    - vivo x60 (china)
+    - vivo y20 2021
+    - vivo y20a
+    - vivo y31s
+    - xiaomi redmi note 9t
+    - xiaomi redmi note 10 pro
+    - samsung galaxy m02s
+    - realme v15 5g
+    - xiaomi mi 11 lite
+    - lava z6
+    - lava z4
+    - lava z2
+    - lava z1
+    - xiaomi redmi 9t
+    - motorola one 5g ace
+    - motorola moto g power (2021)
+    - motorola moto g play (2021)
+    - vivo iqoo 7
+    - tcl 20 se
+    - tcl nxtpaper
+    - tcl tab 10s
+    - ulefone note 7t
+    - alcatel 3l (2021)
+    - alcatel 1s (2021)
+    - htc desire 21 pro 5g
+    - alcatel 1l (2021)
+    - oppo a93 5g
+    - vivo y51a
+    - coolpad cool s
+    - lenovo tab p11
+    - honor v40 5g
+    - realme x9
+    - realme gt 5g
+    - realme c20
+    - vivo y20g
+    - vivo y31
+    - samsung galaxy s21
+    - oppo a11k
+    - tecno spark 4
+    - vivo x60 pro+
+    - huawei mate x2
+    - sony xperia 10 iii
+    - infinix hot 10 play
+    - nokia 1.4
+    - honor view40
+    - ulefone armor mini 2
+    - oppo a55 5g
+    - vivo s7t
+    - motorola edge s
+    - zte blade x1 5g
+    - sony xperia pro
+    - samsung galaxy a02
+- lookup: os
+  examples: |
+    - android
+    - ios
+
+- intent: greet
+  examples: |
+    - alo
+    - chào shop
+    - hi
+    - hello
+    - chào
+    - ê shop
+    - cho tôi hỏi
+    - alo Shop
+    - mình có vài câu hỏi
+    - tôi có vài câu hỏi
+    - có ai ở đây không
+    - bạn ơi
+    - anh ơi
+    - chị ơi
+    - shop ơi
+    - có ai giúp mình không
+    - bạn ơi, mình có thắc mắc
+
+- intent: out_of_scope
+  examples: |
+    - tôi muốn ăn cơm
+    - 1 + 1 = ?
+    - tổng thống mỹ là ai?
+    - hoa huệ đẹp quá
+
+- intent: goodbye
+  examples: |
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - oke
+    - đồng ý
+    - được
+    - nhất chí
+    - oke shop
+    - ok
+    - đc
+
+- intent: deny
+  examples: |
+    - không
+    - no
+    - từ chối
+    - không đồng ý
+    - không hẳn
+    - không chắc
+    - không muốn
+
+
+- intent: device_info
+  examples: |
+    - cho tôi thông tin về [nokia 5.1](device_name)
+    - cho tôi thông tin về [iphone 8](device_name)
+    - giới thiệu thông tin về điện thoại [asus zenfone live zb501kl](device_name)
+    - nói cho tôi cấu hình chi tiết của [sony xperia xz premium](device_name)
+    - giới thiệu thông số kĩ thuật của [lenovo tab 4 8](device_name)
+    - thông số kĩ thuật của [xiaomi redmi y3](device_name)
+    - shop hãy nói về thông số của điện thoại [lenovo tab 4 8 plus](device_name) đi
+    - bạn hãy giới thiệu cấu hình của [vivo y25](device_name)
+    - cấu hình của [lava z10](device_name) là gì
+    - tóm tắt cấu hình của [oppo reno2 f](device_name)
+    - tóm tắt thông số kĩ thuật của [realme 3i](device_name)
+    - tóm tắt cấu hình của [xiaomi redmi y3](device_name)
+    - cấu hình của [samsung gear s3 classic lte](device_name)
+    - miêu tả cấu hình của [micromax canvas evok power q4260](device_name)
+    - cho mình xem cấu hình của máy [asus zenfone 4 selfie pro zd552kl](device_name)
+    - cho tôi thông tin về [redmi note 4](device_name)
+    - cấu hình sản phẩm [xiaomi black shark 2 pro](device_name)
+    - cấu hình của [blackberry aurora](device_name) là gì
+    - shop hãy nói về thông số của điện thoại [micromax canvas infinity pro](device_name)
+    - xem cấu hình điện thoại [lg k40s](device_name)
+    - cấu hình sản phẩm [galaxy note10](device_name)
+
+- intent: wondering
+  examples: |
+    - mình đang muốn mua sản phẩm mới
+    - tư vấn cho tôi và mẫu điện thoại
+    - tôi đang tìm kiếm điện thoại mới
+    - tôi đang băn khoăn khi lựa chọn điện thoại
+    - khó khăn trong việc lựa chọn
+    - tư vấn trong việc lựa chọn điện thoại
+    - tư vấn giúp tôi về việc lựa chọn điện thoại
+    - shop hãy chọn giúp mình điện thoại để mua với
+    - thời điểm này nên cân nhắc mua điện thoại nào
+    - hãy tư vấn cho mình lựa chọn điện thoại với
+    - mình đang muốn mua điện thoại mới
+    - tôi đang cân nhắc mua điện thoại mới
+    - tư vấn giúp mình về việc mua điện thoại
+
+- intent: price_info
+  examples: |
+    - giá điện thoại đó bao nhiêu
+    - cho mình hỏi giá điện thoại đó bao nhiêu
+    - bao nhiêu tiền cái điện thoại đó
+    - điện thoại đó bao nhiêu tiền
+
+- intent: bot_challenge
+  examples: |
+    - bạn là ai?
+    - bạn là nhân viên tư vấn phải không?
+    - tôi đang nói chuyện với bot phải không?
+    - bạn là bot phải không?
+
+- intent: wondering_os
+  examples: |
+    - mình muốn tìm hiểu về điện thoại [android](os)
+    - tôi quan tâm đến điện thoại [android](os)
+    - tôi có nhu cầu về điện thoại [ios](os)
+    - tôi quan tâm đến [ios](os)
+    - mình có nhu cầu tìm hiểu về [android](os)
+    - [android](os)
+    - [ios](os)
