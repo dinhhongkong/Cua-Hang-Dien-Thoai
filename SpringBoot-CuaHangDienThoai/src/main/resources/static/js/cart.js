@@ -166,7 +166,8 @@ document.addEventListener("DOMContentLoaded", function () {
         let price = parseInt(
           checkBox
             .closest(".block__product-item__outer")
-            .querySelector(".product__price--show").innerText,
+            .querySelector(".product__price--show")
+            .innerText.replace(/\.|,|đ/g, ""),
           10,
         );
         // console.log(price);
@@ -180,8 +181,8 @@ document.addEventListener("DOMContentLoaded", function () {
           ).value,
           10,
         );
-        // console.log(price);
-        // console.log(quantity);
+        console.log("gia tien" + price);
+        console.log("so Luong" + quantity);
         totalPrice += quantity * price;
         // console.log(totalPrice);
       }
