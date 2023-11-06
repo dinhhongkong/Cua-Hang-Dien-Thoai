@@ -22,9 +22,9 @@ public class RecommendationServiceImpl implements RecommendationService {
     }
 
     @Override
-    public String getRecommendOfUser(int userId) {
+    public String getRecommendOfUser(Long userId) {
         String uri = "http://localhost:5000/cothebanquantam";
-        String productId = Integer.toString(userId);
+        String productId = userId.toString();
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri)
                 .queryParam("user_id", userId);
         String finalUrl = builder.toUriString();

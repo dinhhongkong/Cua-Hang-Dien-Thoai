@@ -29,8 +29,14 @@ app = Flask(__name__)
 def webhook():
     user_message = request.json
     rasa_response = requests.post(RASA_API_URL, json={"sender": user_message["sender"], "message": user_message["message"].lower()})
-
-    bot_response = rasa_response.json()[0]['text'] if rasa_response.json else "Xin lỗi em không hiểu ý anh chị, anh chị có thể nhắc lại câu hỏi hoặc đổi câu hỏi khác được không ạ"
+    if rasa_response.status_code == 200:
+        rasa_json = rasa_response.json()
+        if rasa_json and isinstance(rasa_json, list) and len(rasa_json) > 0:
+            bot_response = rasa_json[0]['text']
+        else:
+            bot_response = "Xin lỗi em không hiểu ý anh chị, anh chị có thể nhắc lại câu hỏi hoặc đổi câu hỏi khác được không ạ"
+    else:
+        bot_response = "Có lỗi xảy ra khi gửi yêu cầu đến Rasa API"
     return jsonify({'response': bot_response})
 
 
@@ -222,7 +228,7 @@ def recommendations():
             for i in top_k_recommendations:
                 recommended_item_ids.append(int(index_to_itemdata[i[0]]))
             print(recommended_item_ids)
-            return jsonify({"related_products_id": recommended_item_ids})
+            return jsonify(recommended_item_ids)
         else:
             return jsonify({"related_products_id": "khong co san pham de xuat cho nguoi dung nay"})
     else:

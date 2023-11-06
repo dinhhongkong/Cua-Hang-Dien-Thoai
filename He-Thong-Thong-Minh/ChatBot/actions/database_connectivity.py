@@ -1,4 +1,5 @@
 import pyodbc
+import random
 
 SERVER = 'KONGDINH'
 DATABASE = 'CUA_HANG_DIEN_THOAI'
@@ -22,7 +23,8 @@ def Get_device_name(device_name):
             'ram': r.ram,
             'cpu': r.chipset,
             'storage': r.storage,
-            'battery_size': r.battery_size
+            'battery_size': r.battery_size,
+            'picture': r.picture
         }
         query.append(device_info)
 
@@ -43,6 +45,28 @@ def Get_price(device_name):
         return formatted_gia
     else:
         return None
+
+def Get_phone_segment(low_price, high_price):
+    conn = pyodbc.connect(connectionString)
+    SQL_QUERY = f"SELECT *  FROM devices WHERE gia between '{low_price}' and '{high_price}'"
+    cursor = conn.cursor()
+    cursor.execute(SQL_QUERY)
+    query = []
+    for r in cursor.fetchall():
+        device_info = {
+            'device_name': r.device_name,
+            'os': r.os,
+            'ram': r.ram,
+            'cpu': r.chipset,
+            'storage': r.storage,
+            'battery_size': r.battery_size,
+            'picture': r.picture
+        }
+        query.append(device_info)
+    conn.close()
+
+    return random.sample(query, len(query) if len(query) < 5 else 5)
+
 
 if __name__ == "__main__":
     # print(Get_price("Apple iPhone 8"))

@@ -1,6 +1,14 @@
 version: "3.1"
 
 nlu:
+- lookup: phone_segment
+  examples: |
+    - giá rẻ
+    - tầm trung
+    - cận cao cấp
+    - cao cấp
+    
+
 - lookup: device_name
   examples: |
     - apple iphone 8
@@ -2115,6 +2123,7 @@ nlu:
     - zte blade x1 5g
     - sony xperia pro
     - samsung galaxy a02
+
 - lookup: os
   examples: |
     - android
@@ -2147,16 +2156,6 @@ nlu:
     - tổng thống mỹ là ai?
     - hoa huệ đẹp quá
 
-- intent: goodbye
-  examples: |
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
 
 - intent: affirm
   examples: |
@@ -2242,3 +2241,16 @@ nlu:
     - mình có nhu cầu tìm hiểu về [android](os)
     - [android](os)
     - [ios](os)
+
+- intent: ask_phone_segment
+  examples: |
+    - giới thiệu cho tôi mẫu điện thoại [cao cấp](phone_segment) với
+    - cho tôi xem vài mẫu điện thoại [giá rẻ](phone_segment) 
+    - cho tôi xem một số điện thoại phân khúc [tầm trung](phone_segment) đi shop
+    - gợi ý cho tôi vài mẫu điện thoại [cận cao cấp](phone_segment)
+    - giới thiệu vài điện thoại phân khúc [cao cấp](phone_segment)
+    - có những điện thoại nào thuộc phân khúc [cận cao cấp](phone_segment)
+    - gợi ý vài điện thoại [tầm trung](phone_segment) đi shop
+    - gợi ý một số điện thoại [giá rẻ](phone_segment)
+    - tôi muốn tham khảo vài mẫu điện thoại [cận cao cấp](phone_segment)
+    - tư vấn vài điện thoại thuộc phân khúc [giá rẻ](phone_segment)

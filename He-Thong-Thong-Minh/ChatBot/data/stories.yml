@@ -23,6 +23,18 @@ stories:
   - intent: price_info
   - action: action_get_device_price
 
+- story: get phone_segment
+  steps:
+  - intent: ask_phone_segment
+  - action: action_extract_segment
+
+- story: greet phone_segment 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_phone_segment
+  - action: action_extract_segment
+
 #- story: consulting
 #  steps:
 #    - intent: greet

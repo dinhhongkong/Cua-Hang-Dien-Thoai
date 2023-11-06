@@ -2,6 +2,7 @@ package com.cuahangdienthoai.controller;
 
 import com.cuahangdienthoai.dto.DevicePayDTO;
 import com.cuahangdienthoai.dto.DeviceQuantityDTO;
+import com.cuahangdienthoai.entity.CustomUserDetails;
 import com.cuahangdienthoai.entity.Device;
 import com.cuahangdienthoai.service.BrandService;
 import com.cuahangdienthoai.service.DeviceService;
@@ -61,11 +62,24 @@ public class DeviceController {
     }
 
     @GetMapping("/{deviceName}/info")
-    public String info(@PathVariable String deviceName, Model model) {
+    public String info(@PathVariable String deviceName, Model model, Authentication authentication) {
+        CustomUserDetails userDetails = authentication == null ? null :(CustomUserDetails) authentication.getPrincipal();
+
         String name = deviceName.replace("-", " ");
         Device device = deviceService.findByDeviceName(name);
         model.addAttribute("device", device);
-        model.addAttribute("recommendedDevice", deviceService.RecommendOfDevices(device.getId()));
+        try {
+            // sản phẩm liên quan
+            model.addAttribute("recommendedDevice", deviceService.RecommendOfDevices(device.getId()));
+            if ( userDetails != null) {
+                // có thể bạn quan tâm
+                model.addAttribute("recommendForUser", deviceService.RecommendForUser(userDetails.getUser().getId()));
+            }
+        }
+        catch (Exception e) {
+
+        }
+
         return "device-info";
     }
 

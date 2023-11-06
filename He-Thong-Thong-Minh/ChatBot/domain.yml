@@ -2,7 +2,6 @@ version: "3.1"
 
 intents:
   - greet
-  - goodbye
   - out_of_scope
   - affirm
   - deny
@@ -11,11 +10,13 @@ intents:
   - price_info
   - wondering
   - wondering_os
+  - ask_phone_segment
 
 entities:
   - device_name
   - os
   - brand
+  - phone_segment
 
 slots:
   device_name:
@@ -23,6 +24,12 @@ slots:
     mappings:
       - type: from_entity
         entity: device_name
+
+  segment:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: phone_segment
 
 responses:
   utter_greet:
@@ -32,8 +39,6 @@ responses:
   utter_happy:
   - text: "Hihi :)"
 
-  utter_goodbye:
-  - text: "Tạm biệt anh chị, chúc anh chị ngày mới tốt lành"
 
   utter_fallback:
   - text: "Em xin lỗi, em chưa hiểu ý muốn của anh chị ạ. Anh chị có thể nói lại được không?"
@@ -49,6 +54,7 @@ actions:
   - action_extract_device
   - action_get_device_price
   - action_extract_device_os
+  - action_extract_segment
 
 session_config:
   session_expiration_time: 60

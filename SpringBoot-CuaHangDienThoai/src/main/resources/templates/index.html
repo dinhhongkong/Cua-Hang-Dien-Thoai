@@ -60,49 +60,49 @@
         <div class="home-slider" id="owl-home">
             <div class="slider-banner home-top owl-carousel">
                 <a aria-label="slide" data-cate="0" data-place="2053"
-                   href="https://www.thegioididong.com/dtdd/iphone-15-pro-max"
+                   href="#"
                    onclick="jQuery.ajax({ url: '/bannertracking?bid=81229&amp;r='+ (new Date).getTime(), async: true, cache: false });"><img
                         width="600" height="180"
                         src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2023/09/banner/iPhone-15-Pro-720-220-720x220.png"
                         alt="ip 14"></a>
                 <a aria-label="slide" data-cate="0" data-place="2053"
-                   href="https://www.thegioididong.com/khuyen-mai-soc-oppo"
+                   href="#"
                    onclick="jQuery.ajax({ url: '/bannertracking?bid=80414&amp;r='+ (new Date).getTime(), async: true, cache: false });"><img
                         width="600" height="180"
                         src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2023/09/banner/Le-hoi-OPPO-720-220-720x220-4.png"
                         alt="R10"></a>
                 <a aria-label="slide" data-cate="0" data-place="2053"
-                   href="https://www.thegioididong.com/dtdd/realme-c51"
+                   href="#"
                    onclick="jQuery.ajax({ url: '/bannertracking?bid=80708&amp;r='+ (new Date).getTime(), async: true, cache: false });"><img
                         width="600" height="180" loading="lazy" class="lazyload owl-lazy"
                         data-src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2023/09/banner/Realme-C51-tuu-truong-720-220-720x220-11.png"
                         alt="Realme C51"></a>
                 <a aria-label="slide" data-cate="0" data-place="2053" rel="nofollow"
-                   href="https://www.thegioididong.com/dtdd/vivo-y36"
+                   href="#"
                    onclick="jQuery.ajax({ url: '/bannertracking?bid=81098&amp;r='+ (new Date).getTime(), async: true, cache: false });"><img
                         width="600" height="180" loading="lazy" class="lazyload owl-lazy"
                         data-src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2023/08/banner/y36-720-220-720x220-1.png"
                         alt="Vivo Y36"></a>
                 <a aria-label="slide" data-cate="0" data-place="2053" rel="nofollow"
-                   href="https://www.thegioididong.com/dong-ho-thong-minh/befit-watch-s-day-silicone"
+                   href="#"
                    onclick="jQuery.ajax({ url: '/bannertracking?bid=81342&amp;r='+ (new Date).getTime(), async: true, cache: false });"><img
                         width="600" height="180" loading="lazy" class="lazyload owl-lazy"
                         data-src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2023/09/banner/befit-hot-720-220-720x220-2.png"
                         alt="BeFit"></a>
                 <a aria-label="slide" data-cate="0" data-place="2053"
-                   href="https://www.thegioididong.com/op-lung-gia-soc"
+                   href="#"
                    onclick="jQuery.ajax({ url: '/bannertracking?bid=79917&amp;r='+ (new Date).getTime(), async: true, cache: false });"><img
                         width="600" height="180" loading="lazy" class="lazyload owl-lazy"
                         data-src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2023/09/banner/720x220--1--540x165-1.jpg"
                         alt="pk"></a>
                 <a aria-label="slide" data-cate="0" data-place="2053"
-                   href="https://www.thegioididong.com/khuyen-mai-soc-galaxy-z-series"
+                   href="#"
                    onclick="jQuery.ajax({ url: '/bannertracking?bid=80902&amp;r='+ (new Date).getTime(), async: true, cache: false });"><img
                         width="600" height="180" loading="lazy" class="lazyload owl-lazy"
                         data-src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2023/09/banner/z5-720-220-720x220-2.png"
                         alt="A series"></a>
                 <a aria-label="slide" data-cate="0" data-place="2053"
-                   href="https://www.thegioididong.com/khuyen-mai-soc-smartphone-cao-cap"
+                   href="#"
                    onclick="jQuery.ajax({ url: '/bannertracking?bid=79701&amp;r='+ (new Date).getTime(), async: true, cache: false });"><img
                         width="600" height="180" loading="lazy" class="lazyload owl-lazy"
                         data-src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2023/08/banner/SP-720-220-720x220.png"
@@ -151,7 +151,7 @@
                                                                                src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2023/04/content/icon-50x50-2.png"><span>Giá Rẻ Quá</span>
                                             </p>
                                             <h3 th:text="${device.deviceName}"></h3>
-                                            <strong class="price" th:text="${device.gia +'₫'}">
+                                            <strong class="price" th:text="${device.getPriceFormat() + '₫' }">
                                                 <small>-13%</small>
                                             </strong>
                                             <p class="vote-txt">

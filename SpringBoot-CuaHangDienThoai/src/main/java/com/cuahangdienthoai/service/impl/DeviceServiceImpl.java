@@ -21,7 +21,6 @@ import java.util.Optional;
 @Service
 public class DeviceServiceImpl implements DeviceService {
     private DeviceRepository deviceRepository;
-
     private RecommendationServiceImpl recommendationService;
 
     @Autowired
@@ -46,6 +45,28 @@ public class DeviceServiceImpl implements DeviceService {
     @Override
     public ArrayList<Device> RecommendOfDevices(Long deviceId) {
         String jsonString = recommendationService.getRecommendOfDevices(deviceId);
+        ObjectMapper objectMapper = new ObjectMapper();
+        ArrayList<Long> devicesId;
+        ArrayList<Device> devices = new ArrayList<>();
+        try {
+            devicesId = objectMapper.readValue(jsonString, new TypeReference<ArrayList<Long>>(){});
+            for(Long item: devicesId ) {
+                Optional<Device> device =  deviceRepository.findById(item);
+                if( device.isPresent()) {
+                    devices.add(device.get());
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return devices ;
+    }
+
+    @Override
+    public ArrayList<Device> RecommendForUser(Long userId) {
+        String jsonString = recommendationService.getRecommendOfUser(userId);
         ObjectMapper objectMapper = new ObjectMapper();
         ArrayList<Long> devicesId;
         ArrayList<Device> devices = new ArrayList<>();
