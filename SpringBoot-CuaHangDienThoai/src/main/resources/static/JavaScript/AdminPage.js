@@ -359,12 +359,14 @@ function userUnlock(userName){
 }
 
 function trainAI(){
+    console.log("asdsad")
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "/Admin/train", true)
     xhr.setRequestHeader("content-Type", "application/x-www-form-urlencoded")
     let csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
     let csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
     xhr.setRequestHeader(csrfHeader,csrfToken);
+    xhr.send()
     xhr.onreadystatechange = function (){
         if(xhr.readyState === 4 && xhr.status === 200){
             alert("Hoàn thành");
@@ -532,6 +534,9 @@ btnYes.forEach((btn) =>{
         else if(func == "userUnlock"){
             let userName = btn.getAttribute("data-id")
             userUnlock(userName)
+        }
+        else if(func == "trainai"){
+            trainAI();
         }
     })
 })
