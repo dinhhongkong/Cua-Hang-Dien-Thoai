@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.text.DecimalFormat;
+
 @Entity
 @Data
 @AllArgsConstructor @NoArgsConstructor
@@ -27,6 +29,12 @@ public class ChiTietDonHang {
     private Integer soLuong;
 
     private Double gia;
+
+    public String getPriceFormat(){
+        long roundedMoney = Math.round(gia);
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        return decimalFormat.format(roundedMoney);
+    }
 
 
 

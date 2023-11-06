@@ -29,91 +29,40 @@
 <div class="container">
     <article class="card">
         <header class="card-header"> My Orders / Tracking </header>
-        <div class="card-body" th:each="donhang: ${listDonHang}">
-            <h6>Order ID: OD45345345435</h6>
+        <div class="card-body shadow-lg mt-6 mb-6" th:each="donhang: ${listDonHang}">
+            <h6>Order ID: <span th:text='${donhang.id}'></span> </h6>
             <article class="card" >
                 <div class="card-body row">
                     <div class="col"> <strong>Thời gian đặt hàng:</strong> <br> <span th:text='${donhang.getNgayLap()}'></span> </div>
                     <div class="col"> <strong>Số điện thoại đặt hàng:</strong> <br> <i class="fa fa-phone"></i> <span th:text='${donhang.sdt}'></span> </div>
                     <div class="col"> <strong>Địa chỉ giao tới:</strong> <br> <span th:text='${donhang.diaChi}'></span> </div>
-                    <div class="col"> <strong>Trạng thái:</strong> <br> <span th:text='${donhang.trangThai}'> </span></div>
+                    <div class="col"> <strong>Trạng thái:</strong> <br> <span th:text='${donhang.trangThaiDonHang()}'> </span></div>
                 </div>
             </article>
             <div class="track">
-                <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order confirmed</span> </div>
-                <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text"> Picked by courier</span> </div>
-                <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> On the way </span> </div>
-                <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Ready for pickup</span> </div>
+                <div class="step" th:classappend="${donhang.trangThai == 0} ? 'active' : ''"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Xác nhận đơn hàng</span> </div>
+                <div class="step" th:classappend="${donhang.trangThai == 1} ? 'active' : ''"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Đơn hàng đang được đóng gói</span> </div>
+                <div class="step" th:classappend="${donhang.trangThai == 2} ? 'active' : ''"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text">Đang vận chuyển đơn hàng</span> </div>
+                <div class="step" th:classappend="${donhang.trangThai == 3} ? 'active' : ''"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Giao thành công</span> </div>
             </div>
             <hr>
             <ul class="row">
-                <li class="col-md-4">
+                <li class="col-md-4" th:each="ctdonhang: ${donhang.listCTDonHang}">
                     <figure class="itemside mb-3">
-                        <div class="aside"><img src="https://i.imgur.com/iDwDQ4o.png" class="img-sm border"></div>
+                        <div class="aside"><img th:src="${ctdonhang.device.picture}" class="img-sm border"></div>
                         <figcaption class="info align-self-center">
-                            <p class="device-name">Dell Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$950 </span>
+                            <p class="device-name" th:text='${ctdonhang.device.deviceName}'>Dell Laptop with 500GB HDD <br> 8GB RAM</p>
+                            <span class="text-muted" th:text='${"Giá: " + ctdonhang.getPriceFormat() +"₫"}' ></span>
+                            <br>
+                            <span class="text-muted" th:text='${ "Số lượng: "+ ctdonhang.soLuong}' ></span>
                         </figcaption>
                     </figure>
                 </li>
-                <li class="col-md-4">
-                    <figure class="itemside mb-3">
-                        <div class="aside"><img src="https://i.imgur.com/tVBy5Q0.png" class="img-sm border"></div>
-                        <figcaption class="info align-self-center">
-                            <p class="device-name">HP Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$850 </span>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li class="col-md-4">
-                    <figure class="itemside mb-3">
-                        <div class="aside"><img src="https://i.imgur.com/Bd56jKH.png" class="img-sm border"></div>
-                        <figcaption class="info align-self-center">
-                            <p class="device-name">ACER Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$650 </span>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li class="col-md-4">
-                    <figure class="itemside mb-3">
-                        <div class="aside"><img src="https://i.imgur.com/Bd56jKH.png" class="img-sm border"></div>
-                        <figcaption class="info align-self-center">
-                            <p class="device-name">ACER Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$650 </span>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li class="col-md-4">
-                    <figure class="itemside mb-3">
-                        <div class="aside"><img src="https://i.imgur.com/Bd56jKH.png" class="img-sm border"></div>
-                        <figcaption class="info align-self-center">
-                            <p class="device-name">ACER Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$650 </span>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li class="col-md-4">
-                    <figure class="itemside mb-3">
-                        <div class="aside"><img src="https://i.imgur.com/Bd56jKH.png" class="img-sm border"></div>
-                        <figcaption class="info align-self-center">
-                            <p class="device-name">ACER Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$650 </span>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li class="col-md-4">
-                    <figure class="itemside mb-3">
-                        <div class="aside"><img src="https://i.imgur.com/Bd56jKH.png" class="img-sm border"></div>
-                        <figcaption class="info align-self-center">
-                            <p class="device-name">ACER Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$650 </span>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li class="col-md-4">
-                    <figure class="itemside mb-3">
-                        <div class="aside"><img src="https://i.imgur.com/Bd56jKH.png" class="img-sm border"></div>
-                        <figcaption class="info align-self-center">
-                            <p class="device-name">ACER Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$650 </span>
-                        </figcaption>
-                    </figure>
-                </li>
+
             </ul>
+            <p class="h5" th:text="${'Tổng cộng: '+ donhang.getTotal() + 'đ'}"></p>
             <br>
-            <a href="#" class="btn btn-warning" data-abc="true"> <i class="fa fa-chevron-left"></i> Back to orders</a>
+            <a href="/cart" class="btn btn-warning" data-abc="true"> <i class="fa fa-chevron-left"></i> Quay lại giỏ hàng</a>
             <br>
             <hr>
 

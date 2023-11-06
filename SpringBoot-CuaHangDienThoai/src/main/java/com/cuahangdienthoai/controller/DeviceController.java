@@ -2,6 +2,7 @@ package com.cuahangdienthoai.controller;
 
 import com.cuahangdienthoai.dto.DevicePayDTO;
 import com.cuahangdienthoai.dto.DeviceQuantityDTO;
+import com.cuahangdienthoai.dto.PageNumber;
 import com.cuahangdienthoai.entity.CustomUserDetails;
 import com.cuahangdienthoai.entity.Device;
 import com.cuahangdienthoai.entity.UserHistory;
@@ -71,17 +72,8 @@ public class DeviceController {
     @GetMapping("/{deviceName}/info")
     public String info(@PathVariable String deviceName, Model model, Authentication authentication) {
         CustomUserDetails userDetails = authentication == null ? null :(CustomUserDetails) authentication.getPrincipal();
-
         String name = deviceName.replace("-", " ");
         Device device = deviceService.findByDeviceName(name);
-        UserHistory userHistory = new UserHistory();
-        userHistory.setUser_id(userDetails.getUser().getId());
-        userHistory.setItem_id(device.getId());
-        userHistory.setRating(1L);
-        userHistory.setBuy(false);
-        Date currentDate = new Date(System.currentTimeMillis());
-        userHistory.setTimestamp(currentDate);
-        userHistoryService.save(userHistory);
         model.addAttribute("device", device);
         try {
             // sản phẩm liên quan
@@ -89,6 +81,15 @@ public class DeviceController {
             if ( userDetails != null) {
                 // có thể bạn quan tâm
                 model.addAttribute("recommendForUser", deviceService.RecommendForUser(userDetails.getUser().getId()));
+
+                UserHistory userHistory = new UserHistory();
+                userHistory.setUser_id(userDetails.getUser().getId());
+                userHistory.setItem_id(device.getId());
+                userHistory.setRating(1L);
+                userHistory.setBuy(false);
+                Date currentDate = new Date(System.currentTimeMillis());
+                userHistory.setTimestamp(currentDate);
+                userHistoryService.save(userHistory);
             }
         }
         catch (Exception e) {
@@ -103,6 +104,17 @@ public class DeviceController {
     public String allDevices(@RequestParam(defaultValue = "1") int page, Model model) {
         Page<Device> devices = deviceService.findAll(PageRequest.of(page -1, 15));
         model.addAttribute("device", devices);
+        ArrayList<PageNumber> pageNumber = new ArrayList<>();
+
+        int i =  devices.getNumber() < 5 ? 1 : devices.getNumber() -3;
+        for ( ; i < devices.getSize(); i++) {
+            if (pageNumber.size() > 6) {
+                break;
+            }
+            pageNumber.add(new PageNumber("/devices?page="+ i,i));
+        }
+
+        model.addAttribute("page", pageNumber);
         return "devices";
     }
 
@@ -119,6 +131,17 @@ public class DeviceController {
             devices = deviceService.findAll( pageable);
         }
         model.addAttribute("device", devices);
+
+        ArrayList<PageNumber> pageNumber = new ArrayList<>();
+        int i =  devices.getNumber() < 5 ? 1 : devices.getNumber() -3;
+        for ( ; i < devices.getSize(); i++) {
+            if (pageNumber.size() > 6) {
+                break;
+            }
+            pageNumber.add(new PageNumber("/search?keyword="+ keyword + "&page="+i,i));
+        }
+
+        model.addAttribute("page", pageNumber);
         return "devices";
     }
 

@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -55,5 +56,34 @@ public class DonHang {
     @ToString.Exclude
     @JsonIgnore
     private List<ChiTietDonHang> listCTDonHang;
+
+
+    public String trangThaiDonHang() {
+        if (trangThai ==0) {
+            return "Đang chuẩn bị";
+        }
+        else if (trangThai ==1 ) {
+            return "Đang đóng gói";
+        }
+        else if ( trangThai == 2) {
+            return "Đang vận chuyển";
+        }
+        else if ( trangThai == 3) {
+            return "Giao thành công";
+        }
+        return "Đã hủy";
+    }
+
+    public String getTotal() {
+        Long total = 0L;
+        for (ChiTietDonHang item: listCTDonHang ) {
+            total += (long) item.getSoLuong() * item.getGia().intValue();
+        }
+
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        return decimalFormat.format(total);
+    }
+
+
 
 }
