@@ -9875,8 +9875,7 @@
                                                                               href="/dtdd/xiaomi-redmi-note-12-8gb-256gb"
                                                                               class="product-item__name" th:text="${phone.device.deviceName}"> Điện thoại
                                 Xiaomi Redmi Note 12 (8GB/256GB) </a></div>
-                            <span data-v-61b791c9="" class="price"> 5.790.000₫ <!----><strike
-                                    data-v-61b791c9="">6.490.000₫</strike></span></div>
+                            <span  class="price" th:text="${phone.device.getPriceFormat()+'đ'}"> 5.790.000₫ <!----></span></div>
                         <hr data-v-61b791c9="" style="width: 65%; visibility: hidden;">
                         <!---->
                         <!---->
@@ -10257,15 +10256,9 @@
                         <!---->
                         <!---->
                     </div>
+
                     <!---->
-                    <!---->
-                    <!---->
-                    <!---->
-                    <!---->
-                    <!--fragment#146c4669b1b#head-->
-                    <!--fragment#146c4669b1b#tail-->
-                    <!---->
-                    <div data-tmp-total-money-in-all="15585000" class="total-price"><strong>Tổng tiền:</strong><strong>15.585.000₫</strong>
+                    <div data-tmp-total-money-in-all="15585000" class="total-price"><strong>Tổng tiền:</strong><strong th:text="${total} + 'đ'">15.585.000₫</strong>
                     </div>
                 </div>
                 <!---->

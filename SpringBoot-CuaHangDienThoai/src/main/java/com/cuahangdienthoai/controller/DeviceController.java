@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -200,6 +201,12 @@ public class DeviceController {
         ArrayList<DevicePayDTO> devices = deviceService.prepareDeviceForPayment(myData);
         System.out.println("ở get: " + myData);
         model.addAttribute("devices",devices );
+        Integer total = 0;
+        for (DevicePayDTO item: devices ) {
+            total += item.getDevice().getGia().intValue() * item.getQuantity();
+        }
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        model.addAttribute("total",decimalFormat.format(total));
         return "payment-info";
     }
 
