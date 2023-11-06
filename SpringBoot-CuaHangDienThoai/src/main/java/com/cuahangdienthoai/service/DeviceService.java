@@ -7,6 +7,7 @@ import com.cuahangdienthoai.entity.Device;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,5 +27,10 @@ public interface DeviceService  {
     Page<Device> searchProducts(String name, Double minPrice, Double maxPrice, Long brand, Pageable pageable);
 
     List<Device> findAllDevice();
+
+    ArrayList<Device> RecommendOfDevices(Long deviceId);
+
+    ArrayList<Device> RecommendForUser(Long userId);
+
 
 }

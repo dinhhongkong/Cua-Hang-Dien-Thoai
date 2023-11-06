@@ -62,6 +62,7 @@ public class VNPayService {
         donHang.setTrangThai(0);
 
         donHang = donHangRepository.save(donHang);
+
         for(DeviceQuantityDTO item: paymentInfo.getDevices()) {
             ChiTietDonHang ctDonHang = new ChiTietDonHang();
             Device device = deviceService.findById(item.getDeviceId());

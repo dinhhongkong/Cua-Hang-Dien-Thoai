@@ -11,4 +11,6 @@ public interface DonHangService {
     void save(DonHang donhang);
 
     DonHang findDonHangById(long id);
+
+    List<DonHang> findDonHangByUserId(Long userId);
 }

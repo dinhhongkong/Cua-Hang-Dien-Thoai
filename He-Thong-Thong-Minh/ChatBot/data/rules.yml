@@ -1,0 +1,14 @@
+version: "3.1"
+
+rules:
+
+- rule: get price
+  steps:
+  - intent: price_info
+  - action: action_get_device_price
+
+- rule: get device
+  steps:
+  - intent: device_info
+  - action: action_extract_device
+

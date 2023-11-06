@@ -70,7 +70,8 @@ public class DeviceController {
 
     @GetMapping("/{deviceName}/info")
     public String info(@PathVariable String deviceName, Model model, Authentication authentication) {
-        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+        CustomUserDetails userDetails = authentication == null ? null :(CustomUserDetails) authentication.getPrincipal();
+
         String name = deviceName.replace("-", " ");
         Device device = deviceService.findByDeviceName(name);
         UserHistory userHistory = new UserHistory();
@@ -82,7 +83,18 @@ public class DeviceController {
         userHistory.setTimestamp(currentDate);
         userHistoryService.save(userHistory);
         model.addAttribute("device", device);
-        model.addAttribute("recommendedDevice", device);
+        try {
+            // sản phẩm liên quan
+            model.addAttribute("recommendedDevice", deviceService.RecommendOfDevices(device.getId()));
+            if ( userDetails != null) {
+                // có thể bạn quan tâm
+                model.addAttribute("recommendForUser", deviceService.RecommendForUser(userDetails.getUser().getId()));
+            }
+        }
+        catch (Exception e) {
+
+        }
+
         return "device-info";
     }
 

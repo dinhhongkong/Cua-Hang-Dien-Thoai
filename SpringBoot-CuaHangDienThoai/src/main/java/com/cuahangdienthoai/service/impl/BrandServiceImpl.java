@@ -13,7 +13,6 @@ import java.util.Optional;
 @Service
 public class BrandServiceImpl implements BrandService {
     private BrandRepository brandsRepository;
-
     @Autowired
     public void setBrandsRepository(BrandRepository brandsRepository) {
         this.brandsRepository = brandsRepository;

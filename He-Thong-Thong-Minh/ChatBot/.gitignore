@@ -1,0 +1,6 @@
+HELP.md
+
+### VS Code ###
+.vscode/
+.rasa/cache/**
+actions/__pycache__/**

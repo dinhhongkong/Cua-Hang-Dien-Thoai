@@ -32,6 +32,11 @@ public class DonHangServiceImpl implements DonHangService {
         return donHangRepository.findById(id);
     }
 
+    @Override
+    public List<DonHang> findDonHangByUserId(Long userId) {
+        return donHangRepository.findByUserId(userId);
+    }
+
 
 }
 
