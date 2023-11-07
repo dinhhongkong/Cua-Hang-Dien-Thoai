@@ -101,7 +101,7 @@ function updateTable(data) {
             <td>${device.deviceName}</td>
             <td><img src="${device.picture}"></td>
             <td>${device.gia}</td>
-            <td>${device.brand}</td>
+
             <td>
                <button class="btn btn-info" data-toggle="modal" data-target="#ModalUpdateDT" data-id = ${device.id}>Cập nhập</button>
                <button class="btn btn-danger" data-toggle="modal" data-target="#ModalYesNo" data-id = ${device.id}>Stop</button>

@@ -322,6 +322,8 @@ def get_product_interact(user_id):
 
 @app.route('/trainmodel', methods=['GET'])
 def train_model():
+    model = tf.keras.models.load_model("Recommendation/mymodel.h5")
+    model.save("Recommendation/backupmodel.h5")
     load_data()
     data = pd.read_csv('Recommendation/user_history.csv')
     train_data, test_data = train_test_split(
