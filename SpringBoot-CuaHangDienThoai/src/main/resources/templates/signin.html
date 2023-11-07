@@ -12,6 +12,8 @@
     <link rel="stylesheet" th:href="@{/css/header/f6c4fdb.css}"/>
     <link rel="stylesheet" th:href="@{/css/header/0135102.css}"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+
 </head>
 <body>
 <div th:replace="/header::navbar"></div>
@@ -45,15 +47,27 @@
 
 <main class="my-5 mx-3 mt-6">
     <div class="container py-5 mx-auto border shadow form-login rounded-5">
-        <form>
+        <form action="/register" method="POST">
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+            <input type="hidden" name="_csrf_header" th:value="${_csrf.headerName}"/>
+            <div th:if="${param.error}" class="alert alert-warning d-flex justify-content-center my-3">
+                <div th:text ="${param.error}"></div>
+            </div>
             <h1 class="h1 mb-3 fw-normal">Đăng ký</h1>
             <div class="my-3 form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="thinh@gmail.com">
+                <input type="text" class="form-control" id="floatingInput" name="username" placeholder="thinh@gmail.com">
                 <label for="floatingInput">Tên đăng nhập</label>
             </div>
+
             <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Mật khẩu">
+                <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Mật khẩu">
                 <label for="floatingPassword">Mật khẩu</label>
+            </div>
+            <br>
+
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingEmail" name="email" placeholder="Email">
+                <label for="floatingPassword">Email</label>
             </div>
 
             <div class="checkbox mb-3 mt-3">

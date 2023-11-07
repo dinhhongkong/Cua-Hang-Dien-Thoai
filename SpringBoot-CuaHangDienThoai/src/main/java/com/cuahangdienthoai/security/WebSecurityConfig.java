@@ -46,6 +46,7 @@ public class WebSecurityConfig {
                         .logoutSuccessUrl("/")
                         .permitAll()
                 )
+//                .csrf( csrf ->csrf.disable())
         ;
 
         return http.build();

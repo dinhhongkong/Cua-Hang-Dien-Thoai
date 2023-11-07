@@ -9,4 +9,6 @@ public interface UserService {
 
     List<User> findAllByRole (String role);
     void save(User user);
+
+    String createUser(User user);
 }

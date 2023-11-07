@@ -45,4 +45,17 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     public void save(User user) {
         userRepository.save(user);
     }
+
+    @Override
+    public String createUser(User user) {
+        if (userRepository.findByUserName(user.getUserName()) != null) {
+            return "Đăng kí không thành công, Username đã được sử dụng";
+        }
+        if (userRepository.findByEmail(user.getEmail()) != null) {
+            return "Đăng kí không thành công, Email đã được xử dụng";
+        }
+        userRepository.save(user);
+
+        return "Đăng kí thành công";
+    }
 }
