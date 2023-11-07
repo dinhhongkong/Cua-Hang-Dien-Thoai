@@ -37,6 +37,7 @@
                     <div class="col"> <strong>Số điện thoại đặt hàng:</strong> <br> <i class="fa fa-phone"></i> <span th:text='${donhang.sdt}'></span> </div>
                     <div class="col"> <strong>Địa chỉ giao tới:</strong> <br> <span th:text='${donhang.diaChi}'></span> </div>
                     <div class="col"> <strong>Trạng thái:</strong> <br> <span th:text='${donhang.trangThaiDonHang()}'> </span></div>
+                    <div class="col"> <strong>Thanh toán:</strong> <br> <span th:text='${donhang.maThanhToan ==0 ? "Thanh toán khi nhận hàng": "Đã thanh toán bằng VnPay"}'> </span></div>
                 </div>
             </article>
             <div class="track">

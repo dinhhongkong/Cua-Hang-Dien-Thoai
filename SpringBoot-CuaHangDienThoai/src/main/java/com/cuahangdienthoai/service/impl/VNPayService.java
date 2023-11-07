@@ -197,6 +197,7 @@ public class VNPayService {
                     String lastNumber = numbers.get(numbers.size() - 1);
                     DonHang donhang = donHangRepository.findById(Long.parseLong(lastNumber));
                     donhang.setMaThanhToan(2);
+                    donHangRepository.save(donhang);
                     System.out.println("Số cuối cùng: " + lastNumber);
                 } else {
                     System.out.println("Không tìm thấy đủ số nguyên trong chuỗi.");

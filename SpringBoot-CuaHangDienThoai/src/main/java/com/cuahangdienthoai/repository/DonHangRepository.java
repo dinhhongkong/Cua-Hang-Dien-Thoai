@@ -7,6 +7,6 @@ import java.util.List;
 public interface DonHangRepository extends JpaRepository<DonHang,Long> {
     DonHang findById(long Id);
 
-    List<DonHang> findByUserId(Long id);
+    List<DonHang> findByUserIdAndMaThanhToanInOrderByIdDesc(Long id, List<Integer> maThanhToanValues);
 
 }

@@ -6,6 +6,8 @@ import com.cuahangdienthoai.service.DonHangService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -34,7 +36,7 @@ public class DonHangServiceImpl implements DonHangService {
 
     @Override
     public List<DonHang> findDonHangByUserId(Long userId) {
-        return donHangRepository.findByUserId(userId);
+        return donHangRepository.findByUserIdAndMaThanhToanInOrderByIdDesc(userId, Arrays.asList(0, 2) );
     }
 
 

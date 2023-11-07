@@ -11,8 +11,30 @@ fetch("/data/data.json").then((res) => {
 // }
 // let hanhChinh = loadNames().then((res) => res);
 
-function handleNormalPay() {
+function handleNormalPay(data) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/submitOrderNormalPay", true); // Đặt đường dẫn POST
 
+    // Đặt tiêu đề của yêu cầu, ví dụ: "Content-Type" là "application/json"
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    let csrfToken = document
+        .querySelector('meta[name="_csrf"]')
+        .getAttribute("content");
+    let csrfHeader = document
+        .querySelector('meta[name="_csrf_header"]')
+        .getAttribute("content");
+    xhr.setRequestHeader(csrfHeader, csrfToken);
+
+    // Xử lý phản hồi từ máy chủ
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // Xử lý phản hồi từ máy chủ nếu cần
+            // Ví dụ: chuyển hướng đến trang khác sau khi mua hàng thành công
+            window.location.href = xhr.response;
+            console.log("gửi thành công thành công");
+        }
+    };
+    xhr.send(JSON.stringify(data));
 }
 
 function handleVNPay(data) {
@@ -140,36 +162,36 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (data.paymentMethod === 0) {
-            handleNormalPay()
+            handleNormalPay(data)
         }
         else if (data.paymentMethod === 1) {
             handleVNPay(data)
         }
 
 
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/submitOrder", true); // Đặt đường dẫn POST
-
-        // Đặt tiêu đề của yêu cầu, ví dụ: "Content-Type" là "application/json"
-        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        let csrfToken = document
-            .querySelector('meta[name="_csrf"]')
-            .getAttribute("content");
-        let csrfHeader = document
-            .querySelector('meta[name="_csrf_header"]')
-            .getAttribute("content");
-        xhr.setRequestHeader(csrfHeader, csrfToken);
-
-        // Xử lý phản hồi từ máy chủ
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                // Xử lý phản hồi từ máy chủ nếu cần
-                // Ví dụ: chuyển hướng đến trang khác sau khi mua hàng thành công
-                // window.location.href = "/payment-info";
-                console.log("gửi thành công thành công");
-            }
-        };
-        xhr.send(JSON.stringify(data));
+        // var xhr = new XMLHttpRequest();
+        // xhr.open("POST", "/submitOrder", true); // Đặt đường dẫn POST
+        //
+        // // Đặt tiêu đề của yêu cầu, ví dụ: "Content-Type" là "application/json"
+        // xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        // let csrfToken = document
+        //     .querySelector('meta[name="_csrf"]')
+        //     .getAttribute("content");
+        // let csrfHeader = document
+        //     .querySelector('meta[name="_csrf_header"]')
+        //     .getAttribute("content");
+        // xhr.setRequestHeader(csrfHeader, csrfToken);
+        //
+        // // Xử lý phản hồi từ máy chủ
+        // xhr.onreadystatechange = function () {
+        //     if (xhr.readyState === 4 && xhr.status === 200) {
+        //         // Xử lý phản hồi từ máy chủ nếu cần
+        //         // Ví dụ: chuyển hướng đến trang khác sau khi mua hàng thành công
+        //         // window.location.href = "/payment-info";
+        //         console.log("gửi thành công thành công");
+        //     }
+        // };
+        // xhr.send(JSON.stringify(data));
 
         // Chuyển đổi dữ liệu cart_items thành JSON và gửi đi
         // console.log(JSON.stringify(data));

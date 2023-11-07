@@ -28,7 +28,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/cart", "add-to-cart").hasAuthority("user")
+                        .requestMatchers("/cart", "add-to-cart", "/order-tracking").hasAuthority("user")
                         .requestMatchers("/admin").hasAuthority("admin")
                         .anyRequest().permitAll())
                 .formLogin((form) -> form
