@@ -22,11 +22,10 @@ public class RecommendationServiceImpl implements RecommendationService {
     }
 
     @Override
-    public String getRecommendOfUser(Long userId) {
+    public String getRecommendOfUser(Long userId, Long productId) {
         String uri = "http://localhost:5000/cothebanquantam";
-        String productId = userId.toString();
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri)
-                .queryParam("user_id", userId);
+                .queryParam("user_id", userId).queryParam("product_id", productId);
         String finalUrl = builder.toUriString();
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(finalUrl, String.class);

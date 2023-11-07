@@ -12,6 +12,9 @@ import java.util.Date;
 @Table(name = "user_history")
 public class UserHistory {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private Long user_id;
 
     private Long item_id;
