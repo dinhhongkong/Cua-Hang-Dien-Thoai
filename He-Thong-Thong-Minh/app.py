@@ -10,25 +10,96 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 import numpy as np
 from yellowbrick.cluster import KElbowVisualizer
-import random
+from sklearn.preprocessing import LabelEncoder
 from datetime import timedelta
 from sklearn.model_selection import train_test_split
-
-server = 'KONGDINH'
+import re
+server = 'LAPTOP-DOUILK3I'
 database = 'CUA_HANG_DIEN_THOAI'
 username = 'sa'
-password = 'a'
+password = '123456'
 conn = pyodbc.connect(
     f'DRIVER={{SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}')
+
+
+def process_storage(text):
+    if "GB" in text:
+        # Trường hợp có "GB" (gigabyte)
+        numbers = re.findall(r'\d+', text)
+        if numbers:
+            return int(numbers[0])  # Lấy giá trị số đầu tiên
+    elif "MB" in text:
+        # Trường hợp có "MB" (megabyte)
+        numbers = re.findall(r'\d+', text)
+        if numbers:
+            return int(numbers[0]) / 1024  # Chuyển MB thành GB
+    elif "TB" in text:
+        # Trường hợp có "TB" (terabyte)
+        numbers = re.findall(r'\d+', text)
+        if numbers:
+            return int(numbers[0]) * 1024  # Chuyển TB thành GB
+    elif "Unspecified" in text or "No card slot" in text:
+        # Trường hợp không xác định hoặc không có khe cắm thẻ
+        return 0
+    else:
+        # Trường hợp không xác định
+        return 0
+
+
+def extract_ram(text):
+    # Loại bỏ dấu &nbsp;
+    text = text.replace('&nbsp;', '0')
+
+    # Tìm các con số và dấu '/' trong chuỗi
+    matches = re.findall(
+        r'(\d+(?:\.\d+)?)\s?(?:\/)?\s?(\d+(?:\.\d+)?)?\s?(GB|MB)?', text)
+
+    # Tạo danh sách các giá trị RAM chuyển đổi thành số
+    ram_values = []
+    for match in matches:
+        val1 = float(match[0]) if match[0] else 0
+        val2 = float(match[1]) if match[1] else 0
+        unit = match[2]
+
+        if unit == 'GB':
+            val1 *= 1024  # Chuyển đổi GB thành MB
+
+        if val2 != 0:
+            # Nếu tồn tại phép chia
+            val1 = val1 / val2
+
+        ram_values.append(val1)
+
+    # Tìm giá trị RAM lớn nhất trong danh sách
+    max_ram = max(ram_values)
+
+    return max_ram
+
+
+def extract_battery(text):
+    # Loại bỏ dấu &nbsp;
+    text = text.replace('&nbsp;', '0')
+
+    # Tìm các con số và "mAh" trong chuỗi
+    match = re.search(r'(\d+)\s*mAh', text)
+
+    if match:
+        return int(match.group(1))
+    else:
+        return 0
+
 
 RASA_API_URL = 'http://localhost:5005/webhooks/rest/webhook'
 app = Flask(__name__)
 
 # on the terminal type: curl http://127.0.0.1:5000/
+
+
 @app.route('/webhook', methods=['POST'])
 def webhook():
     user_message = request.json
-    rasa_response = requests.post(RASA_API_URL, json={"sender": user_message["sender"], "message": user_message["message"].lower()})
+    rasa_response = requests.post(RASA_API_URL, json={
+                                  "sender": user_message["sender"], "message": user_message["message"].lower()})
     if rasa_response.status_code == 200:
         rasa_json = rasa_response.json()
         if rasa_json and isinstance(rasa_json, list) and len(rasa_json) > 0:
@@ -48,7 +119,7 @@ def load_dulieu():
 
 def ma_hoa(dataall):
     data = pd.read_csv('Recommendation/data.csv')
-    data = data.drop(['url_hash', 'id', 'gia', 'cluster'], axis=1)
+    data = data[['device_name', 'os', 'specifications', 'chipset']]
     # Thay thế các giá trị NaN bằng 0 hoặc giá trị khác
     data = data.fillna("0")
     data = data.drop_duplicates()  # Loại bỏ các dòng trùng lặp
@@ -65,11 +136,101 @@ def ma_hoa(dataall):
     encoded_data = pd.DataFrame()
     for col in data.columns:
         if data[col].dtype == 'object':
-            col_vectors = data[col].str.split().apply(
-                lambda words: [model.wv[word] for word in words if word in model.wv]).apply(
+            col_vectors = data[col].str.split().apply(lambda words: [model.wv[word] for word in words if word in model.wv]).apply(
                 lambda vectors: sum(vectors) if vectors else [0.0] * 100)
             col_vectors = col_vectors.apply(lambda vector: pd.Series(vector))
             encoded_data = pd.concat([encoded_data, col_vectors], axis=1)
+    t = dataall['body']
+    body = []
+    for i in t:
+        if pd.notna(i):
+            numbers = [float(number)
+                       for number in re.findall(r'\d+\.\d+|\d+', i)]
+            body.append(numbers)
+        else:
+            body.append([0])
+    rs = []
+    for sublist in body:
+        if len(sublist) > 1:
+            rs.append(sublist[0]*sublist[1])
+        else:
+            rs.append(sublist[0])
+    df_body = pd.DataFrame(rs, columns=['body'])
+
+    t = dataall['storage']
+    storage = []
+    for i in t:
+        storage.append(process_storage(i.split(',')[0]))
+    df_storage = pd.DataFrame(storage, columns=['storage'])
+
+    t = dataall['display_size']
+    display_size = [float(re.search(r'\d+\.\d+', s).group())
+                    for s in t if re.search(r'\d+\.\d+', s)]
+    df_display_size = pd.DataFrame(display_size, columns=['display_size'])
+
+    t = dataall['display_resolution']
+    display_resolution = []
+    pattern = r'(\d+)x(\d+) pixels'
+    for item in t:
+        match = re.search(pattern, item)
+        if match:
+            # Chuyển đổi con số thành số nguyên
+            width, height = map(int, match.groups())
+            display_resolution.append(width*height)
+    df_display_resolution = pd.DataFrame(
+        display_resolution, columns=['display_resolution'])
+
+    t = dataall['camera_pixels']
+    camera_pixels = [0 if val.strip() == 'NO' else float(val.split()[0])
+                     for val in t]
+    df_camera_pixels = pd.DataFrame(
+        camera_pixels, columns=['camera_pixels'])
+
+    t = dataall['video_pixels']
+    video_pixels = []
+    mapping = {
+        '2160p': 2160,
+        '720p': 720,
+        '1080p': 1080,
+        'No video recorder': 0,
+        'Video recorder': 0,
+        '288p': 288,
+        '480p': 480,
+        '4320p': 4320,
+        '3240p': 3240,
+        '1440p': 1440,
+        '240p': 240,
+    }
+    t = [mapping[val] if val in mapping else val for val in t]
+    video_pixels = [0 if pd.isna(val) else val for val in t]
+    df_video_pixels = pd.DataFrame(
+        video_pixels, columns=['video_pixels'])
+
+    t = dataall['ram']
+    ram = [extract_ram(text) for text in t]
+
+    df_ram = pd.DataFrame(
+        ram, columns=['ram'])
+
+    t = dataall['battery_size']
+    battery_size = [extract_battery(text) for text in t]
+    df_battery_size = pd.DataFrame(
+        battery_size, columns=['battery_size'])
+    t = dataall['battery_type']
+    label_encoder = LabelEncoder()
+    battery_type = label_encoder.fit_transform(t)
+    df_battery_type = pd.DataFrame(
+        battery_type, columns=['battery_type'])
+
+    encoded_data = pd.concat([encoded_data, df_body], axis=1)
+    encoded_data = pd.concat([encoded_data, df_battery_type], axis=1)
+    encoded_data = pd.concat([encoded_data, df_battery_size], axis=1)
+    encoded_data = pd.concat([encoded_data, df_camera_pixels], axis=1)
+    encoded_data = pd.concat([encoded_data, df_display_resolution], axis=1)
+    encoded_data = pd.concat([encoded_data, df_ram], axis=1)
+    encoded_data = pd.concat([encoded_data, df_video_pixels], axis=1)
+    encoded_data = pd.concat([encoded_data, df_storage], axis=1)
+    encoded_data = pd.concat([encoded_data, df_display_size], axis=1)
     encoded_data = pd.concat([encoded_data, dataall['gia']], axis=1)
     encoded_data = pd.concat([encoded_data, dataall['cluster']], axis=1)
     return encoded_data
@@ -84,7 +245,6 @@ def recommendations1():
     load_dulieu()
     dataall = pd.read_csv('Recommendation/data.csv')
     product_index = dataall.loc[dataall['id'] == int(product_id)].index[0]
-    print(product_index)
     encoded_data = ma_hoa(dataall)
     data_array = encoded_data.to_numpy()
     reference_product = data_array[product_index]
@@ -203,11 +363,16 @@ def train_model():
 @app.route('/cothebanquantam', methods=['GET'])
 def recommendations():
     user_id = int(request.args.get('user_id'))
+    product_id = int(request.args.get('product_id'))
+    cluster = pd.read_csv('Recommendation/data.csv')
+    product = cluster[cluster['id'] == product_id]
+    cluster_product = product['cluster']
     data = get_user_history()
     dataitem = data['item_id'].unique()
+    item_to_index = {item_id: i for i, item_id in enumerate(dataitem)}
     unique_user_ids = data['user_id'].unique()
     user_to_indexdata = {user_id: index for index,
-    user_id in enumerate(unique_user_ids)}
+                         user_id in enumerate(unique_user_ids)}
     user_index_to_recommend = user_to_indexdata.get(user_id)
     index_to_itemdata = {i: item_id for i, item_id in enumerate(dataitem)}
     model = tf.keras.models.load_model("Recommendation/mymodel.h5")
@@ -215,7 +380,16 @@ def recommendations():
         # Số lượng sản phẩm cần đề xuất
         k = 5  # Điều chỉnh theo số lượng sản phẩm bạn muốn đề xuất
 
-        all_items_to_recommend = np.arange(len_devices())
+        filtered_data = cluster[cluster['cluster']
+                                == cluster_product.iloc[0]]
+        items_with_cluster = filtered_data['id'].unique()
+        filtered_data = data[data['item_id'].isin(items_with_cluster)]
+        items_with_cluster = filtered_data['item_id'].unique()
+        index_of_cluster = []
+        for i in items_with_cluster:
+            index_of_cluster.append(item_to_index[i])
+        all_items_to_recommend = np.intersect1d(
+            np.arange(len(dataitem)), np.array(index_of_cluster))
         if len(all_items_to_recommend) > 0:
             # Sử dụng mô hình NCF để dự đoán xác suất tương tác cho các sản phẩm chưa tương tác
             predicted_probabilities = model.predict([np.array(
@@ -228,11 +402,12 @@ def recommendations():
             for i in top_k_recommendations:
                 recommended_item_ids.append(int(index_to_itemdata[i[0]]))
             print(recommended_item_ids)
-            return jsonify(recommended_item_ids)
+            return jsonify({"related_products_id": recommended_item_ids})
         else:
             return jsonify({"related_products_id": "khong co san pham de xuat cho nguoi dung nay"})
     else:
         return jsonify({"related_products_id": "nguoi dung khong ton tai trong tap huan luyen"})
+
 
 if __name__ == '__main__':
     app.run(debug=True)

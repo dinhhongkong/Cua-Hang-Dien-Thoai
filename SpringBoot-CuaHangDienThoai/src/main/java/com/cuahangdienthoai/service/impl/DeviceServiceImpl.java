@@ -65,8 +65,8 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     @Override
-    public ArrayList<Device> RecommendForUser(Long userId) {
-        String jsonString = recommendationService.getRecommendOfUser(userId);
+    public ArrayList<Device> RecommendForUser(Long userId, Long productId) {
+        String jsonString = recommendationService.getRecommendOfUser(userId,productId);
         ObjectMapper objectMapper = new ObjectMapper();
         ArrayList<Long> devicesId;
         ArrayList<Device> devices = new ArrayList<>();

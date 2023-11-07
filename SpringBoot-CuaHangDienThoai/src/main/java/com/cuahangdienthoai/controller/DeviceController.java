@@ -71,24 +71,25 @@ public class DeviceController {
     @GetMapping("/{deviceName}/info")
     public String info(@PathVariable String deviceName, Model model, Authentication authentication) {
         CustomUserDetails userDetails = authentication == null ? null :(CustomUserDetails) authentication.getPrincipal();
-
         String name = deviceName.replace("-", " ");
         Device device = deviceService.findByDeviceName(name);
-        UserHistory userHistory = new UserHistory();
-        userHistory.setUser_id(userDetails.getUser().getId());
-        userHistory.setItem_id(device.getId());
-        userHistory.setRating(1L);
-        userHistory.setBuy(false);
-        Date currentDate = new Date(System.currentTimeMillis());
-        userHistory.setTimestamp(currentDate);
-        userHistoryService.save(userHistory);
+        if(userDetails != null){
+            UserHistory userHistory = new UserHistory();
+            userHistory.setUser_id(userDetails.getUser().getId());
+            userHistory.setItem_id(device.getId());
+            userHistory.setRating(1L);
+            userHistory.setBuy(false);
+            Date currentDate = new Date(System.currentTimeMillis());
+            userHistory.setTimestamp(currentDate);
+            userHistoryService.save(userHistory);
+        }
         model.addAttribute("device", device);
         try {
             // sản phẩm liên quan
             model.addAttribute("recommendedDevice", deviceService.RecommendOfDevices(device.getId()));
             if ( userDetails != null) {
                 // có thể bạn quan tâm
-                model.addAttribute("recommendForUser", deviceService.RecommendForUser(userDetails.getUser().getId()));
+                model.addAttribute("recommendForUser", deviceService.RecommendForUser(userDetails.getUser().getId(),device.getId()));
             }
         }
         catch (Exception e) {

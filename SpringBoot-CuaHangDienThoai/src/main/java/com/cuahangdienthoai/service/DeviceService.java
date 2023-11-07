@@ -30,7 +30,7 @@ public interface DeviceService  {
 
     ArrayList<Device> RecommendOfDevices(Long deviceId);
 
-    ArrayList<Device> RecommendForUser(Long userId);
+    ArrayList<Device> RecommendForUser(Long userId, Long product);
 
 
 }
