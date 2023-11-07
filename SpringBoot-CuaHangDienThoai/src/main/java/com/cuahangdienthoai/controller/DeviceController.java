@@ -81,7 +81,7 @@ public class DeviceController {
             model.addAttribute("recommendedDevice", deviceService.RecommendOfDevices(device.getId()));
             if ( userDetails != null) {
                 // có thể bạn quan tâm
-                model.addAttribute("recommendForUser", deviceService.RecommendForUser(userDetails.getUser().getId()));
+                model.addAttribute("recommendForUser", deviceService.RecommendForUser(userDetails.getUser().getId(),device.getId()));
 
                 UserHistory userHistory = new UserHistory();
                 userHistory.setUser_id(userDetails.getUser().getId());

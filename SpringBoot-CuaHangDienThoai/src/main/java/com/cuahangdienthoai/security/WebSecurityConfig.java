@@ -29,7 +29,7 @@ public class WebSecurityConfig {
         http
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/cart", "add-to-cart", "/order-tracking").hasAuthority("user")
-                        .requestMatchers("/admin").hasAuthority("admin")
+                        .requestMatchers("/Admin/**").hasAuthority("admin")
                         .anyRequest().permitAll())
                 .formLogin((form) -> form
                         .loginProcessingUrl("/j_spring_security_check")

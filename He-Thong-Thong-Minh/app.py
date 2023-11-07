@@ -14,10 +14,10 @@ from sklearn.preprocessing import LabelEncoder
 from datetime import timedelta
 from sklearn.model_selection import train_test_split
 import re
-server = 'LAPTOP-DOUILK3I'
+server = 'KONGDINH'
 database = 'CUA_HANG_DIEN_THOAI'
 username = 'sa'
-password = '123456'
+password = 'a'
 conn = pyodbc.connect(
     f'DRIVER={{SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}')
 
@@ -402,7 +402,7 @@ def recommendations():
             for i in top_k_recommendations:
                 recommended_item_ids.append(int(index_to_itemdata[i[0]]))
             print(recommended_item_ids)
-            return jsonify({"related_products_id": recommended_item_ids})
+            return jsonify( recommended_item_ids)
         else:
             return jsonify({"related_products_id": "khong co san pham de xuat cho nguoi dung nay"})
     else:

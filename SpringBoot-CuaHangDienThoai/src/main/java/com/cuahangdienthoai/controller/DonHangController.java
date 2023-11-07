@@ -64,8 +64,8 @@ public class DonHangController {
     }
 
     @PostMapping("/Admin/donhang/hoanthanh")
-    public ResponseEntity<String> hoanThanhDonHang(@RequestParam long donHangId, Authentication authentication){
-        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+    public ResponseEntity<String> hoanThanhDonHang(@RequestParam long donHangId){
+
         DonHang donHang = donHangService.findDonHangById(donHangId);
         donHang.setTrangThai(2);
         List<ChiTietDonHang> listCTDH = donHang.getListCTDonHang();
@@ -73,7 +73,7 @@ public class DonHangController {
             Device device = e.getDevice();
             device.setSoLuong(device.getSoLuong() - e.getSoLuong());
             UserHistory userHistory = new UserHistory();
-            userHistory.setUser_id(userDetails.getUser().getId());
+            userHistory.setUser_id(donHang.getUser().getId());
             userHistory.setItem_id(device.getId());
             userHistory.setRating(1L);
             userHistory.setBuy(true);

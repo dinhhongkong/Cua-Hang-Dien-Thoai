@@ -63,12 +63,9 @@ public class DonHang {
             return "Đang chuẩn bị";
         }
         else if (trangThai ==1 ) {
-            return "Đang đóng gói";
-        }
-        else if ( trangThai == 2) {
             return "Đang vận chuyển";
         }
-        else if ( trangThai == 3) {
+        else if ( trangThai == 2) {
             return "Giao thành công";
         }
         return "Đã hủy";

@@ -42,9 +42,9 @@
             </article>
             <div class="track">
                 <div class="step" th:classappend="${donhang.trangThai == 0} ? 'active' : ''"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Xác nhận đơn hàng</span> </div>
-                <div class="step" th:classappend="${donhang.trangThai == 1} ? 'active' : ''"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Đơn hàng đang được đóng gói</span> </div>
-                <div class="step" th:classappend="${donhang.trangThai == 2} ? 'active' : ''"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text">Đang vận chuyển đơn hàng</span> </div>
-                <div class="step" th:classappend="${donhang.trangThai == 3} ? 'active' : ''"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Giao thành công</span> </div>
+                <div class="step" th:classappend="${donhang.trangThai == 1} ? 'active' : ''"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Đang vận chuyển đơn hàng</span> </div>
+<!--                <div class="step" th:classappend="${donhang.trangThai == 2} ? 'active' : ''"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text">Đang vận chuyển đơn hàng</span> </div>-->
+                <div class="step" th:classappend="${donhang.trangThai == 2} ? 'active' : ''"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Giao thành công</span> </div>
             </div>
             <hr>
             <ul class="row">
