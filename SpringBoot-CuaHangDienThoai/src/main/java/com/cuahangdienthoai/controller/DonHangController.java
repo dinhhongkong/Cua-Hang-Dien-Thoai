@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -77,6 +78,8 @@ public class DonHangController {
             userHistory.setItem_id(device.getId());
             userHistory.setRating(1L);
             userHistory.setBuy(true);
+            Date currentDate = new Date(System.currentTimeMillis());
+            userHistory.setTimestamp(currentDate);
             userHistoryService.save(userHistory);
             deviceService.save(device);
         }
