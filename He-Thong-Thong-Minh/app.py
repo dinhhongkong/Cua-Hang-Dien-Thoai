@@ -14,10 +14,10 @@ from sklearn.preprocessing import LabelEncoder
 from datetime import timedelta
 from sklearn.model_selection import train_test_split
 import re
-server = 'KONGDINH'
+server = 'LAPTOP-DOUILK3I'
 database = 'CUA_HANG_DIEN_THOAI'
 username = 'sa'
-password = 'a'
+password = '123456'
 conn = pyodbc.connect(
     f'DRIVER={{SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}')
 
@@ -366,6 +366,7 @@ def train_model():
 def recommendations():
     user_id = int(request.args.get('user_id'))
     product_id = int(request.args.get('product_id'))
+    print(product_id)
     cluster = pd.read_csv('Recommendation/data.csv')
     product = cluster[cluster['id'] == product_id]
     cluster_product = product['cluster']
@@ -404,11 +405,11 @@ def recommendations():
             for i in top_k_recommendations:
                 recommended_item_ids.append(int(index_to_itemdata[i[0]]))
             print(recommended_item_ids)
-            return jsonify( recommended_item_ids)
+            return jsonify(recommended_item_ids)
         else:
-            return jsonify({"related_products_id": "khong co san pham de xuat cho nguoi dung nay"})
+            return jsonify({"khong co san pham de xuat cho nguoi dung nay"})
     else:
-        return jsonify({"related_products_id": "nguoi dung khong ton tai trong tap huan luyen"})
+        return jsonify({"nguoi dung khong ton tai trong tap huan luyen"})
 
 
 if __name__ == '__main__':
